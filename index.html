@@ -1779,15 +1779,17 @@ document.addEventListener('DOMContentLoaded', function() {
   if (cartDrawer) addSwipeToClose(cartDrawer, function() {
     var pkgName = cart.length > 0 ? cart[0].name : null;
     closeCart();
+    var targets = { 'BLACK': 'blackCover', 'GOLD': 'goldCard', 'DIAMOND': 'diamondCard' };
+    var targetId = pkgName && targets[pkgName];
+    var el = targetId && document.getElementById(targetId);
+    var absoluteTop = 0;
+    if (el) {
+      var node = el;
+      while (node) { absoluteTop += node.offsetTop; node = node.offsetParent; }
+      absoluteTop -= 128;
+    }
     setTimeout(function() {
-      var targets = { 'BLACK': 'blackCover', 'GOLD': 'goldCard', 'DIAMOND': 'diamondCard' };
-      var targetId = pkgName && targets[pkgName];
-      var el = targetId && document.getElementById(targetId);
-      if (el) {
-        var navHeight = 128;
-        var top = el.getBoundingClientRect().top + window.pageYOffset - navHeight;
-        window.scrollTo({ top: top, behavior: 'smooth' });
-      }
+      if (el) window.scrollTo({ top: absoluteTop, behavior: 'smooth' });
     }, 350);
   });
   if (checkoutModal) addSwipeToClose(checkoutModal, function() {
