@@ -1783,7 +1783,11 @@ document.addEventListener('DOMContentLoaded', function() {
       var targets = { 'BLACK': 'blackCover', 'GOLD': 'goldCard', 'DIAMOND': 'diamondCard' };
       var targetId = pkgName && targets[pkgName];
       var el = targetId && document.getElementById(targetId);
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (el) {
+        var navHeight = 128;
+        var top = el.getBoundingClientRect().top + window.pageYOffset - navHeight;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
     }, 350);
   });
   if (checkoutModal) addSwipeToClose(checkoutModal, function() {
