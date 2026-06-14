@@ -1800,7 +1800,7 @@ function openCheckout() {
         '</div>';
     }
   });
-  summary += '<div style="margin-top:8px;"><span class="checkout-summary-price">$' + total + '</span> <span class="checkout-summary-sub"><span data-lang="pt" class="on">por pessoa</span><span data-lang="en">per person</span><span data-lang="fr">par personne</span><span data-lang="es">por persona</span></span></div>';
+  summary += '<div style="margin-top:8px;"><span class="checkout-summary-price">' + formatPrice(total) + '</span> <span class="checkout-summary-sub"><span data-lang="pt" class="on">por pessoa</span><span data-lang="en">per person</span><span data-lang="fr">par personne</span><span data-lang="es">por persona</span></span></div>';
   document.getElementById('checkoutSummary').innerHTML = summary;
   var firstName = (document.getElementById('contactFirstName') || {}).value || '';
   var lastName = (document.getElementById('contactLastName') || {}).value || '';
