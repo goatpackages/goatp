@@ -1769,7 +1769,7 @@ function renderCart() {
     html += '<div class="cart-item"><div class="cart-item-info"><h4>' + item.name + '</h4><p>' + item.edition + '</p></div><div style="display:flex;align-items:center;gap:12px;"><span class="cart-item-price">' + formatPrice(item.price) + '</span><button class="cart-item-remove" onclick="removeFromCart(' + i + ')">✕</button></div></div>';
   });
   if (hasBlack) {
-    html += '<div style="text-align:center;padding:20px 0 8px;"><div style="display:inline-block;background:#ffffff;padding:12px 24px;"><img src="logo.png" alt="G.O.A.T" style="height:120px;width:auto;display:block;filter:brightness(0);"></div></div>';
+    html += '<div style="text-align:center;padding:20px 0 8px;"><div style="background:#ffffff;padding:24px;width:100%;box-sizing:border-box;text-align:center;"><img src="logo.png" alt="G.O.A.T" style="height:180px;width:auto;display:inline-block;filter:brightness(0);"></div></div>';
   }
   body.innerHTML = html;
   footer.style.display = 'block';
