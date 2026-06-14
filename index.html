@@ -1777,7 +1777,10 @@ document.addEventListener('DOMContentLoaded', function() {
   var cartDrawer = document.querySelector('.cart-drawer');
   var checkoutModal = document.querySelector('.checkout-modal');
   if (cartDrawer) addSwipeToClose(cartDrawer, closeCart);
-  if (checkoutModal) addSwipeToClose(checkoutModal, closeCheckout);
+  if (checkoutModal) addSwipeToClose(checkoutModal, function() {
+    closeCheckout();
+    openCart();
+  });
 });
 function addToCart(name, edition, price) {
   cart = [{name:name, edition:edition, price:price}];
