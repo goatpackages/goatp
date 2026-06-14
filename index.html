@@ -1779,7 +1779,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (cartDrawer) addSwipeToClose(cartDrawer, closeCart);
   if (checkoutModal) addSwipeToClose(checkoutModal, function() {
     closeCheckout();
-    openCart();
+    setTimeout(function() { openCart(); }, 350);
   });
 });
 function addToCart(name, edition, price) {
