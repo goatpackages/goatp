@@ -1740,6 +1740,45 @@ function initCurrency() {
 }
 
 document.addEventListener('DOMContentLoaded', initCurrency);
+
+// Swipe down para fechar carrinho e checkout no celular
+function addSwipeToClose(el, closeFn) {
+  var startY = 0;
+  var startX = 0;
+  var isDragging = false;
+
+  el.addEventListener('touchstart', function(e) {
+    startY = e.touches[0].clientY;
+    startX = e.touches[0].clientX;
+    isDragging = true;
+    el.style.transition = 'none';
+  }, { passive: true });
+
+  el.addEventListener('touchmove', function(e) {
+    if (!isDragging) return;
+    var dy = e.touches[0].clientY - startY;
+    var dx = e.touches[0].clientX - startX;
+    if (dy > 0 && Math.abs(dy) > Math.abs(dx)) {
+      el.style.transform = 'translateY(' + dy + 'px)';
+    }
+  }, { passive: true });
+
+  el.addEventListener('touchend', function(e) {
+    if (!isDragging) return;
+    isDragging = false;
+    var dy = e.changedTouches[0].clientY - startY;
+    el.style.transition = '';
+    el.style.transform = '';
+    if (dy > 80) closeFn();
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  var cartDrawer = document.querySelector('.cart-drawer');
+  var checkoutModal = document.querySelector('.checkout-modal');
+  if (cartDrawer) addSwipeToClose(cartDrawer, closeCart);
+  if (checkoutModal) addSwipeToClose(checkoutModal, closeCheckout);
+});
 function addToCart(name, edition, price) {
   cart = [{name:name, edition:edition, price:price}];
   renderCart();
