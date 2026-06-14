@@ -938,7 +938,7 @@ span[data-lang].on { display: inline; }
       </div>
     </div>
     <!-- GOLD -->
-    <div class="pkg-card pkg-gold">
+    <div class="pkg-card pkg-gold" id="goldCard">
       <div class="pkg-cover" style="cursor:default;">
         <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="Gold Edition" loading="lazy">
         <div class="pkg-cover-badge">GOLD</div>
@@ -955,7 +955,7 @@ span[data-lang].on { display: inline; }
       </div>
     </div>
     <!-- DIAMOND -->
-    <div class="pkg-card pkg-diamond">
+    <div class="pkg-card pkg-diamond" id="diamondCard">
       <div class="pkg-cover" id="diamondCover" onclick="openModal('diamond')">
         <img id="diamondCoverImg" src="GOAT DIAMOND clubb" alt="Diamond Residence" loading="lazy">
         <div class="pkg-cover-badge">DIAMOND</div>
@@ -1776,7 +1776,16 @@ function addSwipeToClose(el, closeFn) {
 document.addEventListener('DOMContentLoaded', function() {
   var cartDrawer = document.querySelector('.cart-drawer');
   var checkoutModal = document.querySelector('.checkout-modal');
-  if (cartDrawer) addSwipeToClose(cartDrawer, closeCart);
+  if (cartDrawer) addSwipeToClose(cartDrawer, function() {
+    var pkgName = cart.length > 0 ? cart[0].name : null;
+    closeCart();
+    setTimeout(function() {
+      var targets = { 'BLACK': 'blackCover', 'GOLD': 'goldCard', 'DIAMOND': 'diamondCard' };
+      var targetId = pkgName && targets[pkgName];
+      var el = targetId && document.getElementById(targetId);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 350);
+  });
   if (checkoutModal) addSwipeToClose(checkoutModal, function() {
     closeCheckout();
     setTimeout(function() { openCart(); }, 350);
