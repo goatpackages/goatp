@@ -2103,7 +2103,7 @@ function closePrivacy() {
   document.body.style.overflow = '';
 }
 // Footer legal links
-(function() {
+document.addEventListener('DOMContentLoaded', function() {
   var footer = document.querySelector('footer');
   if (!footer) return;
   var linksHtml = '<div class="footer-bottom" style="margin-top:32px;">' +
