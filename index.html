@@ -2222,6 +2222,7 @@ function openCheckout() {
   document.getElementById('checkoutSuccess').style.display = 'none';
   document.getElementById('checkoutOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
+  drpRender();
   setLang(currentLang);
 }
 function closeCheckout() {
