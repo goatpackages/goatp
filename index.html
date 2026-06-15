@@ -788,6 +788,8 @@ span[data-lang].on { display: inline; }
 .policy-overlay.open { opacity: 1; pointer-events: all; }
 .policy-modal { background: #111; border: 1px solid var(--border); width: 100%; max-width: 640px; max-height: 88vh; overflow-y: auto; position: relative; padding: 48px 40px 40px; scrollbar-width: thin; scrollbar-color: #333 transparent; }
 .policy-close { position: absolute; top: 16px; right: 16px; background: none; border: 1px solid var(--border); color: var(--white); width: 32px; height: 32px; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.policy-drag-handle { width: 36px; height: 4px; background: rgba(255,255,255,0.15); border-radius: 2px; margin: 0 auto 28px; }
+.policy-modal { touch-action: none; transition: transform 0.15s ease; }
 .policy-title { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; }
 .policy-modal h3 { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); margin: 24px 0 8px; }
 .policy-modal p { font-size: 13px; color: var(--cream-dim); line-height: 1.8; margin-bottom: 12px; }
@@ -1676,7 +1678,8 @@ modalEl.addEventListener('touchend', function(e) {
 
 <!-- CHECKOUT MODAL -->
 <div class="policy-overlay" id="termsOverlay" onclick="if(event.target===this)closeTerms()">
-  <div class="policy-modal">
+  <div class="policy-modal" id="termsModal">
+    <div class="policy-drag-handle"></div>
     <button class="policy-close" onclick="closeTerms()">✕</button>
     <p class="policy-title"><span data-lang="pt" class="on">Termos e Condições</span><span data-lang="en">Terms &amp; Conditions</span><span data-lang="fr">Termes et Conditions</span><span data-lang="es">Términos y Condiciones</span></p>
 
@@ -1739,7 +1742,8 @@ modalEl.addEventListener('touchend', function(e) {
 </div>
 
 <div class="policy-overlay" id="privacyOverlay" onclick="if(event.target===this)closePrivacy()">
-  <div class="policy-modal">
+  <div class="policy-modal" id="privacyModal">
+    <div class="policy-drag-handle"></div>
     <button class="policy-close" onclick="closePrivacy()">✕</button>
     <p class="policy-title"><span data-lang="pt" class="on">Política de Privacidade</span><span data-lang="en">Privacy Policy</span><span data-lang="fr">Politique de Confidentialité</span><span data-lang="es">Política de Privacidad</span></p>
 
@@ -1796,7 +1800,8 @@ modalEl.addEventListener('touchend', function(e) {
 </div>
 
 <div class="policy-overlay" id="policyOverlay" onclick="if(event.target===this)closePolicy()">
-  <div class="policy-modal">
+  <div class="policy-modal" id="policyModal">
+    <div class="policy-drag-handle"></div>
     <button class="policy-close" onclick="closePolicy()">✕</button>
     <p class="policy-title"><span data-lang="pt" class="on">Política de Reembolso</span><span data-lang="en">Refund Policy</span><span data-lang="fr">Politique de Remboursement</span><span data-lang="es">Política de Reembolso</span></p>
 
@@ -2138,6 +2143,42 @@ function closeCheckout() {
   document.getElementById('checkoutOverlay').classList.remove('open');
   document.body.style.overflow = '';
 }
+function addSwipeToClose(modalId, closeFn) {
+  var modal = document.getElementById(modalId);
+  if (!modal) return;
+  var startY = 0, currentY = 0, dragging = false;
+  modal.addEventListener('touchstart', function(e) {
+    startY = e.touches[0].clientY;
+    dragging = true;
+    modal.style.transition = 'none';
+  }, { passive: true });
+  modal.addEventListener('touchmove', function(e) {
+    if (!dragging) return;
+    currentY = e.touches[0].clientY;
+    var diff = currentY - startY;
+    if (diff > 0) modal.style.transform = 'translateY(' + diff + 'px)';
+  }, { passive: true });
+  modal.addEventListener('touchend', function() {
+    if (!dragging) return;
+    dragging = false;
+    modal.style.transition = 'transform 0.25s ease';
+    if (currentY - startY > 80) {
+      modal.style.transform = 'translateY(100%)';
+      setTimeout(function() {
+        closeFn();
+        modal.style.transform = '';
+        modal.style.transition = '';
+      }, 250);
+    } else {
+      modal.style.transform = '';
+    }
+  });
+}
+document.addEventListener('DOMContentLoaded', function() {
+  addSwipeToClose('policyModal', closePolicy);
+  addSwipeToClose('termsModal', closeTerms);
+  addSwipeToClose('privacyModal', closePrivacy);
+});
 function openPolicy() {
   document.getElementById('policyOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
