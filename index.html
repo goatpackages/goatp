@@ -803,42 +803,6 @@ span[data-lang].on { display: inline; }
   .cart-drawer { width: 100vw; }
   .checkout-modal { padding: 32px 20px; }
 }
-/* ── Date range picker (Airbnb style) ── */
-.drp-fields { display: flex; gap: 0; margin-bottom: 12px; border: 1px solid rgba(200,169,126,0.3); }
-.drp-field { flex: 1; padding: 12px 14px; cursor: pointer; transition: background 0.15s; position: relative; }
-.drp-field:first-child { border-right: 1px solid rgba(200,169,126,0.3); }
-.drp-field.drp-active { background: rgba(200,169,126,0.08); }
-.drp-field-label { display: block; font-size: 8px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
-.drp-field-val { display: block; font-size: 13px; color: var(--white); letter-spacing: 0.03em; }
-.drp-field-val.drp-empty { color: rgba(255,255,255,0.28); }
-.drp-cal-wrap { display: none; margin-bottom: 16px; }
-.drp-cal-wrap.drp-open { display: block; }
-.drp-cal-months { display: flex; gap: 24px; }
-.drp-cal { flex: 1; min-width: 0; }
-.drp-cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-.drp-cal-nav-btn { background: none; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; transition: border-color 0.15s, color 0.15s; line-height: 1; }
-.drp-cal-nav-btn:hover { border-color: var(--gold); color: var(--gold); }
-.drp-cal-nav-btn.drp-invisible { visibility: hidden; }
-.drp-cal-month-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); font-weight: 600; }
-.drp-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); }
-.drp-cal-dow { text-align: center; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.3); padding: 6px 0 10px; }
-.drp-day { position: relative; text-align: center; padding: 8px 0; font-size: 13px; color: rgba(255,255,255,0.7); cursor: pointer; transition: color 0.1s; border-radius: 0; }
-.drp-day:hover:not(.drp-empty):not(.drp-past) { color: var(--white); }
-.drp-day:hover:not(.drp-empty):not(.drp-past)::after { content: ''; position: absolute; inset: 2px; border-radius: 50%; border: 1px solid rgba(200,169,126,0.5); pointer-events: none; }
-.drp-day.drp-empty, .drp-day.drp-past { cursor: default; color: rgba(255,255,255,0.15); }
-.drp-day.drp-start, .drp-day.drp-end { color: #000 !important; font-weight: 700; z-index: 1; }
-.drp-day.drp-start::before, .drp-day.drp-end::before { content: ''; position: absolute; inset: 2px; background: var(--gold); border-radius: 50%; z-index: -1; }
-.drp-day.drp-in-range { background: rgba(200,169,126,0.15); color: var(--white); }
-.drp-day.drp-start.drp-in-range { background: linear-gradient(to right, transparent 50%, rgba(200,169,126,0.15) 50%); }
-.drp-day.drp-end.drp-in-range { background: linear-gradient(to left, transparent 50%, rgba(200,169,126,0.15) 50%); }
-.drp-day.drp-start.drp-end { background: transparent; }
-.drp-hint { font-size: 10px; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; margin-bottom: 10px; }
-.drp-clear { background: none; border: none; color: rgba(255,255,255,0.3); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; padding: 0; transition: color 0.15s; display: block; margin-bottom: 4px; }
-.drp-clear:hover { color: var(--gold); }
-@media (max-width: 600px) {
-  .drp-cal-months { flex-direction: column; gap: 20px; }
-  .drp-cal:last-child { display: none; }
-}
 </style>
 </head>
 <body>
@@ -1944,24 +1908,28 @@ modalEl.addEventListener('touchend', function(e) {
         <span data-lang="fr">Période souhaitée</span>
         <span data-lang="es">Período deseado</span>
       </p>
-      <!-- Date range picker -->
-      <div class="drp-fields">
-        <div class="drp-field drp-active" id="drpFieldIn" onclick="drpFocus('in')">
-          <span class="drp-field-label">Check-in</span>
-          <span class="drp-field-val drp-empty" id="drpValIn">—</span>
-        </div>
-        <div class="drp-field" id="drpFieldOut" onclick="drpFocus('out')">
-          <span class="drp-field-label">Check-out</span>
-          <span class="drp-field-val drp-empty" id="drpValOut">—</span>
+      <div class="checkout-form">
+        <div style="display:flex; gap:16px;">
+          <div style="flex:1;">
+            <label style="display:block; font-size:9px; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">
+              <span data-lang="pt" class="on">Check-in</span>
+              <span data-lang="en">Check-in</span>
+              <span data-lang="fr">Arrivée</span>
+              <span data-lang="es">Llegada</span>
+            </label>
+            <input class="checkout-input" type="date" id="chkDateIn" style="color-scheme:dark; margin-bottom:0;">
+          </div>
+          <div style="flex:1;">
+            <label style="display:block; font-size:9px; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">
+              <span data-lang="pt" class="on">Check-out</span>
+              <span data-lang="en">Check-out</span>
+              <span data-lang="fr">Départ</span>
+              <span data-lang="es">Salida</span>
+            </label>
+            <input class="checkout-input" type="date" id="chkDateOut" style="color-scheme:dark; margin-bottom:0;">
+          </div>
         </div>
       </div>
-      <div class="drp-cal-wrap drp-open" id="drpCalWrap">
-        <p class="drp-hint" id="drpHint"></p>
-        <div class="drp-cal-months" id="drpCalMonths"></div>
-        <button class="drp-clear" onclick="drpClear()" id="drpClearBtn" style="display:none"><span data-lang="pt" class="on">Limpar datas</span><span data-lang="en">Clear dates</span><span data-lang="fr">Effacer</span><span data-lang="es">Borrar fechas</span></button>
-      </div>
-      <input type="hidden" id="chkDateIn">
-      <input type="hidden" id="chkDateOut">
       <div style="margin-top: 8px;">
         <button class="checkout-pay-btn" id="chkPayBtn" onclick="submitCheckout()">
           <span data-lang="pt" class="on">Confirmar reserva</span>
@@ -2315,106 +2283,8 @@ function applyDateFormat(el) {
   });
 }
 applyDateFormat(document.getElementById('datePlaceholderInput'));
-
-// ── Date Range Picker (checkout) ──
-var drp = { year: 0, month: 0, checkin: null, checkout: null, selecting: 'in' };
-(function(){ var n = new Date(); drp.year = n.getFullYear(); drp.month = n.getMonth(); })();
-
-var drpMonths = {
-  pt:['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-  en:['January','February','March','April','May','June','July','August','September','October','November','December'],
-  fr:['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
-  es:['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
-};
-var drpDows = {
-  pt:['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
-  en:['Su','Mo','Tu','We','Th','Fr','Sa'],
-  fr:['Di','Lu','Ma','Me','Je','Ve','Sa'],
-  es:['Do','Lu','Ma','Mi','Ju','Vi','Sa']
-};
-var drpHints = {
-  in: {pt:'Selecione a data de check-in',en:'Select your check-in date',fr:"Sélectionnez votre date d'arrivée",es:'Seleccione su fecha de llegada'},
-  out:{pt:'Agora selecione o check-out',en:'Now select your check-out date',fr:'Maintenant sélectionnez le départ',es:'Ahora seleccione su salida'}
-};
-
-function drpFmt(d) {
-  if (!d) return '';
-  return String(d.getDate()).padStart(2,'0') + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + d.getFullYear();
-}
-function drpSame(a,b) { return a&&b&&a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate(); }
-
-function drpFocus(which) {
-  drp.selecting = which;
-  document.getElementById('drpFieldIn').classList.toggle('drp-active', which==='in');
-  document.getElementById('drpFieldOut').classList.toggle('drp-active', which==='out');
-  document.getElementById('drpCalWrap').classList.add('drp-open');
-  drpRender();
-}
-function drpNav(dir) { drp.month+=dir; if(drp.month>11){drp.month=0;drp.year++;}if(drp.month<0){drp.month=11;drp.year--;} drpRender(); }
-function drpSelect(y,m,d) {
-  var sel = new Date(y,m,d); sel.setHours(0,0,0,0);
-  if (drp.selecting==='in') {
-    drp.checkin=sel; drp.checkout=null;
-    drp.selecting='out';
-    document.getElementById('drpFieldIn').classList.remove('drp-active');
-    document.getElementById('drpFieldOut').classList.add('drp-active');
-  } else {
-    if (drp.checkin && sel<=drp.checkin) { drp.checkin=sel; drp.checkout=null; drp.selecting='out'; }
-    else { drp.checkout=sel; drp.selecting='in'; document.getElementById('drpFieldIn').classList.add('drp-active'); document.getElementById('drpFieldOut').classList.remove('drp-active'); }
-  }
-  drpRender();
-}
-function drpClear() { drp.checkin=null; drp.checkout=null; drp.selecting='in'; document.getElementById('drpFieldIn').classList.add('drp-active'); document.getElementById('drpFieldOut').classList.remove('drp-active'); drpRender(); }
-
-function drpBuildMonth(y, m, isSecond) {
-  var lang = currentLang||'pt';
-  var months = drpMonths[lang]||drpMonths.pt;
-  var dows = drpDows[lang]||drpDows.pt;
-  var today = new Date(); today.setHours(0,0,0,0);
-  var firstDay = new Date(y,m,1).getDay();
-  var daysInMonth = new Date(y,m+1,0).getDate();
-  var html = '<div class="drp-cal">';
-  html += '<div class="drp-cal-nav">';
-  html += isSecond ? '<button class="drp-cal-nav-btn drp-invisible">‹</button>' : '<button class="drp-cal-nav-btn" onclick="drpNav(-1)">&#8249;</button>';
-  html += '<span class="drp-cal-month-label">'+months[m]+' '+y+'</span>';
-  html += isSecond ? '<button class="drp-cal-nav-btn" onclick="drpNav(1)">&#8250;</button>' : '<button class="drp-cal-nav-btn drp-invisible">›</button>';
-  html += '</div><div class="drp-cal-grid">';
-  dows.forEach(function(d){ html+='<div class="drp-cal-dow">'+d+'</div>'; });
-  for(var i=0;i<firstDay;i++) html+='<div class="drp-day drp-empty"></div>';
-  for(var day=1;day<=daysInMonth;day++){
-    var dt=new Date(y,m,day); dt.setHours(0,0,0,0);
-    var cls='drp-day';
-    if(dt<today) cls+=' drp-past';
-    var isStart=drpSame(dt,drp.checkin), isEnd=drpSame(dt,drp.checkout);
-    var inRange=drp.checkin&&drp.checkout&&dt>drp.checkin&&dt<drp.checkout;
-    if(isStart) cls+=' drp-start';
-    if(isEnd) cls+=' drp-end';
-    if(inRange||isStart||isEnd) cls+=' drp-in-range';
-    var oc = dt<today ? '' : 'onclick="drpSelect('+y+','+m+','+day+')"';
-    html+='<div class="'+cls+'" '+oc+'>'+day+'</div>';
-  }
-  html+='</div></div>';
-  return html;
-}
-
-function drpRender() {
-  var lang = currentLang||'pt';
-  var inEl=document.getElementById('drpValIn'), outEl=document.getElementById('drpValOut');
-  if(drp.checkin){inEl.textContent=drpFmt(drp.checkin);inEl.classList.remove('drp-empty');}
-  else{inEl.textContent='—';inEl.classList.add('drp-empty');}
-  if(drp.checkout){outEl.textContent=drpFmt(drp.checkout);outEl.classList.remove('drp-empty');}
-  else{outEl.textContent='—';outEl.classList.add('drp-empty');}
-  var hint=document.getElementById('drpHint');
-  if(hint) hint.textContent = drpHints[drp.selecting][lang]||drpHints[drp.selecting].pt;
-  var y2=drp.month===11?drp.year+1:drp.year, m2=drp.month===11?0:drp.month+1;
-  var html = drpBuildMonth(drp.year, drp.month, false) + drpBuildMonth(y2, m2, true);
-  document.getElementById('drpCalMonths').innerHTML = html;
-  var clrBtn=document.getElementById('drpClearBtn');
-  if(clrBtn) { clrBtn.style.display=(drp.checkin||drp.checkout)?'block':'none'; setLang(currentLang); }
-  document.getElementById('chkDateIn').value = drp.checkin ? drpFmt(drp.checkin) : '';
-  document.getElementById('chkDateOut').value = drp.checkout ? drpFmt(drp.checkout) : '';
-}
-document.addEventListener('DOMContentLoaded', function(){ drpRender(); });
+applyDateFormat(document.getElementById('blackCheckin'));
+applyDateFormat(document.getElementById('blackCheckout'));
 </script>
 
 <footer>
