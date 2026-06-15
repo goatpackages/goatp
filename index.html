@@ -1899,7 +1899,26 @@ modalEl.addEventListener('touchend', function(e) {
         <span data-lang="es">Período deseado</span>
       </p>
       <div class="checkout-form">
-        <input class="checkout-input" type="text" id="chkDates" placeholder="DD/MM/AAAA · DD/MM/AAAA" inputmode="numeric">
+        <div style="display:flex; gap:16px;">
+          <div style="flex:1;">
+            <label style="display:block; font-size:9px; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">
+              <span data-lang="pt" class="on">Check-in</span>
+              <span data-lang="en">Check-in</span>
+              <span data-lang="fr">Arrivée</span>
+              <span data-lang="es">Llegada</span>
+            </label>
+            <input class="checkout-input" type="date" id="chkDateIn" style="color-scheme:dark; margin-bottom:0;">
+          </div>
+          <div style="flex:1;">
+            <label style="display:block; font-size:9px; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">
+              <span data-lang="pt" class="on">Check-out</span>
+              <span data-lang="en">Check-out</span>
+              <span data-lang="fr">Départ</span>
+              <span data-lang="es">Salida</span>
+            </label>
+            <input class="checkout-input" type="date" id="chkDateOut" style="color-scheme:dark; margin-bottom:0;">
+          </div>
+        </div>
       </div>
       <div style="margin-top: 8px;">
         <button class="checkout-pay-btn" id="chkPayBtn" onclick="submitCheckout()">
@@ -2138,7 +2157,6 @@ function openCheckout() {
   if (fullName) document.getElementById('chkName').value = fullName;
   if (email) document.getElementById('chkEmail').value = email;
   if (phone) document.getElementById('chkPhone').value = phone;
-  if (dates) document.getElementById('chkDates').value = dates;
   document.getElementById('checkoutFormWrap').style.display = 'block';
   document.getElementById('checkoutSuccess').style.display = 'none';
   document.getElementById('checkoutOverlay').classList.add('open');
@@ -2250,7 +2268,6 @@ function applyDateFormat(el) {
     this.value = out;
   });
 }
-applyDateFormat(document.getElementById('chkDates'));
 applyDateFormat(document.getElementById('datePlaceholderInput'));
 </script>
 
