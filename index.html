@@ -803,57 +803,13 @@ span[data-lang].on { display: inline; }
   .cart-drawer { width: 100vw; }
   .checkout-modal { padding: 32px 20px; }
 }
-/* ── Date range picker (Airbnb style) ── */
-.drp-top { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:16px; flex-wrap:wrap; }
-.drp-nights-info { flex:1; min-width:0; }
-.drp-nights-count { font-size:22px; font-weight:700; color:var(--white); margin-bottom:2px; }
-.drp-nights-range { font-size:11px; color:rgba(255,255,255,.45); }
-.drp-inputs { display:flex; gap:0; border:1px solid rgba(255,255,255,.25); border-radius:8px; overflow:hidden; flex-shrink:0; }
-.drp-input-box { padding:10px 14px; cursor:pointer; position:relative; min-width:120px; transition:background .15s; }
-.drp-input-box:first-child { border-right:1px solid rgba(255,255,255,.15); }
-.drp-input-box.drp-active { background:rgba(255,255,255,.07); outline:2px solid var(--white); outline-offset:-1px; border-radius:7px; }
-.drp-input-label { font-size:8px; letter-spacing:.25em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:3px; }
-.drp-input-val { font-size:13px; font-weight:600; color:var(--white); white-space:nowrap; }
-.drp-input-val.drp-ph { color:rgba(255,255,255,.25); font-weight:400; }
-.drp-input-x { position:absolute; top:8px; right:8px; background:rgba(255,255,255,.15); border:none; border-radius:50%; color:var(--white); width:18px; height:18px; font-size:10px; cursor:pointer; display:none; align-items:center; justify-content:center; line-height:1; }
-.drp-input-x.drp-show { display:flex; }
-.drp-cal-nav { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
-.drp-nav-btn { background:none; border:1px solid rgba(255,255,255,.2); border-radius:50%; color:rgba(255,255,255,.7); width:30px; height:30px; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .15s; line-height:1; }
-.drp-nav-btn:hover { border-color:var(--white); color:var(--white); }
-.drp-cal-titles { display:flex; flex:1; justify-content:space-around; }
-.drp-cal-title { font-size:13px; font-weight:700; color:var(--white); text-align:center; text-transform:capitalize; }
-.drp-months { display:flex; gap:20px; }
-.drp-month { flex:1; }
-.drp-dows { display:grid; grid-template-columns:repeat(7,1fr); margin-bottom:4px; }
-.drp-dow { text-align:center; font-size:10px; font-weight:700; color:rgba(255,255,255,.3); padding:4px 0; }
-.drp-days { display:grid; grid-template-columns:repeat(7,1fr); }
-.drp-d { position:relative; text-align:center; padding:9px 0; font-size:13px; color:rgba(255,255,255,.8); cursor:pointer; }
-.drp-d.drp-empty,.drp-d.drp-past { cursor:default; color:rgba(255,255,255,.15); pointer-events:none; }
-.drp-d:not(.drp-empty):not(.drp-past):not(.drp-hover-end):hover .drp-d-bg { border-radius:50%; border:1px solid rgba(255,255,255,.4); }
-.drp-d-bg { position:absolute; inset:2px 0; z-index:0; border-radius:0; }
-.drp-d-txt { position:relative; z-index:2; }
-.drp-d.drp-range .drp-d-bg { background:rgba(200,169,126,.18); }
-.drp-d.drp-start .drp-d-bg { background:rgba(200,169,126,.18); border-radius:0; left:50%; }
-.drp-d.drp-end .drp-d-bg { background:rgba(200,169,126,.18); border-radius:0; right:50%; }
-.drp-d.drp-start.drp-end .drp-d-bg { background:transparent; left:0; right:0; }
-.drp-d.drp-start .drp-d-circle,.drp-d.drp-end .drp-d-circle { position:absolute; inset:2px; background:var(--white); border-radius:50%; z-index:1; }
-.drp-d.drp-start,.drp-d.drp-end { color:#111 !important; font-weight:700; }
-.drp-d-circle { display:none; }
-.drp-d.drp-start .drp-d-circle,.drp-d.drp-end .drp-d-circle { display:block; }
-.drp-footer { display:flex; justify-content:space-between; align-items:center; margin-top:16px; padding-top:12px; border-top:1px solid rgba(255,255,255,.08); }
-.drp-clear { background:none; border:none; color:rgba(255,255,255,.5); font-size:12px; cursor:pointer; text-decoration:underline; padding:0; transition:color .15s; }
-.drp-clear:hover { color:var(--white); }
-.drp-close { background:var(--white); color:#111; border:none; border-radius:6px; padding:10px 20px; font-size:12px; font-weight:700; letter-spacing:.08em; cursor:pointer; transition:opacity .15s; }
-.drp-close:hover { opacity:.85; }
-.drp-d.drp-today .drp-d-txt { text-decoration:underline; text-underline-offset:3px; }
-.drp-d.drp-hover-range .drp-d-bg { background:rgba(200,169,126,.10); }
-.drp-d.drp-hover-end .drp-d-circle { display:block; position:absolute; inset:2px; background:rgba(200,169,126,.38); border-radius:50%; z-index:1; }
-@media (max-width:600px) {
-  .drp-months { flex-direction:column; }
-  .drp-cal-titles { justify-content:space-between; }
-  .drp-inputs { width:100%; }
-  .drp-top { flex-direction:column; }
-}
+/* ── Date inputs ── */
+.date-fields { display:flex; gap:0; border:1px solid rgba(255,255,255,.25); border-radius:8px; overflow:hidden; margin-bottom:16px; }
+.date-field { flex:1; padding:12px 14px; }
+.date-field:first-child { border-right:1px solid rgba(255,255,255,.15); }
+.date-field-label { font-size:8px; letter-spacing:.25em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:5px; }
+.date-field-input { background:none; border:none; outline:none; color:var(--white); font-size:14px; font-weight:600; width:100%; font-family:inherit; letter-spacing:.04em; padding:0; }
+.date-field-input::placeholder { color:rgba(255,255,255,.25); font-weight:400; letter-spacing:.02em; }
 </style>
 </head>
 <body>
@@ -1938,40 +1894,17 @@ modalEl.addEventListener('touchend', function(e) {
         <span data-lang="fr">Période souhaitée</span>
         <span data-lang="es">Período deseado</span>
       </p>
-      <!-- Date range picker -->
-      <div class="drp-top">
-        <div class="drp-nights-info">
-          <div class="drp-nights-count" id="drpNightsCount"></div>
-          <div class="drp-nights-range" id="drpNightsRange"></div>
+      <!-- Date inputs -->
+      <div class="date-fields">
+        <div class="date-field">
+          <div class="date-field-label">CHECK IN</div>
+          <input class="date-field-input" type="text" id="chkDateIn" placeholder="DD / MM / AAAA" maxlength="14" inputmode="numeric">
         </div>
-        <div class="drp-inputs">
-          <div class="drp-input-box drp-active" id="drpBoxIn" onclick="drpFocus('in')">
-            <div class="drp-input-label">CHECK IN</div>
-            <div class="drp-input-val drp-ph" id="drpValIn">—</div>
-            <button class="drp-input-x" id="drpXIn" onclick="event.stopPropagation();drpClearIn()">✕</button>
-          </div>
-          <div class="drp-input-box" id="drpBoxOut" onclick="drpFocus('out')">
-            <div class="drp-input-label">CHECKOUT</div>
-            <div class="drp-input-val drp-ph" id="drpValOut">—</div>
-            <button class="drp-input-x" id="drpXOut" onclick="event.stopPropagation();drpClearOut()">✕</button>
-          </div>
+        <div class="date-field">
+          <div class="date-field-label">CHECKOUT</div>
+          <input class="date-field-input" type="text" id="chkDateOut" placeholder="DD / MM / AAAA" maxlength="14" inputmode="numeric">
         </div>
       </div>
-      <div class="drp-cal-nav">
-        <button class="drp-nav-btn" onclick="drpNav(-1)">&#8249;</button>
-        <div class="drp-cal-titles">
-          <span class="drp-cal-title" id="drpTitle0"></span>
-          <span class="drp-cal-title" id="drpTitle1"></span>
-        </div>
-        <button class="drp-nav-btn" onclick="drpNav(1)">&#8250;</button>
-      </div>
-      <div class="drp-months" id="drpMonths"></div>
-      <div class="drp-footer">
-        <button class="drp-clear" onclick="drpClear()"><span data-lang="pt" class="on">Limpar datas</span><span data-lang="en">Clear dates</span><span data-lang="fr">Effacer les dates</span><span data-lang="es">Borrar fechas</span></button>
-        <button class="drp-close" onclick="drpClose()"><span data-lang="pt" class="on">Fechar</span><span data-lang="en">Close</span><span data-lang="fr">Fermer</span><span data-lang="es">Cerrar</span></button>
-      </div>
-      <input type="hidden" id="chkDateIn">
-      <input type="hidden" id="chkDateOut">
       <p class="checkout-section">
         <span data-lang="pt" class="on">Seus dados</span>
         <span data-lang="en">Your details</span>
@@ -2225,7 +2158,6 @@ function openCheckout() {
   document.getElementById('checkoutSuccess').style.display = 'none';
   document.getElementById('checkoutOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
-  drpRender();
   setLang(currentLang);
 }
 function closeCheckout() {
@@ -2335,118 +2267,25 @@ function applyDateFormat(el) {
 }
 applyDateFormat(document.getElementById('datePlaceholderInput'));
 
-/* ── Date range picker ── */
-var drp={y:new Date().getFullYear(),m:new Date().getMonth(),start:null,end:null,sel:'in'};
-var drpMN={pt:['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],en:['January','February','March','April','May','June','July','August','September','October','November','December'],fr:['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],es:['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']};
-var drpDW={pt:['D','S','T','Q','Q','S','S'],en:['Su','Mo','Tu','We','Th','Fr','Sa'],fr:['Di','Lu','Ma','Me','Je','Ve','Sa'],es:['D','L','M','X','J','V','S']};
-var drpShortM={pt:['jan.','fev.','mar.','abr.','mai.','jun.','jul.','ago.','set.','out.','nov.','dez.'],en:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],fr:['jan.','fév.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'],es:['ene.','feb.','mar.','abr.','may.','jun.','jul.','ago.','sep.','oct.','nov.','dic.']};
-function drpFmt(d){if(!d)return '';return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear();}
-function drpFmtShort(d,lang){if(!d)return '';var mn=drpShortM[lang]||drpShortM.pt;return d.getDate()+' '+mn[d.getMonth()];}
-function drpSame(a,b){return a&&b&&a.getTime()===b.getTime();}
-function drpFocus(which){
-  drp.sel=which;
-  document.getElementById('drpBoxIn').classList.toggle('drp-active',which==='in');
-  document.getElementById('drpBoxOut').classList.toggle('drp-active',which==='out');
-  drpRender();
-}
-function drpNav(dir){drp.m+=dir;if(drp.m>11){drp.m=0;drp.y++;}if(drp.m<0){drp.m=11;drp.y--;}drpRender();}
-function drpPick(y,m,d){
-  var dt=new Date(y,m,d);dt.setHours(0,0,0,0);
-  if(drp.sel==='in'||!drp.start||dt<=drp.start){
-    drp.start=dt;drp.end=null;drp.sel='out';
-    document.getElementById('drpBoxIn').classList.remove('drp-active');
-    document.getElementById('drpBoxOut').classList.add('drp-active');
-  } else {
-    drp.end=dt;drp.sel='in';
-    document.getElementById('drpBoxIn').classList.add('drp-active');
-    document.getElementById('drpBoxOut').classList.remove('drp-active');
+/* ── Date inputs ── */
+(function(){
+  function applySimpleDateFmt(el){
+    if(!el)return;
+    el.addEventListener('input',function(){
+      var digits=this.value.replace(/\D/g,'').substring(0,8);
+      var out='';
+      for(var i=0;i<digits.length;i++){
+        if(i===2||i===4)out+=' / ';
+        out+=digits[i];
+      }
+      this.value=out;
+    });
   }
-  drpRender();
-}
-function drpClear(){drp.start=null;drp.end=null;drp.sel='in';document.getElementById('drpBoxIn').classList.add('drp-active');document.getElementById('drpBoxOut').classList.remove('drp-active');drpRender();}
-function drpClearIn(){drp.start=null;drp.end=null;drp.sel='in';document.getElementById('drpBoxIn').classList.add('drp-active');document.getElementById('drpBoxOut').classList.remove('drp-active');drpRender();}
-function drpClearOut(){drp.end=null;drp.sel='out';document.getElementById('drpBoxOut').classList.add('drp-active');drpRender();}
-function drpClose(){var ov=document.getElementById('checkoutOverlay');if(ov){ov.classList.remove('open');document.body.style.overflow='';}}
-function drpBuildMonth(y,m){
-  var lang=currentLang||'pt';
-  var dw=drpDW[lang]||drpDW.pt;
-  var today=new Date();today.setHours(0,0,0,0);
-  var fd=new Date(y,m,1).getDay();
-  var dim=new Date(y,m+1,0).getDate();
-  var h='<div class="drp-dows">';
-  dw.forEach(function(d){h+='<div class="drp-dow">'+d+'</div>';});
-  h+='</div><div class="drp-days">';
-  for(var i=0;i<fd;i++)h+='<div class="drp-d drp-empty"><div class="drp-d-bg"></div><div class="drp-d-circle"></div><span class="drp-d-txt"></span></div>';
-  for(var day=1;day<=dim;day++){
-    var dt=new Date(y,m,day);dt.setHours(0,0,0,0);
-    var past=dt<today;
-    var isToday=dt.getTime()===today.getTime();
-    var isS=drpSame(dt,drp.start),isE=drpSame(dt,drp.end);
-    var inR=drp.start&&drp.end&&dt>drp.start&&dt<drp.end;
-    var cls='drp-d'+(past?' drp-past':'')+(isToday?' drp-today':'')+(inR?' drp-range':'')+(isS?' drp-start':'')+(isE?' drp-end':'');
-    var oc=past?'':'onclick="drpPick('+y+','+m+','+day+')" onmouseenter="drpHoverOn(this)" onmouseleave="drpHoverOff()"';
-    h+='<div class="'+cls+'" '+oc+' data-ts="'+dt.getTime()+'"><div class="drp-d-bg"></div><div class="drp-d-circle"></div><span class="drp-d-txt">'+day+'</span></div>';
-  }
-  h+='</div>';
-  return h;
-}
-function drpRender(){
-  var lang=currentLang||'pt';
-  var mn=drpMN[lang]||drpMN.pt;
-  var y2=drp.m===11?drp.y+1:drp.y,m2=drp.m===11?0:drp.m+1;
-  var t0=document.getElementById('drpTitle0'),t1=document.getElementById('drpTitle1');
-  if(t0)t0.textContent=mn[drp.m]+' '+drp.y;
-  if(t1)t1.textContent=mn[m2]+' '+y2;
-  var mc=document.getElementById('drpMonths');
-  if(mc)mc.innerHTML='<div class="drp-month">'+drpBuildMonth(drp.y,drp.m)+'</div><div class="drp-month">'+drpBuildMonth(y2,m2)+'</div>';
-  var inEl=document.getElementById('drpValIn'),outEl=document.getElementById('drpValOut');
-  var xIn=document.getElementById('drpXIn'),xOut=document.getElementById('drpXOut');
-  if(inEl){
-    if(drp.start){inEl.textContent=drpFmt(drp.start);inEl.classList.remove('drp-ph');}
-    else{inEl.textContent='—';inEl.classList.add('drp-ph');}
-  }
-  if(xIn){if(drp.start)xIn.classList.add('drp-show');else xIn.classList.remove('drp-show');}
-  if(outEl){
-    if(drp.end){outEl.textContent=drpFmt(drp.end);outEl.classList.remove('drp-ph');}
-    else{outEl.textContent='—';outEl.classList.add('drp-ph');}
-  }
-  if(xOut){if(drp.end)xOut.classList.add('drp-show');else xOut.classList.remove('drp-show');}
-  var nc=document.getElementById('drpNightsCount'),nr=document.getElementById('drpNightsRange');
-  if(drp.start&&drp.end){
-    var n=Math.round((drp.end-drp.start)/864e5);
-    var nlbl={pt:n+' noite'+(n>1?'s':''),en:n+' night'+(n>1?'s':''),fr:n+' nuit'+(n>1?'s':''),es:n+' noche'+(n>1?'s':'')};
-    if(nc)nc.textContent=nlbl[lang]||nlbl.pt;
-    if(nr)nr.textContent=drpFmtShort(drp.start,lang)+' – '+drpFmtShort(drp.end,lang);
-  }else{
-    if(nc)nc.textContent='';
-    var hints={pt:drp.sel==='in'?'Selecione a data de check-in':'Selecione a data de check-out',en:drp.sel==='in'?'Select check-in':'Select check-out',fr:drp.sel==='in'?"Sél. arrivée":'Sél. départ',es:drp.sel==='in'?'Sel. llegada':'Sel. salida'};
-    if(nr)nr.textContent=hints[lang]||hints.pt;
-  }
-  var hi=document.getElementById('chkDateIn'),ho=document.getElementById('chkDateOut');
-  if(hi)hi.value=drp.start?drpFmt(drp.start):'';
-  if(ho)ho.value=drp.end?drpFmt(drp.end):'';
-  if(typeof setLang==='function')setLang(currentLang);
-}
-var drpHover=null;
-function drpHoverOn(el){
-  if(!drp.start||drp.end)return;
-  var ts=+el.dataset.ts;if(!ts)return;
-  var dt=new Date(ts);dt.setHours(0,0,0,0);
-  if(dt<=drp.start){if(drpHover){drpHover=null;drpUpdateHoverClasses();}return;}
-  drpHover=dt;drpUpdateHoverClasses();
-}
-function drpHoverOff(){if(!drpHover)return;drpHover=null;drpUpdateHoverClasses();}
-function drpUpdateHoverClasses(){
-  document.querySelectorAll('#drpMonths .drp-d').forEach(function(el){
-    el.classList.remove('drp-hover-range','drp-hover-end');
-    if(!drpHover||!drp.start||drp.end)return;
-    var ts=+el.dataset.ts;if(!ts)return;
-    var dt=new Date(ts);dt.setHours(0,0,0,0);
-    if(dt>drp.start&&dt<drpHover)el.classList.add('drp-hover-range');
-    else if(dt.getTime()===drpHover.getTime())el.classList.add('drp-hover-end');
+  document.addEventListener('DOMContentLoaded',function(){
+    applySimpleDateFmt(document.getElementById('chkDateIn'));
+    applySimpleDateFmt(document.getElementById('chkDateOut'));
   });
-}
-document.addEventListener('DOMContentLoaded',drpRender);
+})();
 </script>
 
 <footer>
