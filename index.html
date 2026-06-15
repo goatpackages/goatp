@@ -1898,11 +1898,11 @@ modalEl.addEventListener('touchend', function(e) {
       <div class="date-fields">
         <div class="date-field">
           <div class="date-field-label">CHECK IN</div>
-          <input class="date-field-input" type="text" id="chkDateIn" placeholder="DD/MM/AAAA" maxlength="10" inputmode="numeric">
+          <input class="date-field-input" type="text" id="chkDateIn" placeholder="DD/MM/AAAA" maxlength="10" inputmode="numeric" onkeydown="dateMaskKey(this,event)" oninput="dateMaskInput(this)">
         </div>
         <div class="date-field">
           <div class="date-field-label">CHECKOUT</div>
-          <input class="date-field-input" type="text" id="chkDateOut" placeholder="DD/MM/AAAA" maxlength="10" inputmode="numeric">
+          <input class="date-field-input" type="text" id="chkDateOut" placeholder="DD/MM/AAAA" maxlength="10" inputmode="numeric" onkeydown="dateMaskKey(this,event)" oninput="dateMaskInput(this)">
         </div>
       </div>
       <p class="checkout-section">
@@ -2265,43 +2265,34 @@ function applyDateFormat(el) {
 }
 applyDateFormat(document.getElementById('datePlaceholderInput'));
 
-/* ── Date inputs ── */
-(function(){
-  function fmtDate(digits){
-    if(digits.length<=2)return digits;
-    if(digits.length<=4)return digits.slice(0,2)+'/'+digits.slice(2);
-    return digits.slice(0,2)+'/'+digits.slice(2,4)+'/'+digits.slice(4,8);
+/* ── Date mask ── */
+function dateFmt(d){
+  if(d.length<=2)return d;
+  if(d.length<=4)return d.slice(0,2)+'/'+d.slice(2);
+  return d.slice(0,2)+'/'+d.slice(2,4)+'/'+d.slice(4,8);
+}
+function dateMaskKey(el,e){
+  if(e.key!=='Backspace')return;
+  var pos=el.selectionStart;
+  if(el.selectionStart!==el.selectionEnd)return;
+  if(el.value[pos-1]==='/'){
+    e.preventDefault();
+    var digits=el.value.replace(/\D/g,'');
+    var di=pos===3?1:3;
+    digits=digits.slice(0,di)+digits.slice(di+1);
+    el.value=dateFmt(digits);
+    var np=pos-2;el.setSelectionRange(np,np);
   }
-  function applyDateMask(el){
-    if(!el)return;
-    el.addEventListener('keydown',function(e){
-      if(e.key!=='Backspace')return;
-      var pos=this.selectionStart;
-      if(this.selectionStart!==this.selectionEnd)return;
-      if(this.value[pos-1]==='/'){
-        e.preventDefault();
-        var digits=this.value.replace(/\D/g,'');
-        var dIdx=pos===3?1:3;
-        digits=digits.slice(0,dIdx)+digits.slice(dIdx+1);
-        this.value=fmtDate(digits);
-        var np=pos-2;this.setSelectionRange(np,np);
-      }
-    });
-    el.addEventListener('input',function(){
-      var pos=this.selectionStart;
-      var digits=this.value.replace(/\D/g,'').substring(0,8);
-      var formatted=fmtDate(digits);
-      this.value=formatted;
-      if(formatted[pos]==='/')pos++;
-      pos=Math.min(pos,formatted.length);
-      this.setSelectionRange(pos,pos);
-    });
-  }
-  document.addEventListener('DOMContentLoaded',function(){
-    applyDateMask(document.getElementById('chkDateIn'));
-    applyDateMask(document.getElementById('chkDateOut'));
-  });
-})();
+}
+function dateMaskInput(el){
+  var pos=el.selectionStart;
+  var digits=el.value.replace(/\D/g,'').substring(0,8);
+  var fmt=dateFmt(digits);
+  el.value=fmt;
+  if(fmt[pos]==='/')pos++;
+  pos=Math.min(pos,fmt.length);
+  el.setSelectionRange(pos,pos);
+}
 </script>
 
 <footer>
