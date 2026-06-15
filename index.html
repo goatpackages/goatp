@@ -1930,17 +1930,6 @@ modalEl.addEventListener('touchend', function(e) {
     <div id="checkoutFormWrap">
       <hr class="checkout-divider">
       <p class="checkout-section">
-        <span data-lang="pt" class="on">Seus dados</span>
-        <span data-lang="en">Your details</span>
-        <span data-lang="fr">Vos coordonnées</span>
-        <span data-lang="es">Sus datos</span>
-      </p>
-      <div class="checkout-form">
-        <input class="checkout-input" type="text" id="chkName" placeholder="Nome completo · Full name" autocomplete="name">
-        <input class="checkout-input" type="email" id="chkEmail" placeholder="E-mail" autocomplete="email">
-        <input class="checkout-input" type="tel" id="chkPhone" placeholder="WhatsApp · Phone" autocomplete="tel">
-      </div>
-      <p class="checkout-section">
         <span data-lang="pt" class="on">Período desejado</span>
         <span data-lang="en">Preferred dates</span>
         <span data-lang="fr">Période souhaitée</span>
@@ -1980,6 +1969,18 @@ modalEl.addEventListener('touchend', function(e) {
       </div>
       <input type="hidden" id="chkDateIn">
       <input type="hidden" id="chkDateOut">
+      <p class="checkout-section">
+        <span data-lang="pt" class="on">Seus dados</span>
+        <span data-lang="en">Your details</span>
+        <span data-lang="fr">Vos coordonnées</span>
+        <span data-lang="es">Sus datos</span>
+      </p>
+      <div class="checkout-form">
+        <input class="checkout-input" type="text" id="chkName" placeholder="Nome completo · Full name" autocomplete="name">
+        <input class="checkout-input" type="email" id="chkEmail" placeholder="E-mail" autocomplete="email">
+        <input class="checkout-input" type="tel" id="chkPhone" placeholder="WhatsApp · Phone" autocomplete="tel">
+      </div>
+
       <div style="margin-top: 8px;">
         <button class="checkout-pay-btn" id="chkPayBtn" onclick="submitCheckout()">
           <span data-lang="pt" class="on">Confirmar reserva</span>
