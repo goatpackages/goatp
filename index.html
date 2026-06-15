@@ -2294,8 +2294,8 @@ function validateCheckout(el) {
     return false;
   }
   var base = 'https://buy.stripe.com/7sY8wIbzBfVu8sP8zp2Ry02';
-  el.href = base + '?prefilled_email=' + encodeURIComponent(elEmail.value.trim());
-  return true;
+  window.location.href = base + '?prefilled_email=' + encodeURIComponent(elEmail.value.trim());
+  return false;
 }
 function applyDateFormat(el) {
   if (!el) return;
