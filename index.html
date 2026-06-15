@@ -772,6 +772,16 @@ span[data-lang].on { display: inline; }
 .checkout-pay-btn { width: 100%; padding: 15px; background: var(--gold); color: var(--black); border: none; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; cursor: pointer; margin-top: 8px; transition: opacity 0.2s; }
 .checkout-pay-btn:hover { opacity: 0.88; }
 .checkout-secure { text-align: center; font-size: 11px; color: var(--cream-dim); letter-spacing: 0.08em; margin-top: 14px; }
+.checkout-policy-link { display: block; text-align: center; font-size: 10px; color: var(--cream-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 10px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; }
+.checkout-policy-link:hover { color: var(--gold); }
+.policy-overlay { position: fixed; inset: 0; z-index: 1400; background: rgba(0,0,0,0.92); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.25s; padding: 20px; }
+.policy-overlay.open { opacity: 1; pointer-events: all; }
+.policy-modal { background: #111; border: 1px solid var(--border); width: 100%; max-width: 640px; max-height: 88vh; overflow-y: auto; position: relative; padding: 48px 40px 40px; scrollbar-width: thin; scrollbar-color: #333 transparent; }
+.policy-close { position: absolute; top: 16px; right: 16px; background: none; border: 1px solid var(--border); color: var(--white); width: 32px; height: 32px; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.policy-title { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; }
+.policy-modal h3 { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); margin: 24px 0 8px; }
+.policy-modal p { font-size: 13px; color: var(--cream-dim); line-height: 1.8; margin-bottom: 12px; }
+@media (max-width: 600px) { .policy-modal { padding: 40px 20px 32px; } }
 .checkout-success { text-align: center; padding: 40px 0; display: none; }
 .checkout-success h3 { font-size: 15px; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 10px; }
 .checkout-success p { font-size: 13px; color: var(--cream-dim); line-height: 1.7; }
@@ -833,7 +843,7 @@ span[data-lang].on { display: inline; }
     <div class="hero-tags">
       <span class="hero-tag"><span data-lang="pt" class="on">1 Semana</span><span data-lang="en">1 Week</span><span data-lang="fr">1 Semaine</span><span data-lang="es">1 Semana</span></span>
       <span class="hero-tag">VIP</span>
-      <span class="hero-tag">Black · Gold · Diamond</span>
+      <span class="hero-tag">Black · Platinum · Diamond</span>
     </div>
     <div class="hero-dots">
       <button class="hero-dot active" onclick="goSlide(0)"></button>
@@ -937,18 +947,18 @@ span[data-lang].on { display: inline; }
         <button class="pkg-btn" id="blackCartBtn" onclick="addToCartDynamic('BLACK','Edição 01','black')"><span data-lang="pt" class="on">Reservar</span><span data-lang="en">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
       </div>
     </div>
-    <!-- GOLD -->
+    <!-- PLATINUM -->
     <div class="pkg-card pkg-gold" id="goldCard">
       <div class="pkg-cover" style="cursor:default;">
-        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="Gold Edition" loading="lazy">
-        <div class="pkg-cover-badge">GOLD</div>
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="Platinum Edition" loading="lazy">
+        <div class="pkg-cover-badge">PLATINUM</div>
         <div class="pkg-cover-title">
           <p class="pkg-edition"><span data-lang="pt" class="on">Edição 02</span><span data-lang="en">Edition 02</span><span data-lang="fr">Édition 02</span><span data-lang="es">Edición 02</span></p>
-          <h3 class="pkg-name">GOLD</h3>
+          <h3 class="pkg-name">PLATINUM</h3>
         </div>
       </div>
       <div class="pkg-body" style="background: transparent;">
-        <p class="pkg-tagline"><span data-lang="pt" class="on">A porta de entrada para uma experiência premium no Rio de Janeiro. O Pacote Gold reúne hospedagem selecionada, festas e atrações turísticas, trilhas e experiências autênticas para quem deseja aproveitar o melhor do Rio com conforto, segurança e praticidade. Uma semana de diversão, comodidade e momentos inesquecíveis na Cidade Maravilhosa.</span><span data-lang="en">The gateway to a premium experience in Rio de Janeiro. The Gold Package combines selected accommodation, parties and tourist attractions, hikes and authentic experiences for those who want to enjoy the best of Rio with comfort, safety and convenience. A week of fun, comfort and unforgettable moments in the Marvellous City.</span><span data-lang="fr">La porte d'entrée vers une expérience premium à Rio de Janeiro. Le Forfait Gold réunit hébergement sélectionné, fêtes et attractions touristiques, randonnées et expériences authentiques. Une semaine de plaisir, de confort et de moments inoubliables dans la Ville Merveilleuse.</span><span data-lang="es">La puerta de entrada a una experiencia premium en Río de Janeiro. El Paquete Gold reúne alojamiento seleccionado, fiestas y atracciones turísticas, senderismo y experiencias auténticas. Una semana de diversión, comodidad y momentos inolvidables en la Ciudad Maravillosa.</span></p>
+        <p class="pkg-tagline"><span data-lang="pt" class="on">A porta de entrada para uma experiência premium no Rio de Janeiro. O Pacote Platinum reúne hospedagem selecionada, festas e atrações turísticas, trilhas e experiências autênticas para quem deseja aproveitar o melhor do Rio com conforto, segurança e praticidade. Uma semana de diversão, comodidade e momentos inesquecíveis na Cidade Maravilhosa.</span><span data-lang="en">The gateway to a premium experience in Rio de Janeiro. The Platinum Package combines selected accommodation, parties and tourist attractions, hikes and authentic experiences for those who want to enjoy the best of Rio with comfort, safety and convenience. A week of fun, comfort and unforgettable moments in the Marvellous City.</span><span data-lang="fr">La porte d'entrée vers une expérience premium à Rio de Janeiro. Le Forfait Platinum réunit hébergement sélectionné, fêtes et attractions touristiques, randonnées et expériences authentiques. Une semaine de plaisir, de confort et de moments inoubliables dans la Ville Merveilleuse.</span><span data-lang="es">La puerta de entrada a una experiencia premium en Río de Janeiro. El Paquete Platinum reúne alojamiento seleccionado, fiestas y atracciones turísticas, senderismo y experiencias auténticas. Una semana de diversión, comodidad y momentos inolvidables en la Ciudad Maravillosa.</span></p>
         <p style="font-size:22px; font-weight:700; color:var(--white); letter-spacing:0.04em; margin-bottom:12px;" id="goldPriceDisplay">R$11.990 <span style="font-size:12px; font-weight:400; color:var(--cream-dim); letter-spacing:0.1em;"><span data-lang="pt" class="on">por pessoa</span><span data-lang="en">per person</span><span data-lang="fr">par personne</span><span data-lang="es">por persona</span></span></p>
         <p style="font-size:12px; color:var(--gold); letter-spacing:0.1em; text-transform:uppercase; border:1px solid var(--gold); display:inline-block; padding:5px 12px; margin-bottom:16px;"><span data-lang="pt" class="on">Temporariamente fechado</span><span data-lang="en">Temporarily closed</span><span data-lang="fr">Temporairement fermé</span><span data-lang="es">Temporalmente cerrado</span></p>
         <button class="pkg-btn" disabled style="opacity:0.35; cursor:not-allowed;"><span data-lang="pt" class="on">Reservar</span><span data-lang="en">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
@@ -1125,7 +1135,7 @@ span[data-lang].on { display: inline; }
         <label><span data-lang="pt" class="on">Pacote</span><span data-lang="en">Package</span><span data-lang="fr">Forfait</span><span data-lang="es">Paquete</span></label>
         <select>
           <option>BLACK</option>
-          <option>GOLD</option>
+          <option>PLATINUM</option>
           <option>DIAMOND</option>
           <option id="optNotSure">Ainda não sei</option>
         </select>
@@ -1310,7 +1320,7 @@ var pkgModalData = {
     }
   },
   gold: {
-    title: 'GOLD',
+    title: 'PLATINUM',
     img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
     galleries: [
       {set:'goldResidencia', labels:{pt:'Ver residências ↗', en:'See residences ↗', fr:'Voir résidences ↗', es:'Ver residencias ↗'}},
@@ -1478,7 +1488,7 @@ function restartDiamondResidenceSlider() {
 }
 startDiamondResidenceSlider();
 
-// Acesso admin ao pacote GOLD
+// Acesso admin ao pacote PLATINUM
 if (new URLSearchParams(window.location.search).get('admin') === 'true') {
   var goldCover = document.querySelector('.pkg-gold .pkg-cover');
   if (goldCover) {
@@ -1647,6 +1657,65 @@ modalEl.addEventListener('touchend', function(e) {
 </div>
 
 <!-- CHECKOUT MODAL -->
+<div class="policy-overlay" id="policyOverlay" onclick="if(event.target===this)closePolicy()">
+  <div class="policy-modal">
+    <button class="policy-close" onclick="closePolicy()">✕</button>
+    <p class="policy-title"><span data-lang="pt" class="on">Política de Reembolso</span><span data-lang="en">Refund Policy</span><span data-lang="fr">Politique de Remboursement</span><span data-lang="es">Política de Reembolso</span></p>
+
+    <div data-lang="pt" class="on">
+      <h3>Cancelamento e Reembolso</h3>
+      <p>Cancelamentos realizados com mais de 30 dias de antecedência da data de check-in têm direito a reembolso integral do valor pago.</p>
+      <p>Cancelamentos realizados entre 15 e 30 dias antes do check-in têm direito a reembolso de 50% do valor total.</p>
+      <p>Cancelamentos realizados com menos de 15 dias de antecedência não são elegíveis a reembolso.</p>
+      <h3>Como Solicitar</h3>
+      <p>Para solicitar um cancelamento, entre em contato com nossa equipe pelo WhatsApp ou e-mail informado no momento da reserva. O reembolso, quando aplicável, é processado em até 10 dias úteis via o mesmo método de pagamento utilizado.</p>
+      <h3>Casos Excepcionais</h3>
+      <p>Em situações de força maior documentadas (emergências médicas, desastres naturais), a G.O.A.T Packages avalia cada caso individualmente e pode oferecer remarcação sem custo adicional.</p>
+      <h3>Alterações de Reserva</h3>
+      <p>Alterações de data estão sujeitas à disponibilidade e devem ser solicitadas com no mínimo 15 dias de antecedência sem custo adicional. Solicitações com menos prazo podem estar sujeitas a uma taxa de remarcação.</p>
+    </div>
+
+    <div data-lang="en">
+      <h3>Cancellation and Refund</h3>
+      <p>Cancellations made more than 30 days before the check-in date are eligible for a full refund of the amount paid.</p>
+      <p>Cancellations made between 15 and 30 days before check-in are eligible for a 50% refund of the total amount.</p>
+      <p>Cancellations made less than 15 days in advance are not eligible for a refund.</p>
+      <h3>How to Request</h3>
+      <p>To request a cancellation, contact our team via WhatsApp or email provided at the time of booking. Refunds, when applicable, are processed within 10 business days through the same payment method used.</p>
+      <h3>Exceptional Cases</h3>
+      <p>In documented force majeure situations (medical emergencies, natural disasters), G.O.A.T Packages evaluates each case individually and may offer free rescheduling.</p>
+      <h3>Booking Changes</h3>
+      <p>Date changes are subject to availability and must be requested at least 15 days in advance at no extra cost. Requests with less notice may be subject to a rescheduling fee.</p>
+    </div>
+
+    <div data-lang="fr">
+      <h3>Annulation et Remboursement</h3>
+      <p>Les annulations effectuées plus de 30 jours avant la date d'arrivée donnent droit à un remboursement intégral du montant payé.</p>
+      <p>Les annulations entre 15 et 30 jours avant l'arrivée donnent droit à un remboursement de 50% du montant total.</p>
+      <p>Les annulations effectuées moins de 15 jours à l'avance ne sont pas éligibles au remboursement.</p>
+      <h3>Comment Demander</h3>
+      <p>Pour demander une annulation, contactez notre équipe via WhatsApp ou e-mail fourni lors de la réservation. Les remboursements, le cas échéant, sont traités dans un délai de 10 jours ouvrables via le même mode de paiement utilisé.</p>
+      <h3>Cas Exceptionnels</h3>
+      <p>Dans des situations de force majeure documentées, G.O.A.T Packages évalue chaque cas individuellement et peut proposer un report sans frais supplémentaires.</p>
+      <h3>Modifications de Réservation</h3>
+      <p>Les changements de dates sont soumis à disponibilité et doivent être demandés au moins 15 jours à l'avance sans frais supplémentaires.</p>
+    </div>
+
+    <div data-lang="es">
+      <h3>Cancelación y Reembolso</h3>
+      <p>Las cancelaciones realizadas con más de 30 días de antelación a la fecha de check-in tienen derecho a un reembolso total del importe pagado.</p>
+      <p>Las cancelaciones entre 15 y 30 días antes del check-in tienen derecho a un reembolso del 50% del importe total.</p>
+      <p>Las cancelaciones con menos de 15 días de antelación no son elegibles para reembolso.</p>
+      <h3>Cómo Solicitar</h3>
+      <p>Para solicitar una cancelación, contacte a nuestro equipo por WhatsApp o correo electrónico. Los reembolsos, cuando correspondan, se procesan en un plazo de 10 días hábiles a través del mismo método de pago utilizado.</p>
+      <h3>Casos Excepcionales</h3>
+      <p>En situaciones de fuerza mayor documentadas, G.O.A.T Packages evalúa cada caso individualmente y puede ofrecer reprogramación sin costo adicional.</p>
+      <h3>Cambios de Reserva</h3>
+      <p>Los cambios de fecha están sujetos a disponibilidad y deben solicitarse con al menos 15 días de anticipación sin costo adicional.</p>
+    </div>
+  </div>
+</div>
+
 <div class="checkout-overlay" id="checkoutOverlay" onclick="if(event.target===this)closeCheckout()">
   <div class="checkout-modal">
     <button class="checkout-close" onclick="closeCheckout()">✕</button>
@@ -1667,6 +1736,7 @@ modalEl.addEventListener('touchend', function(e) {
           <span id="chkPayAmount"></span>
         </button>
         <p class="checkout-secure">🔒 <span data-lang="pt" class="on">Pagamento seguro via Stripe</span><span data-lang="en">Secure payment via Stripe</span><span data-lang="fr">Paiement sécurisé via Stripe</span><span data-lang="es">Pago seguro vía Stripe</span></p>
+        <span class="checkout-policy-link" onclick="openPolicy()"><span data-lang="pt" class="on">Política de Reembolso</span><span data-lang="en">Refund Policy</span><span data-lang="fr">Politique de Remboursement</span><span data-lang="es">Política de Reembolso</span></span>
       </div>
     </div>
     <div class="checkout-success" id="checkoutSuccess">
@@ -1772,7 +1842,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (cartDrawer) addSwipeToClose(cartDrawer, function() {
     var pkgName = cart.length > 0 ? cart[0].name : null;
     closeCart();
-    var targets = { 'BLACK': 'blackCover', 'GOLD': 'goldCard', 'DIAMOND': 'diamondCard' };
+    var targets = { 'BLACK': 'blackCover', 'PLATINUM': 'goldCard', 'DIAMOND': 'diamondCard' };
     var targetId = pkgName && targets[pkgName];
     var el = targetId && document.getElementById(targetId);
     var absoluteTop = 0;
@@ -1877,9 +1947,18 @@ function closeCheckout() {
   document.getElementById('checkoutOverlay').classList.remove('open');
   document.body.style.overflow = '';
 }
+function openPolicy() {
+  document.getElementById('policyOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setLang(currentLang);
+}
+function closePolicy() {
+  document.getElementById('policyOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
 var STRIPE_LINKS = {
   'BLACK': 'https://buy.stripe.com/8x2cMYcDF38I8sP8zp2Ry00',
-  'GOLD':  null,
+  'PLATINUM': null,
   'DIAMOND': null
 };
 
