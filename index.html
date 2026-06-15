@@ -753,27 +753,37 @@ span[data-lang].on { display: inline; }
 .cart-checkout-btn:hover { opacity: 0.88; }
 
 /* ── CHECKOUT MODAL ── */
-.checkout-overlay { position: fixed; inset: 0; z-index: 1200; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.25s; padding: 20px; }
+.checkout-overlay { position: fixed; inset: 0; z-index: 1200; background: rgba(0,0,0,0.92); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 20px; }
 .checkout-overlay.open { opacity: 1; pointer-events: all; }
-.checkout-modal { background: #111; border: 1px solid var(--border); width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; position: relative; padding: 40px 36px; }
-.checkout-close { position: absolute; top: 16px; right: 16px; background: none; border: 1px solid var(--border); color: var(--white); width: 32px; height: 32px; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-.checkout-title { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
-.checkout-summary { background: rgba(255,255,255,0.04); border: 1px solid var(--border); padding: 16px; margin-bottom: 28px; }
-.checkout-summary-name { font-size: 14px; color: var(--white); font-weight: 700; letter-spacing: 0.08em; margin-bottom: 4px; }
-.checkout-summary-price { font-size: 22px; color: var(--gold); font-weight: 700; }
-.checkout-summary-sub { font-size: 11px; color: var(--cream-dim); letter-spacing: 0.1em; }
-.checkout-section { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cream-dim); margin: 20px 0 10px; }
-.checkout-form { display: flex; flex-direction: column; gap: 12px; }
-.checkout-input { background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--white); padding: 12px 14px; font-size: 13px; width: 100%; outline: none; transition: border-color 0.2s; font-family: inherit; letter-spacing: 0.04em; }
-.checkout-input:focus { border-color: var(--gold); }
-.checkout-input::placeholder { color: rgba(255,255,255,0.25); }
-.cc-row { display: flex; gap: 12px; }
+.checkout-modal { background: #0c0c0c; border: 1px solid rgba(200,169,126,0.2); border-left: 2px solid var(--gold); width: 100%; max-width: 500px; max-height: 92vh; overflow-y: auto; position: relative; padding: 48px 44px 44px; scrollbar-width: thin; scrollbar-color: #222 transparent; }
+.checkout-close { position: absolute; top: 18px; right: 18px; background: none; border: none; color: rgba(255,255,255,0.3); font-size: 18px; cursor: pointer; line-height: 1; transition: color 0.2s; padding: 4px; }
+.checkout-close:hover { color: var(--white); }
+.checkout-eyebrow { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.checkout-title { font-family: var(--serif); font-size: 26px; color: var(--white); font-weight: 400; letter-spacing: 0.02em; margin-bottom: 6px; }
+.checkout-intro { font-size: 12px; color: var(--cream-dim); line-height: 1.7; margin-bottom: 32px; }
+.checkout-divider { border: none; border-top: 1px solid rgba(200,169,126,0.15); margin: 28px 0; }
+.checkout-summary { margin-bottom: 28px; }
+.checkout-summary-name { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+.checkout-summary-price { font-family: var(--serif); font-size: 28px; color: var(--white); font-weight: 400; }
+.checkout-summary-sub { font-size: 11px; color: var(--cream-dim); letter-spacing: 0.08em; margin-top: 2px; }
+.checkout-field { margin-bottom: 24px; }
+.checkout-field label { display: block; font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.checkout-section { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(200,169,126,0.6); margin: 28px 0 20px; }
+.checkout-form { display: flex; flex-direction: column; gap: 0; }
+.checkout-input { background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.12); color: var(--white); padding: 10px 0; font-size: 14px; width: 100%; outline: none; transition: border-color 0.2s; font-family: inherit; letter-spacing: 0.04em; margin-bottom: 24px; }
+.checkout-input:focus { border-bottom-color: var(--gold); }
+.checkout-input::placeholder { color: rgba(255,255,255,0.2); font-size: 13px; }
+.cc-row { display: flex; gap: 24px; }
 .cc-row .checkout-input { flex: 1; }
-.checkout-pay-btn { width: 100%; padding: 15px; background: var(--gold); color: var(--black); border: none; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; cursor: pointer; margin-top: 8px; transition: opacity 0.2s; }
-.checkout-pay-btn:hover { opacity: 0.88; }
-.checkout-secure { text-align: center; font-size: 11px; color: var(--cream-dim); letter-spacing: 0.08em; margin-top: 14px; }
-.checkout-policy-link { display: block; text-align: center; font-size: 10px; color: var(--cream-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 10px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; }
+.checkout-pay-btn { width: 100%; padding: 18px; background: var(--gold); color: #000; border: none; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 700; cursor: pointer; margin-top: 8px; transition: background 0.2s, opacity 0.2s; }
+.checkout-pay-btn:hover { opacity: 0.9; }
+.checkout-secure { text-align: center; font-size: 10px; color: rgba(255,255,255,0.2); letter-spacing: 0.1em; margin-top: 16px; }
+.checkout-policy-link { display: block; text-align: center; font-size: 9px; color: rgba(255,255,255,0.2); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 10px; cursor: pointer; transition: color 0.2s; }
 .checkout-policy-link:hover { color: var(--gold); }
+.checkout-success { text-align: center; padding: 40px 0; display: none; }
+.checkout-success-icon { font-size: 28px; color: var(--gold); margin-bottom: 20px; }
+.checkout-success h3 { font-family: var(--serif); font-size: 22px; color: var(--white); font-weight: 400; margin-bottom: 14px; letter-spacing: 0.02em; }
+.checkout-success p { font-size: 13px; color: var(--cream-dim); line-height: 1.8; }
 .policy-overlay { position: fixed; inset: 0; z-index: 1400; background: rgba(0,0,0,0.92); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.25s; padding: 20px; }
 .policy-overlay.open { opacity: 1; pointer-events: all; }
 .policy-modal { background: #111; border: 1px solid var(--border); width: 100%; max-width: 640px; max-height: 88vh; overflow-y: auto; position: relative; padding: 48px 40px 40px; scrollbar-width: thin; scrollbar-color: #333 transparent; }
@@ -1847,29 +1857,82 @@ modalEl.addEventListener('touchend', function(e) {
 <div class="checkout-overlay" id="checkoutOverlay" onclick="if(event.target===this)closeCheckout()">
   <div class="checkout-modal">
     <button class="checkout-close" onclick="closeCheckout()">✕</button>
-    <p class="checkout-title">Checkout</p>
+
+    <p class="checkout-eyebrow">G.O.A.T Packages</p>
+    <h2 class="checkout-title">
+      <span data-lang="pt" class="on">Reserva Privada</span>
+      <span data-lang="en">Private Booking</span>
+      <span data-lang="fr">Réservation Privée</span>
+      <span data-lang="es">Reserva Privada</span>
+    </h2>
+    <p class="checkout-intro">
+      <span data-lang="pt" class="on">Nosso concierge cuidará de cada detalhe da sua experiência no Rio.</span>
+      <span data-lang="en">Our concierge will take care of every detail of your Rio experience.</span>
+      <span data-lang="fr">Notre concierge s'occupera de chaque détail de votre expérience à Rio.</span>
+      <span data-lang="es">Nuestro concierge se encargará de cada detalle de su experiencia en Río.</span>
+    </p>
+
     <div class="checkout-summary" id="checkoutSummary"></div>
+
     <div id="checkoutFormWrap">
-      <p class="checkout-section"><span data-lang="pt" class="on">Dados pessoais</span><span data-lang="en">Personal details</span><span data-lang="fr">Données personnelles</span><span data-lang="es">Datos personales</span></p>
+      <hr class="checkout-divider">
+      <p class="checkout-section">
+        <span data-lang="pt" class="on">Seus dados</span>
+        <span data-lang="en">Your details</span>
+        <span data-lang="fr">Vos coordonnées</span>
+        <span data-lang="es">Sus datos</span>
+      </p>
       <div class="checkout-form">
-        <input class="checkout-input" type="text" id="chkName" placeholder="Nome completo / Full name" autocomplete="name">
+        <input class="checkout-input" type="text" id="chkName" placeholder="Nome completo · Full name" autocomplete="name">
         <input class="checkout-input" type="email" id="chkEmail" placeholder="E-mail" autocomplete="email">
-        <input class="checkout-input" type="tel" id="chkPhone" placeholder="WhatsApp / Phone" autocomplete="tel">
-        <p class="checkout-section" style="margin-top:4px; text-transform:none; font-size:11px; line-height:1.6;"><span data-lang="pt" class="on">Informe o período desejado para verificar a disponibilidade de suítes</span><span data-lang="en">Please enter your preferred dates to check suite availability</span><span data-lang="fr">Veuillez indiquer la période souhaitée pour vérifier la disponibilité des suites</span><span data-lang="es">Indique el período deseado para verificar la disponibilidad de suites</span></p>
-        <input class="checkout-input" type="text" id="chkDates" placeholder="DD/MM/AAAA, DD/MM/AAAA" inputmode="numeric">
+        <input class="checkout-input" type="tel" id="chkPhone" placeholder="WhatsApp · Phone" autocomplete="tel">
       </div>
+      <p class="checkout-section">
+        <span data-lang="pt" class="on">Período desejado</span>
+        <span data-lang="en">Preferred dates</span>
+        <span data-lang="fr">Période souhaitée</span>
+        <span data-lang="es">Período deseado</span>
+      </p>
       <div class="checkout-form">
+        <input class="checkout-input" type="text" id="chkDates" placeholder="DD/MM/AAAA · DD/MM/AAAA" inputmode="numeric">
+      </div>
+      <div style="margin-top: 8px;">
         <button class="checkout-pay-btn" id="chkPayBtn" onclick="submitCheckout()">
-          <span data-lang="pt" class="on">Continuar para pagamento</span><span data-lang="en">Continue to payment</span><span data-lang="fr">Continuer vers le paiement</span><span data-lang="es">Continuar al pago</span>
+          <span data-lang="pt" class="on">Confirmar reserva</span>
+          <span data-lang="en">Confirm booking</span>
+          <span data-lang="fr">Confirmer la réservation</span>
+          <span data-lang="es">Confirmar reserva</span>
           <span id="chkPayAmount"></span>
         </button>
-        <p class="checkout-secure">🔒 <span data-lang="pt" class="on">Pagamento seguro via Stripe</span><span data-lang="en">Secure payment via Stripe</span><span data-lang="fr">Paiement sécurisé via Stripe</span><span data-lang="es">Pago seguro vía Stripe</span></p>
-        <span class="checkout-policy-link" onclick="openPolicy()"><span data-lang="pt" class="on">Política de Reembolso</span><span data-lang="en">Refund Policy</span><span data-lang="fr">Politique de Remboursement</span><span data-lang="es">Política de Reembolso</span></span>
+        <p class="checkout-secure">
+          <span data-lang="pt" class="on">Pagamento 100% seguro via Stripe</span>
+          <span data-lang="en">100% secure payment via Stripe</span>
+          <span data-lang="fr">Paiement 100% sécurisé via Stripe</span>
+          <span data-lang="es">Pago 100% seguro vía Stripe</span>
+        </p>
+        <span class="checkout-policy-link" onclick="openPolicy()">
+          <span data-lang="pt" class="on">Política de Reembolso</span>
+          <span data-lang="en">Refund Policy</span>
+          <span data-lang="fr">Politique de Remboursement</span>
+          <span data-lang="es">Política de Reembolso</span>
+        </span>
       </div>
     </div>
+
     <div class="checkout-success" id="checkoutSuccess">
-      <h3>✓ <span data-lang="pt" class="on">Reserva recebida!</span><span data-lang="en">Booking received!</span><span data-lang="fr">Réservation reçue!</span><span data-lang="es">¡Reserva recibida!</span></h3>
-      <p><span data-lang="pt" class="on">Entraremos em contato em breve para confirmar sua reserva.</span><span data-lang="en">We will contact you shortly to confirm your booking.</span><span data-lang="fr">Nous vous contacterons bientôt pour confirmer votre réservation.</span><span data-lang="es">Nos pondremos en contacto pronto para confirmar su reserva.</span></p>
+      <div class="checkout-success-icon">✦</div>
+      <h3>
+        <span data-lang="pt" class="on">Solicitação recebida.</span>
+        <span data-lang="en">Request received.</span>
+        <span data-lang="fr">Demande reçue.</span>
+        <span data-lang="es">Solicitud recibida.</span>
+      </h3>
+      <p>
+        <span data-lang="pt" class="on">Um de nossos concierges entrará em contato em até 2 horas para confirmar todos os detalhes da sua experiência.</span>
+        <span data-lang="en">One of our concierges will reach out within 2 hours to confirm every detail of your experience.</span>
+        <span data-lang="fr">L'un de nos concierges vous contactera dans les 2 heures pour confirmer tous les détails de votre expérience.</span>
+        <span data-lang="es">Uno de nuestros concierges se pondrá en contacto en 2 horas para confirmar cada detalle de su experiencia.</span>
+      </p>
     </div>
   </div>
 </div>
