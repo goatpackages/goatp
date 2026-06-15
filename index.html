@@ -1923,7 +1923,6 @@ modalEl.addEventListener('touchend', function(e) {
           <span data-lang="en">Confirm booking</span>
           <span data-lang="fr">Confirmer la réservation</span>
           <span data-lang="es">Confirmar reserva</span>
-          <span id="chkPayAmount"></span>
         </button>
         <p class="checkout-secure">
           <span data-lang="pt" class="on">Pagamento 100% seguro via Stripe</span>
@@ -2112,7 +2111,6 @@ function renderCart() {
   body.innerHTML = html;
   footer.style.display = 'block';
   document.getElementById('cartTotalValue').textContent = formatPrice(total);
-  document.getElementById('chkPayAmount').textContent = ', ' + formatPrice(total);
   setLang(currentLang);
 }
 function removeFromCart(i) {
