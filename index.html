@@ -782,6 +782,8 @@ span[data-lang].on { display: inline; }
 .policy-modal h3 { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); margin: 24px 0 8px; }
 .policy-modal p { font-size: 13px; color: var(--cream-dim); line-height: 1.8; margin-bottom: 12px; }
 @media (max-width: 600px) { .policy-modal { padding: 40px 20px 32px; } }
+.footer-legal-link { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cream-dim); cursor: pointer; transition: color 0.2s; }
+.footer-legal-link:hover { color: var(--white); }
 .checkout-success { text-align: center; padding: 40px 0; display: none; }
 .checkout-success h3 { font-size: 15px; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 10px; }
 .checkout-success p { font-size: 13px; color: var(--cream-dim); line-height: 1.7; }
@@ -1542,6 +1544,12 @@ document.addEventListener('keydown', function(e) {
     closeCart();
   } else if (e.key === 'Escape' && modal && modal.classList.contains('open')) {
     closeModal();
+  } else if (e.key === 'Escape' && document.getElementById('policyOverlay') && document.getElementById('policyOverlay').classList.contains('open')) {
+    closePolicy();
+  } else if (e.key === 'Escape' && document.getElementById('termsOverlay') && document.getElementById('termsOverlay').classList.contains('open')) {
+    closeTerms();
+  } else if (e.key === 'Escape' && document.getElementById('privacyOverlay') && document.getElementById('privacyOverlay').classList.contains('open')) {
+    closePrivacy();
   }
 });
 var lbTouchX = 0, lbTouchY = 0;
@@ -1657,6 +1665,126 @@ modalEl.addEventListener('touchend', function(e) {
 </div>
 
 <!-- CHECKOUT MODAL -->
+<div class="policy-overlay" id="termsOverlay" onclick="if(event.target===this)closeTerms()">
+  <div class="policy-modal">
+    <button class="policy-close" onclick="closeTerms()">✕</button>
+    <p class="policy-title"><span data-lang="pt" class="on">Termos e Condições</span><span data-lang="en">Terms &amp; Conditions</span><span data-lang="fr">Termes et Conditions</span><span data-lang="es">Términos y Condiciones</span></p>
+
+    <div data-lang="pt" class="on">
+      <h3>Aceitação dos Termos</h3>
+      <p>Ao realizar uma reserva com a G.O.A.T Packages, o cliente declara ter lido, compreendido e concordado integralmente com os presentes Termos e Condições.</p>
+      <h3>Natureza do Serviço</h3>
+      <p>A G.O.A.T Packages atua como organizadora e facilitadora de experiências de viagem em Rio de Janeiro. Nos responsabilizamos pela coordenação dos serviços incluídos em cada pacote, conforme descrito na página de cada produto.</p>
+      <h3>Reservas e Pagamentos</h3>
+      <p>A reserva é confirmada somente após o pagamento integral do valor do pacote. O pagamento é processado de forma segura via Stripe. Preços exibidos em reais (BRL) e sujeitos a alteração sem aviso prévio.</p>
+      <h3>Responsabilidades</h3>
+      <p>A G.O.A.T Packages não se responsabiliza por eventos fora de seu controle, como condições climáticas adversas, greves, cancelamentos de terceiros ou situações de força maior. Em caso de alterações necessárias, buscaremos substituições de qualidade equivalente.</p>
+      <h3>Conduta</h3>
+      <p>O cliente se compromete a respeitar as normas locais, os parceiros e demais participantes durante todas as atividades do pacote. A G.O.A.T Packages reserva o direito de recusar ou encerrar a participação de clientes que demonstrem comportamento inadequado, sem direito a reembolso.</p>
+      <h3>Foro</h3>
+      <p>Estes termos são regidos pelas leis brasileiras. Fica eleito o foro da cidade do Rio de Janeiro para dirimir eventuais litígios.</p>
+    </div>
+
+    <div data-lang="en">
+      <h3>Acceptance of Terms</h3>
+      <p>By making a booking with G.O.A.T Packages, the customer declares to have read, understood and fully agreed to these Terms and Conditions.</p>
+      <h3>Nature of Service</h3>
+      <p>G.O.A.T Packages acts as organizer and facilitator of travel experiences in Rio de Janeiro. We are responsible for coordinating the services included in each package, as described on each product page.</p>
+      <h3>Bookings and Payments</h3>
+      <p>A booking is confirmed only after full payment of the package value. Payment is securely processed via Stripe. Prices shown in Brazilian Reais (BRL) and subject to change without prior notice.</p>
+      <h3>Responsibilities</h3>
+      <p>G.O.A.T Packages is not responsible for events beyond its control, such as adverse weather conditions, strikes, third-party cancellations or force majeure situations. In case of necessary changes, we will seek replacements of equivalent quality.</p>
+      <h3>Conduct</h3>
+      <p>The customer agrees to respect local regulations, partners and other participants during all package activities. G.O.A.T Packages reserves the right to refuse or terminate participation of customers who display inappropriate behaviour, without right to a refund.</p>
+      <h3>Jurisdiction</h3>
+      <p>These terms are governed by Brazilian law. The courts of Rio de Janeiro are elected to resolve any disputes.</p>
+    </div>
+
+    <div data-lang="fr">
+      <h3>Acceptation des Termes</h3>
+      <p>En effectuant une réservation auprès de G.O.A.T Packages, le client déclare avoir lu, compris et accepté intégralement les présentes Conditions Générales.</p>
+      <h3>Nature du Service</h3>
+      <p>G.O.A.T Packages agit en tant qu'organisateur et facilitateur d'expériences de voyage à Rio de Janeiro. Nous sommes responsables de la coordination des services inclus dans chaque forfait.</p>
+      <h3>Réservations et Paiements</h3>
+      <p>La réservation n'est confirmée qu'après paiement intégral du montant du forfait. Le paiement est traité de manière sécurisée via Stripe.</p>
+      <h3>Responsabilités</h3>
+      <p>G.O.A.T Packages n'est pas responsable d'événements hors de son contrôle, tels que des conditions météorologiques défavorables, des grèves ou des situations de force majeure.</p>
+      <h3>Conduite</h3>
+      <p>Le client s'engage à respecter les réglementations locales et les autres participants. G.O.A.T Packages se réserve le droit de refuser ou de mettre fin à la participation de clients présentant un comportement inapproprié.</p>
+    </div>
+
+    <div data-lang="es">
+      <h3>Aceptación de los Términos</h3>
+      <p>Al realizar una reserva con G.O.A.T Packages, el cliente declara haber leído, comprendido y aceptado íntegramente los presentes Términos y Condiciones.</p>
+      <h3>Naturaleza del Servicio</h3>
+      <p>G.O.A.T Packages actúa como organizador y facilitador de experiencias de viaje en Río de Janeiro, siendo responsable de coordinar los servicios incluidos en cada paquete.</p>
+      <h3>Reservas y Pagos</h3>
+      <p>La reserva se confirma únicamente tras el pago íntegro del valor del paquete. El pago se procesa de forma segura a través de Stripe.</p>
+      <h3>Responsabilidades</h3>
+      <p>G.O.A.T Packages no se responsabiliza por eventos fuera de su control, como condiciones climáticas adversas, huelgas o situaciones de fuerza mayor.</p>
+      <h3>Conducta</h3>
+      <p>El cliente se compromete a respetar las normas locales y demás participantes. G.O.A.T Packages se reserva el derecho de rechazar o terminar la participación de clientes con comportamiento inapropiado.</p>
+    </div>
+  </div>
+</div>
+
+<div class="policy-overlay" id="privacyOverlay" onclick="if(event.target===this)closePrivacy()">
+  <div class="policy-modal">
+    <button class="policy-close" onclick="closePrivacy()">✕</button>
+    <p class="policy-title"><span data-lang="pt" class="on">Política de Privacidade</span><span data-lang="en">Privacy Policy</span><span data-lang="fr">Politique de Confidentialité</span><span data-lang="es">Política de Privacidad</span></p>
+
+    <div data-lang="pt" class="on">
+      <h3>Dados Coletados</h3>
+      <p>Coletamos apenas os dados necessários para processar sua reserva: nome completo, endereço de e-mail e número de telefone (WhatsApp). Dados de pagamento são processados exclusivamente pela Stripe e nunca armazenados em nossos servidores.</p>
+      <h3>Uso das Informações</h3>
+      <p>Suas informações são utilizadas exclusivamente para confirmar e coordenar sua reserva, enviar comunicações relacionadas ao seu pacote e prestar suporte durante a experiência.</p>
+      <h3>Compartilhamento de Dados</h3>
+      <p>Não vendemos, alugamos ou compartilhamos seus dados com terceiros, exceto com parceiros operacionais estritamente necessários para a execução do pacote (como guias e meios de hospedagem), e somente na medida necessária.</p>
+      <h3>Cookies e Analytics</h3>
+      <p>Utilizamos o Google Analytics para compreender como os visitantes interagem com nosso site. Esses dados são anonimizados e usados exclusivamente para melhorar a experiência de navegação.</p>
+      <h3>Seus Direitos</h3>
+      <p>Você tem o direito de solicitar acesso, correção ou exclusão dos seus dados pessoais a qualquer momento, enviando um e-mail para hellogoatrio@gmail.com.</p>
+      <h3>Contato</h3>
+      <p>Para qualquer dúvida sobre privacidade, entre em contato pelo e-mail hellogoatrio@gmail.com.</p>
+    </div>
+
+    <div data-lang="en">
+      <h3>Data Collected</h3>
+      <p>We collect only the data necessary to process your booking: full name, email address and phone number (WhatsApp). Payment data is processed exclusively by Stripe and never stored on our servers.</p>
+      <h3>Use of Information</h3>
+      <p>Your information is used exclusively to confirm and coordinate your booking, send communications related to your package and provide support during the experience.</p>
+      <h3>Data Sharing</h3>
+      <p>We do not sell, rent or share your data with third parties, except with operational partners strictly necessary for package execution (such as guides and accommodation providers), and only to the extent necessary.</p>
+      <h3>Cookies and Analytics</h3>
+      <p>We use Google Analytics to understand how visitors interact with our site. This data is anonymised and used solely to improve the browsing experience.</p>
+      <h3>Your Rights</h3>
+      <p>You have the right to request access, correction or deletion of your personal data at any time by emailing hellogoatrio@gmail.com.</p>
+    </div>
+
+    <div data-lang="fr">
+      <h3>Données Collectées</h3>
+      <p>Nous collectons uniquement les données nécessaires au traitement de votre réservation: nom complet, adresse e-mail et numéro de téléphone. Les données de paiement sont traitées exclusivement par Stripe.</p>
+      <h3>Utilisation des Informations</h3>
+      <p>Vos informations sont utilisées exclusivement pour confirmer et coordonner votre réservation et vous fournir un support durant l'expérience.</p>
+      <h3>Partage des Données</h3>
+      <p>Nous ne vendons, louons ni partageons vos données avec des tiers, sauf avec des partenaires opérationnels strictement nécessaires à l'exécution du forfait.</p>
+      <h3>Vos Droits</h3>
+      <p>Vous avez le droit de demander l'accès, la correction ou la suppression de vos données personnelles à tout moment en écrivant à hellogoatrio@gmail.com.</p>
+    </div>
+
+    <div data-lang="es">
+      <h3>Datos Recopilados</h3>
+      <p>Recopilamos únicamente los datos necesarios para procesar su reserva: nombre completo, correo electrónico y número de teléfono. Los datos de pago son procesados exclusivamente por Stripe.</p>
+      <h3>Uso de la Información</h3>
+      <p>Su información se utiliza exclusivamente para confirmar y coordinar su reserva y brindarle soporte durante la experiencia.</p>
+      <h3>Compartir Datos</h3>
+      <p>No vendemos, alquilamos ni compartimos sus datos con terceros, salvo con socios operativos estrictamente necesarios para la ejecución del paquete.</p>
+      <h3>Sus Derechos</h3>
+      <p>Tiene derecho a solicitar acceso, corrección o eliminación de sus datos personales en cualquier momento escribiendo a hellogoatrio@gmail.com.</p>
+    </div>
+  </div>
+</div>
+
 <div class="policy-overlay" id="policyOverlay" onclick="if(event.target===this)closePolicy()">
   <div class="policy-modal">
     <button class="policy-close" onclick="closePolicy()">✕</button>
@@ -1956,6 +2084,52 @@ function closePolicy() {
   document.getElementById('policyOverlay').classList.remove('open');
   document.body.style.overflow = '';
 }
+function openTerms() {
+  document.getElementById('termsOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setLang(currentLang);
+}
+function closeTerms() {
+  document.getElementById('termsOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function openPrivacy() {
+  document.getElementById('privacyOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setLang(currentLang);
+}
+function closePrivacy() {
+  document.getElementById('privacyOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+// Footer legal links
+(function() {
+  var footer = document.querySelector('footer');
+  if (!footer) return;
+  var linksHtml = '<div class="footer-bottom" style="margin-top:32px;">' +
+    '<p>© 2025 G.O.A.T Packages. All rights reserved.</p>' +
+    '<div style="display:flex;gap:20px;flex-wrap:wrap;">' +
+    '<span class="footer-legal-link" onclick="openPolicy()">' +
+      '<span data-lang="pt" class="on">Política de Reembolso</span>' +
+      '<span data-lang="en">Refund Policy</span>' +
+      '<span data-lang="fr">Politique de Remboursement</span>' +
+      '<span data-lang="es">Política de Reembolso</span>' +
+    '</span>' +
+    '<span class="footer-legal-link" onclick="openTerms()">' +
+      '<span data-lang="pt" class="on">Termos e Condições</span>' +
+      '<span data-lang="en">Terms &amp; Conditions</span>' +
+      '<span data-lang="fr">Termes et Conditions</span>' +
+      '<span data-lang="es">Términos y Condiciones</span>' +
+    '</span>' +
+    '<span class="footer-legal-link" onclick="openPrivacy()">' +
+      '<span data-lang="pt" class="on">Privacidade</span>' +
+      '<span data-lang="en">Privacy</span>' +
+      '<span data-lang="fr">Confidentialité</span>' +
+      '<span data-lang="es">Privacidad</span>' +
+    '</span>' +
+    '</div></div>';
+  footer.insertAdjacentHTML('beforeend', linksHtml);
+})();
 var STRIPE_LINKS = {
   'BLACK': 'https://buy.stripe.com/8x2cMYcDF38I8sP8zp2Ry00',
   'PLATINUM': null,
