@@ -1661,19 +1661,12 @@ modalEl.addEventListener('touchend', function(e) {
         <p class="checkout-section" style="margin-top:4px; text-transform:none; font-size:11px; line-height:1.6;"><span data-lang="pt" class="on">Informe o período desejado para verificar a disponibilidade de suítes</span><span data-lang="en">Please enter your preferred dates to check suite availability</span><span data-lang="fr">Veuillez indiquer la période souhaitée pour vérifier la disponibilité des suites</span><span data-lang="es">Indique el período deseado para verificar la disponibilidad de suites</span></p>
         <input class="checkout-input" type="text" id="chkDates" placeholder="DD/MM/AAAA, DD/MM/AAAA" inputmode="numeric">
       </div>
-      <p class="checkout-section"><span data-lang="pt" class="on">Dados do cartão</span><span data-lang="en">Card details</span><span data-lang="fr">Données de carte</span><span data-lang="es">Datos de tarjeta</span></p>
       <div class="checkout-form">
-        <input class="checkout-input" type="text" id="chkCardNumber" placeholder="0000  0000  0000  0000" maxlength="19" inputmode="numeric">
-        <input class="checkout-input" type="text" id="chkCardName" placeholder="Nome no cartão / Name on card" autocomplete="cc-name">
-        <div class="cc-row">
-          <input class="checkout-input" type="text" id="chkExpiry" placeholder="MM/AA" maxlength="5" inputmode="numeric">
-          <input class="checkout-input" type="text" id="chkCvv" placeholder="CVV" maxlength="4" inputmode="numeric">
-        </div>
         <button class="checkout-pay-btn" id="chkPayBtn" onclick="submitCheckout()">
-          <span data-lang="pt" class="on">Pagar</span><span data-lang="en">Pay</span><span data-lang="fr">Payer</span><span data-lang="es">Pagar</span>
+          <span data-lang="pt" class="on">Continuar para pagamento</span><span data-lang="en">Continue to payment</span><span data-lang="fr">Continuer vers le paiement</span><span data-lang="es">Continuar al pago</span>
           <span id="chkPayAmount"></span>
         </button>
-        <p class="checkout-secure">🔒 <span data-lang="pt" class="on">Pagamento seguro</span><span data-lang="en">Secure payment</span><span data-lang="fr">Paiement sécurisé</span><span data-lang="es">Pago seguro</span></p>
+        <p class="checkout-secure">🔒 <span data-lang="pt" class="on">Pagamento seguro via Stripe</span><span data-lang="en">Secure payment via Stripe</span><span data-lang="fr">Paiement sécurisé via Stripe</span><span data-lang="es">Pago seguro vía Stripe</span></p>
       </div>
     </div>
     <div class="checkout-success" id="checkoutSuccess">
@@ -1910,15 +1903,6 @@ function submitCheckout() {
     setLang(currentLang);
   }
 }
-document.getElementById('chkCardNumber').addEventListener('input', function() {
-  var v = this.value.replace(/\D/g,'').substring(0,16);
-  this.value = v.replace(/(.{4})/g,'$1  ').trim();
-});
-document.getElementById('chkExpiry').addEventListener('input', function() {
-  var v = this.value.replace(/\D/g,'').substring(0,4);
-  if (v.length >= 3) v = v.substring(0,2) + '/' + v.substring(2);
-  this.value = v;
-});
 function applyDateFormat(el) {
   if (!el) return;
   el.addEventListener('input', function() {
