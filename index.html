@@ -829,13 +829,13 @@ span[data-lang].on { display: inline; }
 .drp-days { display:grid; grid-template-columns:repeat(7,1fr); }
 .drp-d { position:relative; text-align:center; padding:9px 0; font-size:13px; color:rgba(255,255,255,.8); cursor:pointer; }
 .drp-d.drp-empty,.drp-d.drp-past { cursor:default; color:rgba(255,255,255,.15); pointer-events:none; }
-.drp-d:not(.drp-empty):not(.drp-past):hover .drp-d-bg { border-radius:50%; border:1px solid rgba(255,255,255,.4); }
+.drp-d:not(.drp-empty):not(.drp-past):not(.drp-hover-end):hover .drp-d-bg { border-radius:50%; border:1px solid rgba(255,255,255,.4); }
 .drp-d-bg { position:absolute; inset:2px 0; z-index:0; border-radius:0; }
 .drp-d-txt { position:relative; z-index:2; }
 .drp-d.drp-range .drp-d-bg { background:rgba(200,169,126,.18); }
-.drp-d.drp-start .drp-d-bg { background:rgba(200,169,126,.18); border-radius:50% 0 0 50%; }
-.drp-d.drp-end .drp-d-bg { background:rgba(200,169,126,.18); border-radius:0 50% 50% 0; }
-.drp-d.drp-start.drp-end .drp-d-bg { background:transparent; border-radius:0; }
+.drp-d.drp-start .drp-d-bg { background:rgba(200,169,126,.18); border-radius:0; left:50%; }
+.drp-d.drp-end .drp-d-bg { background:rgba(200,169,126,.18); border-radius:0; right:50%; }
+.drp-d.drp-start.drp-end .drp-d-bg { background:transparent; left:0; right:0; }
 .drp-d.drp-start .drp-d-circle,.drp-d.drp-end .drp-d-circle { position:absolute; inset:2px; background:var(--white); border-radius:50%; z-index:1; }
 .drp-d.drp-start,.drp-d.drp-end { color:#111 !important; font-weight:700; }
 .drp-d-circle { display:none; }
@@ -845,6 +845,9 @@ span[data-lang].on { display: inline; }
 .drp-clear:hover { color:var(--white); }
 .drp-close { background:var(--white); color:#111; border:none; border-radius:6px; padding:10px 20px; font-size:12px; font-weight:700; letter-spacing:.08em; cursor:pointer; transition:opacity .15s; }
 .drp-close:hover { opacity:.85; }
+.drp-d.drp-today .drp-d-txt { text-decoration:underline; text-underline-offset:3px; }
+.drp-d.drp-hover-range .drp-d-bg { background:rgba(200,169,126,.10); }
+.drp-d.drp-hover-end .drp-d-circle { display:block; background:rgba(200,169,126,.38); }
 @media (max-width:600px) {
   .drp-months { flex-direction:column; }
   .drp-cal-titles { justify-content:space-between; }
@@ -2377,11 +2380,12 @@ function drpBuildMonth(y,m){
   for(var day=1;day<=dim;day++){
     var dt=new Date(y,m,day);dt.setHours(0,0,0,0);
     var past=dt<today;
+    var isToday=dt.getTime()===today.getTime();
     var isS=drpSame(dt,drp.start),isE=drpSame(dt,drp.end);
     var inR=drp.start&&drp.end&&dt>drp.start&&dt<drp.end;
-    var cls='drp-d'+(past?' drp-past':'')+(inR?' drp-range':'')+(isS?' drp-start':'')+(isE?' drp-end':'');
-    var oc=past?'':'onclick="drpPick('+y+','+m+','+day+')"';
-    h+='<div class="'+cls+'" '+oc+'><div class="drp-d-bg"></div><div class="drp-d-circle"></div><span class="drp-d-txt">'+day+'</span></div>';
+    var cls='drp-d'+(past?' drp-past':'')+(isToday?' drp-today':'')+(inR?' drp-range':'')+(isS?' drp-start':'')+(isE?' drp-end':'');
+    var oc=past?'':'onclick="drpPick('+y+','+m+','+day+')" onmouseenter="drpHoverOn(this)" onmouseleave="drpHoverOff()"';
+    h+='<div class="'+cls+'" '+oc+' data-ts="'+dt.getTime()+'"><div class="drp-d-bg"></div><div class="drp-d-circle"></div><span class="drp-d-txt">'+day+'</span></div>';
   }
   h+='</div>';
   return h;
@@ -2422,6 +2426,25 @@ function drpRender(){
   if(hi)hi.value=drp.start?drpFmt(drp.start):'';
   if(ho)ho.value=drp.end?drpFmt(drp.end):'';
   if(typeof setLang==='function')setLang(currentLang);
+}
+var drpHover=null;
+function drpHoverOn(el){
+  if(!drp.start||drp.end)return;
+  var ts=+el.dataset.ts;if(!ts)return;
+  var dt=new Date(ts);dt.setHours(0,0,0,0);
+  if(dt<=drp.start){if(drpHover){drpHover=null;drpUpdateHoverClasses();}return;}
+  drpHover=dt;drpUpdateHoverClasses();
+}
+function drpHoverOff(){if(!drpHover)return;drpHover=null;drpUpdateHoverClasses();}
+function drpUpdateHoverClasses(){
+  document.querySelectorAll('#drpMonths .drp-d').forEach(function(el){
+    el.classList.remove('drp-hover-range','drp-hover-end');
+    if(!drpHover||!drp.start||drp.end)return;
+    var ts=+el.dataset.ts;if(!ts)return;
+    var dt=new Date(ts);dt.setHours(0,0,0,0);
+    if(dt>drp.start&&dt<drpHover)el.classList.add('drp-hover-range');
+    else if(dt.getTime()===drpHover.getTime())el.classList.add('drp-hover-end');
+  });
 }
 document.addEventListener('DOMContentLoaded',drpRender);
 </script>
