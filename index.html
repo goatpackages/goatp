@@ -2045,9 +2045,12 @@ function addSwipeToClose(elOrId, closeFn) {
       modal.style.transform = '';
     }
   }, { passive: true });
-  modal.addEventListener('touchend', function() {
+  modal.addEventListener('touchend', function(e) {
     if (!dragging) return;
     dragging = false;
+    var tgt = e.target;
+    var isLink = tgt && (tgt.tagName === 'A' || (tgt.closest && tgt.closest('a')));
+    if (isLink) { modal.style.transform = ''; modal.style.transition = ''; return; }
     modal.style.transition = 'transform 0.25s ease';
     if (currentY - startY > 80 && modal.scrollTop <= 0) {
       modal.style.transform = 'translateY(100%)';
