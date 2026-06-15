@@ -803,6 +803,42 @@ span[data-lang].on { display: inline; }
   .cart-drawer { width: 100vw; }
   .checkout-modal { padding: 32px 20px; }
 }
+/* ── Airbnb-style date picker ── */
+.drp-header { display:flex; border:1.5px solid rgba(255,255,255,0.18); border-radius:12px; overflow:hidden; margin-bottom:16px; }
+.drp-tab { flex:1; padding:14px 16px; cursor:pointer; transition:background .15s; }
+.drp-tab:first-child { border-right:1px solid rgba(255,255,255,0.12); }
+.drp-tab.drp-active { background:rgba(255,255,255,0.07); outline:2px solid var(--white); outline-offset:-2px; border-radius:11px; }
+.drp-tab-label { font-size:9px; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.45); margin-bottom:3px; }
+.drp-tab-val { font-size:14px; color:var(--white); font-weight:500; }
+.drp-tab-val.drp-ph { color:rgba(255,255,255,.28); }
+.drp-body { margin-bottom:16px; }
+.drp-cal-nav { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+.drp-cal-nav button { background:none; border:1px solid rgba(255,255,255,.15); border-radius:50%; color:rgba(255,255,255,.7); width:32px; height:32px; font-size:17px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:border-color .15s; }
+.drp-cal-nav button:hover { border-color:var(--white); color:var(--white); }
+.drp-cal-nav-center { display:flex; gap:32px; }
+.drp-cal-title { font-size:13px; font-weight:700; color:var(--white); letter-spacing:.04em; min-width:130px; text-align:center; }
+.drp-months { display:flex; gap:24px; }
+.drp-month { flex:1; }
+.drp-dow-row { display:grid; grid-template-columns:repeat(7,1fr); margin-bottom:4px; }
+.drp-dow { text-align:center; font-size:10px; color:rgba(255,255,255,.35); padding:4px 0; font-weight:600; }
+.drp-days { display:grid; grid-template-columns:repeat(7,1fr); }
+.drp-d { position:relative; text-align:center; padding:10px 0; font-size:13px; color:rgba(255,255,255,.8); cursor:pointer; background:transparent; transition:color .1s; }
+.drp-d:hover:not(.drp-d-empty):not(.drp-d-past) { color:var(--white); }
+.drp-d:hover:not(.drp-d-empty):not(.drp-d-past) .drp-d-inner { border-radius:50%; border:1.5px solid rgba(255,255,255,.5); }
+.drp-d-inner { position:absolute; inset:3px 0; border-radius:0; transition:background .1s; }
+.drp-d.drp-d-empty,.drp-d.drp-d-past { cursor:default; color:rgba(255,255,255,.15); }
+.drp-d.drp-d-range .drp-d-inner { background:rgba(255,255,255,.12); border-radius:0; }
+.drp-d.drp-d-start .drp-d-inner { background:rgba(255,255,255,.12); border-radius:50% 0 0 50%; }
+.drp-d.drp-d-end .drp-d-inner { background:rgba(255,255,255,.12); border-radius:0 50% 50% 0; }
+.drp-d.drp-d-start.drp-d-end .drp-d-inner { border-radius:0; background:transparent; }
+.drp-d.drp-d-start .drp-d-dot,.drp-d.drp-d-end .drp-d-dot { position:absolute; inset:3px; background:var(--white); border-radius:50%; z-index:1; }
+.drp-d.drp-d-start,.drp-d.drp-d-end { color:#111; font-weight:700; z-index:1; }
+.drp-d-num { position:relative; z-index:2; }
+.drp-footer { display:flex; justify-content:space-between; align-items:center; padding-top:8px; border-top:1px solid rgba(255,255,255,.08); margin-bottom:4px; }
+.drp-nights { font-size:11px; color:rgba(255,255,255,.45); }
+.drp-clear-btn { background:none; border:none; color:rgba(255,255,255,.45); font-size:11px; cursor:pointer; text-decoration:underline; padding:0; }
+.drp-clear-btn:hover { color:var(--white); }
+@media (max-width:600px) { .drp-months { flex-direction:column; gap:16px; } }
 </style>
 </head>
 <body>
@@ -1898,9 +1934,34 @@ modalEl.addEventListener('touchend', function(e) {
         <span data-lang="fr">Période souhaitée</span>
         <span data-lang="es">Período deseado</span>
       </p>
-      <div class="checkout-form">
-        <input class="checkout-input" type="text" id="chkDates" placeholder="DD/MM/AAAA · DD/MM/AAAA" inputmode="numeric">
+      <!-- Airbnb-style date picker -->
+      <div class="drp-header">
+        <div class="drp-tab drp-active" id="drpTabIn" onclick="drpFocus('in')">
+          <div class="drp-tab-label">Check-in</div>
+          <div class="drp-tab-val drp-ph" id="drpValIn"><span data-lang="pt" class="on">Adicionar data</span><span data-lang="en">Add date</span><span data-lang="fr">Ajouter une date</span><span data-lang="es">Agregar fecha</span></div>
+        </div>
+        <div class="drp-tab" id="drpTabOut" onclick="drpFocus('out')">
+          <div class="drp-tab-label">Check-out</div>
+          <div class="drp-tab-val drp-ph" id="drpValOut"><span data-lang="pt" class="on">Adicionar data</span><span data-lang="en">Add date</span><span data-lang="fr">Ajouter une date</span><span data-lang="es">Agregar fecha</span></div>
+        </div>
       </div>
+      <div class="drp-body" id="drpBody">
+        <div class="drp-cal-nav">
+          <button onclick="drpNav(-1)">&#8249;</button>
+          <div class="drp-cal-nav-center">
+            <span class="drp-cal-title" id="drpTitle0"></span>
+            <span class="drp-cal-title drp-cal-title2" id="drpTitle1"></span>
+          </div>
+          <button onclick="drpNav(1)">&#8250;</button>
+        </div>
+        <div class="drp-months" id="drpMonths"></div>
+        <div class="drp-footer">
+          <span class="drp-nights" id="drpNights"></span>
+          <button class="drp-clear-btn" id="drpClearBtn" onclick="drpClear()" style="display:none"><span data-lang="pt" class="on">Limpar datas</span><span data-lang="en">Clear dates</span><span data-lang="fr">Effacer</span><span data-lang="es">Borrar</span></button>
+        </div>
+      </div>
+      <input type="hidden" id="chkDateIn">
+      <input type="hidden" id="chkDateOut">
       <div style="margin-top: 8px;">
         <button class="checkout-pay-btn" id="chkPayBtn" onclick="submitCheckout()">
           <span data-lang="pt" class="on">Confirmar reserva</span>
@@ -2250,8 +2311,113 @@ function applyDateFormat(el) {
     this.value = out;
   });
 }
-applyDateFormat(document.getElementById('chkDates'));
 applyDateFormat(document.getElementById('datePlaceholderInput'));
+
+/* ── Airbnb date picker logic ── */
+var drp = {
+  y: new Date().getFullYear(), m: new Date().getMonth(),
+  start: null, end: null, sel: 'in'
+};
+var drpMN = {
+  pt:['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+  en:['January','February','March','April','May','June','July','August','September','October','November','December'],
+  fr:['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
+  es:['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
+};
+var drpDW = {
+  pt:['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
+  en:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+  fr:['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'],
+  es:['Dom','Lun','Mar','Mié','Jue','Vie','Sáb']
+};
+function drpFmt(d){ if(!d)return ''; return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear(); }
+function drpSame(a,b){ return a&&b&&a.getTime()===b.getTime(); }
+function drpFocus(which){
+  drp.sel=which;
+  document.getElementById('drpTabIn').classList.toggle('drp-active',which==='in');
+  document.getElementById('drpTabOut').classList.toggle('drp-active',which==='out');
+  drpRender();
+}
+function drpNav(dir){
+  drp.m+=dir;
+  if(drp.m>11){drp.m=0;drp.y++;}
+  if(drp.m<0){drp.m=11;drp.y--;}
+  drpRender();
+}
+function drpPick(y,m,d){
+  var dt=new Date(y,m,d); dt.setHours(0,0,0,0);
+  if(drp.sel==='in'||(!drp.start)||( drp.start && dt<=drp.start)){
+    drp.start=dt; drp.end=null; drp.sel='out';
+    document.getElementById('drpTabIn').classList.remove('drp-active');
+    document.getElementById('drpTabOut').classList.add('drp-active');
+  } else {
+    drp.end=dt; drp.sel='in';
+    document.getElementById('drpTabIn').classList.add('drp-active');
+    document.getElementById('drpTabOut').classList.remove('drp-active');
+  }
+  drpRender();
+}
+function drpClear(){
+  drp.start=null; drp.end=null; drp.sel='in';
+  document.getElementById('drpTabIn').classList.add('drp-active');
+  document.getElementById('drpTabOut').classList.remove('drp-active');
+  drpRender();
+}
+function drpBuildMonth(y,m){
+  var lang=currentLang||'pt';
+  var dw=drpDW[lang]||drpDW.pt;
+  var today=new Date(); today.setHours(0,0,0,0);
+  var fd=new Date(y,m,1).getDay();
+  var dim=new Date(y,m+1,0).getDate();
+  var h='<div class="drp-dow-row">';
+  dw.forEach(function(d){h+='<div class="drp-dow">'+d+'</div>';});
+  h+='</div><div class="drp-days">';
+  for(var i=0;i<fd;i++) h+='<div class="drp-d drp-d-empty"><div class="drp-d-inner"></div><span class="drp-d-num"></span></div>';
+  for(var day=1;day<=dim;day++){
+    var dt=new Date(y,m,day); dt.setHours(0,0,0,0);
+    var past=dt<today;
+    var isS=drpSame(dt,drp.start), isE=drpSame(dt,drp.end);
+    var inR=drp.start&&drp.end&&dt>drp.start&&dt<drp.end;
+    var cls='drp-d';
+    if(past) cls+=' drp-d-past';
+    if(inR) cls+=' drp-d-range';
+    if(isS) cls+=' drp-d-start';
+    if(isE) cls+=' drp-d-end';
+    var oc=past?'':'onclick="drpPick('+y+','+m+','+day+')"';
+    h+='<div class="'+cls+'" '+oc+'><div class="drp-d-inner"></div>'+(isS||isE?'<div class="drp-d-dot"></div>':'')+'<span class="drp-d-num">'+day+'</span></div>';
+  }
+  h+='</div>';
+  return h;
+}
+function drpRender(){
+  var lang=currentLang||'pt';
+  var mn=drpMN[lang]||drpMN.pt;
+  var y2=drp.m===11?drp.y+1:drp.y, m2=drp.m===11?0:drp.m+1;
+  document.getElementById('drpTitle0').textContent=mn[drp.m]+' '+drp.y;
+  var t1=document.getElementById('drpTitle1');
+  if(t1) t1.textContent=mn[m2]+' '+y2;
+  document.getElementById('drpMonths').innerHTML='<div class="drp-month">'+drpBuildMonth(drp.y,drp.m)+'</div><div class="drp-month">'+drpBuildMonth(y2,m2)+'</div>';
+  /* tabs */
+  var inEl=document.getElementById('drpValIn'), outEl=document.getElementById('drpValOut');
+  if(drp.start){ inEl.textContent=drpFmt(drp.start); inEl.classList.remove('drp-ph'); }
+  else{ inEl.innerHTML='<span data-lang="pt" class="on">Adicionar data</span><span data-lang="en">Add date</span><span data-lang="fr">Ajouter une date</span><span data-lang="es">Agregar fecha</span>'; inEl.classList.add('drp-ph'); }
+  if(drp.end){ outEl.textContent=drpFmt(drp.end); outEl.classList.remove('drp-ph'); }
+  else{ outEl.innerHTML='<span data-lang="pt" class="on">Adicionar data</span><span data-lang="en">Add date</span><span data-lang="fr">Ajouter une date</span><span data-lang="es">Agregar fecha</span>'; outEl.classList.add('drp-ph'); }
+  /* nights */
+  var ngEl=document.getElementById('drpNights');
+  if(ngEl&&drp.start&&drp.end){
+    var n=Math.round((drp.end-drp.start)/(864e5));
+    var labels={pt:n+' noite'+(n>1?'s':''),en:n+' night'+(n>1?'s':''),fr:n+' nuit'+(n>1?'s':''),es:n+' noche'+(n>1?'s':'')};
+    ngEl.textContent=labels[lang]||labels.pt;
+  } else if(ngEl){ ngEl.textContent=''; }
+  var cb=document.getElementById('drpClearBtn');
+  if(cb){ cb.style.display=(drp.start||drp.end)?'inline':'none'; setLang(currentLang); }
+  /* hidden inputs for form */
+  var hi=document.getElementById('chkDateIn'), ho=document.getElementById('chkDateOut');
+  if(hi) hi.value=drp.start?drpFmt(drp.start):'';
+  if(ho) ho.value=drp.end?drpFmt(drp.end):'';
+}
+document.addEventListener('DOMContentLoaded', drpRender);
 </script>
 
 <footer>
