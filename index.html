@@ -1905,6 +1905,7 @@ modalEl.addEventListener('touchend', function(e) {
           <input class="date-field-input" type="text" id="chkDateOut" placeholder="DD/MM/AAAA" maxlength="10" inputmode="numeric" onkeydown="dateMaskKey(this,event)" oninput="dateMaskInput(this)">
         </div>
       </div>
+      <p id="dateAvailError" style="display:none;color:#e08888;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;margin:-8px 0 16px;"></p>
       <p class="checkout-section">
         <span data-lang="pt" class="on">Seus dados</span>
         <span data-lang="en">Your details</span>
@@ -1959,6 +1960,13 @@ modalEl.addEventListener('touchend', function(e) {
 
 <script>
 var cart = [];
+
+// Datas bloqueadas por indisponibilidade — formato DD/MM/AAAA
+// Edite esta lista para bloquear períodos já reservados:
+var BLOCKED_DATES = [
+  // { from: '01/07/2025', to: '07/07/2025' },
+  // { from: '10/08/2025', to: '17/08/2025' },
+];
 
 // Preços base em BRL
 var PRICES_BRL = { black: 5990, gold: 11990 };
@@ -2228,7 +2236,32 @@ var STRIPE_LINKS = {
   'DIAMOND': null
 };
 
+function parseDate(str){
+  var p=str.replace(/\D/g,'');
+  if(p.length!==8)return null;
+  var d=new Date(+p.slice(4,8),+p.slice(2,4)-1,+p.slice(0,2));
+  return isNaN(d)?null:d;
+}
+function datesBlocked(inStr,outStr){
+  var s=parseDate(inStr),e=parseDate(outStr);
+  if(!s||!e||e<=s)return false;
+  for(var i=0;i<BLOCKED_DATES.length;i++){
+    var bs=parseDate(BLOCKED_DATES[i].from),be=parseDate(BLOCKED_DATES[i].to);
+    if(bs&&be&&s<be&&e>bs)return true;
+  }
+  return false;
+}
 function submitCheckout() {
+  var errEl=document.getElementById('dateAvailError');
+  var dateIn=document.getElementById('chkDateIn').value;
+  var dateOut=document.getElementById('chkDateOut').value;
+  if(dateIn&&dateOut&&datesBlocked(dateIn,dateOut)){
+    var msgs={pt:'Período indisponível. Por favor, escolha outras datas.',en:'Period unavailable. Please choose different dates.',fr:'Période indisponible. Veuillez choisir d\'autres dates.',es:'Período no disponible. Por favor, elija otras fechas.'};
+    errEl.textContent=msgs[currentLang]||msgs.pt;
+    errEl.style.display='block';
+    return;
+  }
+  if(errEl)errEl.style.display='none';
   var name = document.getElementById('chkName').value.trim();
   var email = document.getElementById('chkEmail').value.trim();
   if (!name || !email) {
