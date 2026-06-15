@@ -2000,35 +2000,41 @@ function initCurrency() {
 
 document.addEventListener('DOMContentLoaded', initCurrency);
 
-// Swipe down para fechar carrinho e checkout no celular
-function addSwipeToClose(el, closeFn) {
-  var startY = 0;
-  var startX = 0;
-  var isDragging = false;
-
-  el.addEventListener('touchstart', function(e) {
+// Swipe down para fechar carrinho, checkout e modais no celular
+function addSwipeToClose(elOrId, closeFn) {
+  var modal = typeof elOrId === 'string' ? document.getElementById(elOrId) : elOrId;
+  if (!modal) return;
+  var startY = 0, currentY = 0, dragging = false;
+  modal.addEventListener('touchstart', function(e) {
     startY = e.touches[0].clientY;
-    startX = e.touches[0].clientX;
-    isDragging = true;
-    el.style.transition = 'none';
+    currentY = startY;
+    dragging = true;
+    modal.style.transition = 'none';
   }, { passive: true });
-
-  el.addEventListener('touchmove', function(e) {
-    if (!isDragging) return;
-    var dy = e.touches[0].clientY - startY;
-    var dx = e.touches[0].clientX - startX;
-    if (dy > 0 && Math.abs(dy) > Math.abs(dx)) {
-      el.style.transform = 'translateY(' + dy + 'px)';
+  modal.addEventListener('touchmove', function(e) {
+    if (!dragging) return;
+    currentY = e.touches[0].clientY;
+    var diff = currentY - startY;
+    if (diff > 0 && modal.scrollTop <= 0) {
+      modal.style.transform = 'translateY(' + diff + 'px)';
+    } else {
+      modal.style.transform = '';
     }
   }, { passive: true });
-
-  el.addEventListener('touchend', function(e) {
-    if (!isDragging) return;
-    isDragging = false;
-    var dy = e.changedTouches[0].clientY - startY;
-    el.style.transition = '';
-    el.style.transform = '';
-    if (dy > 80) closeFn();
+  modal.addEventListener('touchend', function() {
+    if (!dragging) return;
+    dragging = false;
+    modal.style.transition = 'transform 0.25s ease';
+    if (currentY - startY > 80 && modal.scrollTop <= 0) {
+      modal.style.transform = 'translateY(100%)';
+      setTimeout(function() {
+        closeFn();
+        modal.style.transform = '';
+        modal.style.transition = '';
+      }, 250);
+    } else {
+      modal.style.transform = '';
+    }
   });
 }
 
@@ -2142,44 +2148,6 @@ function openCheckout() {
 function closeCheckout() {
   document.getElementById('checkoutOverlay').classList.remove('open');
   document.body.style.overflow = '';
-}
-function addSwipeToClose(modalId, closeFn) {
-  var modal = document.getElementById(modalId);
-  if (!modal) return;
-  var startY = 0, currentY = 0, dragging = false;
-  modal.addEventListener('touchstart', function(e) {
-    startY = e.touches[0].clientY;
-    currentY = startY;
-    dragging = true;
-    modal.style.transition = 'none';
-  }, { passive: true });
-  modal.addEventListener('touchmove', function(e) {
-    if (!dragging) return;
-    currentY = e.touches[0].clientY;
-    var diff = currentY - startY;
-    // Só arrasta para fechar se estiver no topo do scroll e movendo para baixo
-    if (diff > 0 && modal.scrollTop <= 0) {
-      modal.style.transform = 'translateY(' + diff + 'px)';
-    } else {
-      // Permite scroll normal do conteúdo
-      modal.style.transform = '';
-    }
-  }, { passive: true });
-  modal.addEventListener('touchend', function() {
-    if (!dragging) return;
-    dragging = false;
-    modal.style.transition = 'transform 0.25s ease';
-    if (currentY - startY > 80 && modal.scrollTop <= 0) {
-      modal.style.transform = 'translateY(100%)';
-      setTimeout(function() {
-        closeFn();
-        modal.style.transform = '';
-        modal.style.transition = '';
-      }, 250);
-    } else {
-      modal.style.transform = '';
-    }
-  });
 }
 document.addEventListener('DOMContentLoaded', function() {
   addSwipeToClose('policyModal', closePolicy);
