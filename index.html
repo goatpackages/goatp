@@ -803,31 +803,6 @@ span[data-lang].on { display: inline; }
   .cart-drawer { width: 100vw; }
   .checkout-modal { padding: 32px 20px; }
 }
-/* ── Black package calendar ── */
-.black-cal { background: #111; border: 1px solid rgba(200,169,126,0.25); padding: 16px; margin-bottom: 16px; user-select: none; }
-.black-cal-dates { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
-.black-cal-date-box { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 10px 12px; cursor: pointer; transition: border-color 0.2s; }
-.black-cal-date-box.active { border-color: var(--gold); }
-.black-cal-date-label { display: block; font-size: 8px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 3px; }
-.black-cal-date-val { display: block; font-size: 13px; color: var(--white); font-family: var(--serif); letter-spacing: 0.03em; }
-.black-cal-date-val.empty { color: rgba(255,255,255,0.3); }
-.black-cal-date-sep { color: rgba(255,255,255,0.3); font-size: 16px; }
-.black-cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-.black-cal-nav-btn { background: none; border: none; color: rgba(255,255,255,0.6); font-size: 20px; cursor: pointer; padding: 4px 10px; line-height: 1; transition: color 0.15s; }
-.black-cal-nav-btn:hover { color: var(--gold); }
-.black-cal-month { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); }
-.black-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
-.black-cal-dow { text-align: center; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); padding: 4px 0 8px; }
-.black-cal-day { position: relative; text-align: center; padding: 7px 0; font-size: 13px; color: rgba(255,255,255,0.75); cursor: pointer; border-radius: 50%; transition: background 0.15s, color 0.15s; }
-.black-cal-day:hover:not(.empty):not(.past) { background: rgba(200,169,126,0.2); color: var(--white); }
-.black-cal-day.empty, .black-cal-day.past { cursor: default; color: rgba(255,255,255,0.18); }
-.black-cal-day.selected-start, .black-cal-day.selected-end { background: var(--gold) !important; color: #000 !important; font-weight: 700; border-radius: 50%; }
-.black-cal-day.in-range { background: rgba(200,169,126,0.18); color: var(--white); border-radius: 0; }
-.black-cal-day.selected-start.in-range-start { border-radius: 50% 0 0 50%; }
-.black-cal-day.selected-end.in-range-end { border-radius: 0 50% 50% 0; }
-.black-cal-clear { background: none; border: none; color: rgba(255,255,255,0.3); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; margin-top: 10px; padding: 0; transition: color 0.15s; }
-.black-cal-clear:hover { color: var(--gold); }
-.black-cal-hint { font-size: 10px; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; margin-top: 8px; }
 </style>
 </head>
 <body>
@@ -983,26 +958,15 @@ span[data-lang].on { display: inline; }
         <p class="pkg-tagline"><span data-lang="pt" class="on">Viva o Rio de Janeiro sem limitações. O Pacote Black combina hospedagem premium, experiências exclusivas, acesso privilegiado aos melhores eventos da cidade e o suporte de uma rede local de confiança, permitindo que você explore cada momento com conforto, segurança e total tranquilidade.</span><span data-lang="en">Live Rio de Janeiro without limits. The Black Package combines premium accommodation, exclusive experiences, privileged access to the city's best events and the support of a trusted local network, allowing you to explore every moment with comfort, safety and complete peace of mind.</span><span data-lang="fr">Vivez Rio de Janeiro sans limites. Le Black Package combine hébergement premium, expériences exclusives, accès privilégié aux meilleurs événements de la ville et le soutien d'un réseau local de confiance, vous permettant d'explorer chaque instant avec confort, sécurité et une tranquillité totale.</span><span data-lang="es">Vive Río de Janeiro sin limitaciones. El Black Package combina alojamiento premium, experiencias exclusivas, acceso privilegiado a los mejores eventos de la ciudad y el apoyo de una red local de confianza, permitiéndote explorar cada momento con comodidad, seguridad y total tranquilidad.</span></p>
         <p style="font-size:22px; font-weight:700; color:var(--white); letter-spacing:0.04em; margin-bottom:12px;" id="blackPriceDisplay">R$4.990 <span style="font-size:12px; font-weight:400; color:var(--cream-dim); letter-spacing:0.1em;"><span data-lang="pt" class="on">por pessoa</span><span data-lang="en">per person</span><span data-lang="fr">par personne</span><span data-lang="es">por persona</span></span></p>
         <p style="font-size:12px; color:var(--gold); letter-spacing:0.07em; line-height:1.7; margin-bottom:16px; border:1px solid var(--gold); padding:10px 14px; background:rgba(180,145,80,0.08);"><span data-lang="pt" class="on">⚠ A ativação deste pacote está condicionada à confirmação mínima de 14 participantes inscritos.</span><span data-lang="en">⚠ The activation of this package is subject to a minimum confirmation of 14 registered participants.</span><span data-lang="fr">⚠ L'activation de ce forfait est conditionnée à la confirmation d'un minimum de 14 participants inscrits.</span><span data-lang="es">⚠ La activación de este paquete está condicionada a la confirmación mínima de 14 participantes inscritos.</span></p>
-        <div class="black-cal" id="blackCal">
-          <div class="black-cal-dates">
-            <div class="black-cal-date-box active" id="blackCalCheckinBox" onclick="blackCalFocus('in')">
-              <span class="black-cal-date-label">Check-in</span>
-              <span class="black-cal-date-val empty" id="blackCalCheckinVal">—</span>
-            </div>
-            <div class="black-cal-date-sep">→</div>
-            <div class="black-cal-date-box" id="blackCalCheckoutBox" onclick="blackCalFocus('out')">
-              <span class="black-cal-date-label">Check-out</span>
-              <span class="black-cal-date-val empty" id="blackCalCheckoutVal">—</span>
-            </div>
+        <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:16px;">
+          <div class="fgroup">
+            <label><span data-lang="pt" class="on">Check-in</span><span data-lang="en">Check-in</span><span data-lang="fr">Arrivée</span><span data-lang="es">Llegada</span></label>
+            <input type="text" id="blackCheckin" placeholder="DD/MM/AAAA" inputmode="numeric">
           </div>
-          <div class="black-cal-nav">
-            <button class="black-cal-nav-btn" onclick="blackCalNav(-1)">&#8249;</button>
-            <span class="black-cal-month" id="blackCalMonthLabel"></span>
-            <button class="black-cal-nav-btn" onclick="blackCalNav(1)">&#8250;</button>
+          <div class="fgroup">
+            <label><span data-lang="pt" class="on">Check-out</span><span data-lang="en">Check-out</span><span data-lang="fr">Départ</span><span data-lang="es">Salida</span></label>
+            <input type="text" id="blackCheckout" placeholder="DD/MM/AAAA" inputmode="numeric">
           </div>
-          <div class="black-cal-grid" id="blackCalGrid"></div>
-          <p class="black-cal-hint" id="blackCalHint"><span data-lang="pt" class="on">Selecione a data de check-in</span><span data-lang="en">Select check-in date</span><span data-lang="fr">Sélectionnez la date d'arrivée</span><span data-lang="es">Seleccione fecha de llegada</span></p>
-          <button class="black-cal-clear" onclick="blackCalClear()"><span data-lang="pt" class="on">Limpar datas</span><span data-lang="en">Clear dates</span><span data-lang="fr">Effacer les dates</span><span data-lang="es">Borrar fechas</span></button>
         </div>
         <button class="pkg-btn" id="blackCartBtn" onclick="addToCartDynamic('BLACK','Edição 01','black')"><span data-lang="pt" class="on">Reservar</span><span data-lang="en">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
       </div>
@@ -2319,128 +2283,8 @@ function applyDateFormat(el) {
   });
 }
 applyDateFormat(document.getElementById('datePlaceholderInput'));
-
-// ── Black package calendar ──
-var blackCal = {
-  year: new Date().getFullYear(),
-  month: new Date().getMonth(),
-  checkin: null,
-  checkout: null,
-  selecting: 'in'
-};
-var blackCalMonthNames = {
-  pt: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-  en: ['January','February','March','April','May','June','July','August','September','October','November','December'],
-  fr: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
-  es: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
-};
-var blackCalDowNames = {
-  pt: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
-  en: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
-  fr: ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'],
-  es: ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb']
-};
-function blackCalFmt(d) {
-  if (!d) return '';
-  var dd = String(d.getDate()).padStart(2,'0');
-  var mm = String(d.getMonth()+1).padStart(2,'0');
-  var yy = d.getFullYear();
-  return dd + '/' + mm + '/' + yy;
-}
-function blackCalSameDay(a, b) {
-  return a && b && a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate();
-}
-function blackCalFocus(which) {
-  blackCal.selecting = which;
-  document.getElementById('blackCalCheckinBox').classList.toggle('active', which==='in');
-  document.getElementById('blackCalCheckoutBox').classList.toggle('active', which==='out');
-  blackCalRender();
-}
-function blackCalNav(dir) {
-  blackCal.month += dir;
-  if (blackCal.month > 11) { blackCal.month = 0; blackCal.year++; }
-  if (blackCal.month < 0)  { blackCal.month = 11; blackCal.year--; }
-  blackCalRender();
-}
-function blackCalSelect(y, m, d) {
-  var sel = new Date(y, m, d);
-  if (blackCal.selecting === 'in') {
-    blackCal.checkin = sel;
-    blackCal.checkout = null;
-    blackCal.selecting = 'out';
-    document.getElementById('blackCalCheckinBox').classList.remove('active');
-    document.getElementById('blackCalCheckoutBox').classList.add('active');
-  } else {
-    if (blackCal.checkin && sel <= blackCal.checkin) {
-      blackCal.checkin = sel;
-      blackCal.checkout = null;
-      blackCal.selecting = 'out';
-    } else {
-      blackCal.checkout = sel;
-      blackCal.selecting = 'in';
-      document.getElementById('blackCalCheckinBox').classList.add('active');
-      document.getElementById('blackCalCheckoutBox').classList.remove('active');
-    }
-  }
-  blackCalRender();
-}
-function blackCalClear() {
-  blackCal.checkin = null;
-  blackCal.checkout = null;
-  blackCal.selecting = 'in';
-  document.getElementById('blackCalCheckinBox').classList.add('active');
-  document.getElementById('blackCalCheckoutBox').classList.remove('active');
-  blackCalRender();
-}
-function blackCalRender() {
-  var lang = currentLang || 'pt';
-  var months = blackCalMonthNames[lang] || blackCalMonthNames.pt;
-  var dows = blackCalDowNames[lang] || blackCalDowNames.pt;
-  document.getElementById('blackCalMonthLabel').textContent = months[blackCal.month] + ' ' + blackCal.year;
-  var checkinEl = document.getElementById('blackCalCheckinVal');
-  var checkoutEl = document.getElementById('blackCalCheckoutVal');
-  if (blackCal.checkin) { checkinEl.textContent = blackCalFmt(blackCal.checkin); checkinEl.classList.remove('empty'); }
-  else { checkinEl.textContent = '—'; checkinEl.classList.add('empty'); }
-  if (blackCal.checkout) { checkoutEl.textContent = blackCalFmt(blackCal.checkout); checkoutEl.classList.remove('empty'); }
-  else { checkoutEl.textContent = '—'; checkoutEl.classList.add('empty'); }
-  var hint = document.getElementById('blackCalHint');
-  if (hint) {
-    var hintTexts = {
-      in:  {pt:'Selecione a data de check-in', en:'Select check-in date', fr:"Sélectionnez la date d'arrivée", es:'Seleccione fecha de llegada'},
-      out: {pt:'Selecione a data de check-out', en:'Select check-out date', fr:'Sélectionnez la date de départ', es:'Seleccione fecha de salida'}
-    };
-    var t = hintTexts[blackCal.selecting][lang] || hintTexts[blackCal.selecting].pt;
-    hint.querySelectorAll('[data-lang]').forEach(function(el){ el.classList.remove('on'); });
-    hint.querySelector('[data-lang="'+lang+'"]') && hint.querySelector('[data-lang="'+lang+'"]').classList.add('on');
-    if (blackCal.checkin && blackCal.checkout) hint.style.display = 'none';
-    else hint.style.display = 'block';
-  }
-  var today = new Date(); today.setHours(0,0,0,0);
-  var firstDay = new Date(blackCal.year, blackCal.month, 1).getDay();
-  var daysInMonth = new Date(blackCal.year, blackCal.month+1, 0).getDate();
-  var grid = document.getElementById('blackCalGrid');
-  var html = '';
-  dows.forEach(function(d){ html += '<div class="black-cal-dow">'+d+'</div>'; });
-  for (var i = 0; i < firstDay; i++) html += '<div class="black-cal-day empty"></div>';
-  for (var day = 1; day <= daysInMonth; day++) {
-    var dt = new Date(blackCal.year, blackCal.month, day);
-    dt.setHours(0,0,0,0);
-    var cls = 'black-cal-day';
-    if (dt < today) cls += ' past';
-    var isStart = blackCalSameDay(dt, blackCal.checkin);
-    var isEnd = blackCalSameDay(dt, blackCal.checkout);
-    var inRange = blackCal.checkin && blackCal.checkout && dt > blackCal.checkin && dt < blackCal.checkout;
-    if (isStart) cls += ' selected-start';
-    if (isEnd) cls += ' selected-end';
-    if (inRange) cls += ' in-range';
-    var onclick = (dt < today) ? '' : 'onclick="blackCalSelect('+blackCal.year+','+blackCal.month+','+day+')"';
-    html += '<div class="'+cls+'" '+onclick+'>'+day+'</div>';
-  }
-  grid.innerHTML = html;
-  document.getElementById('chkDateIn') && (document.getElementById('chkDateIn').value = blackCal.checkin ? blackCalFmt(blackCal.checkin) : '');
-  document.getElementById('chkDateOut') && (document.getElementById('chkDateOut').value = blackCal.checkout ? blackCalFmt(blackCal.checkout) : '');
-}
-document.addEventListener('DOMContentLoaded', function() { blackCalRender(); });
+applyDateFormat(document.getElementById('blackCheckin'));
+applyDateFormat(document.getElementById('blackCheckout'));
 </script>
 
 <footer>
