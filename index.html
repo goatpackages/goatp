@@ -1884,19 +1884,31 @@ function closeCheckout() {
   document.getElementById('checkoutOverlay').classList.remove('open');
   document.body.style.overflow = '';
 }
+var STRIPE_LINKS = {
+  'BLACK': 'https://buy.stripe.com/test_fZu28kgGJ4xg5SY3W9eME00',
+  'GOLD':  null,
+  'DIAMOND': null
+};
+
 function submitCheckout() {
   var name = document.getElementById('chkName').value.trim();
   var email = document.getElementById('chkEmail').value.trim();
-  var card = document.getElementById('chkCardNumber').value.trim();
-  if (!name || !email || !card) {
-    alert('Por favor preencha nome, e-mail e número do cartão.');
+  if (!name || !email) {
+    alert('Por favor preencha nome e e-mail.');
     return;
   }
-  document.getElementById('checkoutFormWrap').style.display = 'none';
-  document.getElementById('checkoutSuccess').style.display = 'block';
-  cart = [];
-  renderCart();
-  setLang(currentLang);
+  var pkgName = cart.length > 0 ? cart[0].name : null;
+  var link = pkgName && STRIPE_LINKS[pkgName];
+  if (link) {
+    var url = link + '?prefilled_email=' + encodeURIComponent(email) + '&prefilled_name=' + encodeURIComponent(name);
+    window.location.href = url;
+  } else {
+    document.getElementById('checkoutFormWrap').style.display = 'none';
+    document.getElementById('checkoutSuccess').style.display = 'block';
+    cart = [];
+    renderCart();
+    setLang(currentLang);
+  }
 }
 document.getElementById('chkCardNumber').addEventListener('input', function() {
   var v = this.value.replace(/\D/g,'').substring(0,16);
