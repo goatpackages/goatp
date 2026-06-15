@@ -1917,6 +1917,7 @@ modalEl.addEventListener('touchend', function(e) {
         <input class="checkout-input" type="email" id="chkEmail" placeholder="E-mail" autocomplete="email">
         <input class="checkout-input" type="tel" id="chkPhone" placeholder="WhatsApp · Phone" autocomplete="tel">
       </div>
+      <p id="chkFormError" style="display:none;color:#e08888;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;margin:4px 0 12px;"></p>
 
       <div style="margin-top: 8px;">
         <button class="checkout-pay-btn" id="chkPayBtn" onclick="submitCheckout()">
@@ -2265,10 +2266,18 @@ function submitCheckout() {
   if(errEl)errEl.style.display='none';
   var name = document.getElementById('chkName').value.trim();
   var email = document.getElementById('chkEmail').value.trim();
+  var formErr = document.getElementById('chkFormError');
   if (!name || !email) {
-    alert('Por favor preencha nome e e-mail.');
+    var errMsgs = {pt:'Preencha nome e e-mail para continuar.',en:'Please fill in your name and email.',fr:'Veuillez remplir votre nom et e-mail.',es:'Complete nombre y e-mail para continuar.'};
+    formErr.textContent = errMsgs[currentLang] || errMsgs.pt;
+    formErr.style.display = 'block';
+    if (!name) document.getElementById('chkName').style.borderBottomColor = '#e08888';
+    if (!email) document.getElementById('chkEmail').style.borderBottomColor = '#e08888';
     return;
   }
+  formErr.style.display = 'none';
+  document.getElementById('chkName').style.borderBottomColor = '';
+  document.getElementById('chkEmail').style.borderBottomColor = '';
   var pkgName = cart.length > 0 ? cart[0].name : null;
   var link = pkgName && STRIPE_LINKS[pkgName];
   if (link) {
