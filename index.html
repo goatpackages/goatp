@@ -847,7 +847,7 @@ span[data-lang].on { display: inline; }
 .drp-close:hover { opacity:.85; }
 .drp-d.drp-today .drp-d-txt { text-decoration:underline; text-underline-offset:3px; }
 .drp-d.drp-hover-range .drp-d-bg { background:rgba(200,169,126,.10); }
-.drp-d.drp-hover-end .drp-d-circle { display:block; background:rgba(200,169,126,.38); }
+.drp-d.drp-hover-end .drp-d-circle { display:block; position:absolute; inset:2px; background:rgba(200,169,126,.38); border-radius:50%; z-index:1; }
 @media (max-width:600px) {
   .drp-months { flex-direction:column; }
   .drp-cal-titles { justify-content:space-between; }
