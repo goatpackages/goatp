@@ -1920,7 +1920,7 @@ modalEl.addEventListener('touchend', function(e) {
       <p id="chkFormError" style="display:none;color:#e08888;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;margin:4px 0 12px;"></p>
 
       <div style="margin-top: 8px;">
-        <a class="checkout-pay-btn" id="chkPayBtn" href="https://buy.stripe.com/7sY8wIbzBfVu8sP8zp2Ry02" style="display:block;text-align:center;text-decoration:none;">
+        <a class="checkout-pay-btn" id="chkPayBtn" href="https://buy.stripe.com/7sY8wIbzBfVu8sP8zp2Ry02" onclick="return validateCheckout(this)" style="display:block;text-align:center;text-decoration:none;">
           <span data-lang="pt" class="on">Confirmar reserva</span>
           <span data-lang="en">Confirm booking</span>
           <span data-lang="fr">Confirmer la réservation</span>
@@ -2256,32 +2256,46 @@ function datesBlocked(inStr,outStr){
   }
   return false;
 }
-function submitCheckout() {
-  var errEl=document.getElementById('dateAvailError');
-  var dateIn=document.getElementById('chkDateIn').value;
-  var dateOut=document.getElementById('chkDateOut').value;
-  if(dateIn&&dateOut&&datesBlocked(dateIn,dateOut)){
-    var msgs={pt:'Período indisponível. Por favor, escolha outras datas.',en:'Period unavailable. Please choose different dates.',fr:'Période indisponible. Veuillez choisir d\'autres dates.',es:'Período no disponible. Por favor, elija otras fechas.'};
-    errEl.textContent=msgs[currentLang]||msgs.pt;
-    errEl.style.display='block';
-    return;
+function validateCheckout(el) {
+  var valid = true;
+  var elDateIn  = document.getElementById('chkDateIn');
+  var elDateOut = document.getElementById('chkDateOut');
+  var elName    = document.getElementById('chkName');
+  var elEmail   = document.getElementById('chkEmail');
+  var errEl     = document.getElementById('chkFormError');
+  var dateErr   = document.getElementById('dateAvailError');
+
+  [elDateIn, elDateOut].forEach(function(f){ f.style.borderBottom = ''; });
+  [elName, elEmail].forEach(function(f){ f.style.borderBottomColor = ''; });
+  errEl.style.display = 'none';
+  if(dateErr) dateErr.style.display = 'none';
+
+  if (!elDateIn.value || elDateIn.value.length < 10) {
+    elDateIn.style.borderBottom = '1px solid #e08888'; valid = false;
   }
-  if(errEl)errEl.style.display='none';
-  var name = document.getElementById('chkName').value.trim();
-  var email = document.getElementById('chkEmail').value.trim();
-  var pkgName = cart.length > 0 ? cart[0].name : 'BLACK';
-  var link = STRIPE_LINKS[pkgName] || STRIPE_LINKS['BLACK'];
-  if (link) {
-    var url = link;
-    if (email) url += '?prefilled_email=' + encodeURIComponent(email);
-    window.open(url, '_blank');
-  } else {
-    document.getElementById('checkoutFormWrap').style.display = 'none';
-    document.getElementById('checkoutSuccess').style.display = 'block';
-    cart = [];
-    renderCart();
-    setLang(currentLang);
+  if (!elDateOut.value || elDateOut.value.length < 10) {
+    elDateOut.style.borderBottom = '1px solid #e08888'; valid = false;
   }
+  if (elDateIn.value && elDateOut.value && datesBlocked(elDateIn.value, elDateOut.value)) {
+    var bMsgs = {pt:'Período indisponível. Escolha outras datas.',en:'Period unavailable. Please choose different dates.',fr:'Période indisponible.',es:'Período no disponible.'};
+    if(dateErr){ dateErr.textContent = bMsgs[currentLang]||bMsgs.pt; dateErr.style.display='block'; }
+    return false;
+  }
+  if (!elName.value.trim()) {
+    elName.style.borderBottomColor = '#e08888'; valid = false;
+  }
+  if (!elEmail.value.trim()) {
+    elEmail.style.borderBottomColor = '#e08888'; valid = false;
+  }
+  if (!valid) {
+    var msgs = {pt:'Preencha os campos destacados para continuar.',en:'Please fill in the highlighted fields.',fr:'Veuillez remplir les champs en rouge.',es:'Complete los campos indicados para continuar.'};
+    errEl.textContent = msgs[currentLang] || msgs.pt;
+    errEl.style.display = 'block';
+    return false;
+  }
+  var base = 'https://buy.stripe.com/7sY8wIbzBfVu8sP8zp2Ry02';
+  el.href = base + '?prefilled_email=' + encodeURIComponent(elEmail.value.trim());
+  return true;
 }
 function applyDateFormat(el) {
   if (!el) return;
