@@ -2327,12 +2327,13 @@ function dateMaskKey(el,e){
   }
 }
 function dateMaskInput(el){
-  var pos=el.selectionStart;
   var digits=el.value.replace(/\D/g,'').substring(0,8);
   var fmt=dateFmt(digits);
   el.value=fmt;
-  if(fmt[pos]==='/')pos++;
-  pos=Math.min(pos,fmt.length);
+  var pos;
+  if(digits.length<=2) pos=digits.length;
+  else if(digits.length<=4) pos=digits.length+1;
+  else pos=digits.length+2;
   el.setSelectionRange(pos,pos);
 }
 </script>
