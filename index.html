@@ -988,7 +988,7 @@ span[data-lang].on { display: inline; }
     </div>
     <!-- DIAMOND -->
     <div class="pkg-card pkg-diamond" id="diamondCard">
-      <div class="pkg-cover" id="diamondCover" onclick="openModal('diamond')">
+      <div class="pkg-cover" id="diamondCover" style="cursor:default;">
         <img id="diamondCoverImg" src="GOAT DIAMOND clubb" alt="Diamond Residence" loading="lazy">
         <div class="pkg-cover-badge">DIAMOND</div>
         <div class="pkg-cover-title">
@@ -1007,6 +1007,7 @@ span[data-lang].on { display: inline; }
           <p style="font-size:11px; letter-spacing:0.08em; color:var(--ice); font-weight:500; line-height:1.7;"><span data-lang="pt" class="on">Viva o Rio como poucos podem viver.</span><span data-lang="en">Live Rio like only a few can.</span><span data-lang="fr">Vivez Rio comme peu peuvent le faire.</span><span data-lang="es">Vive Río como pocos pueden vivirlo.</span></p>
         </div>
         <p style="font-size:13px; color:var(--gold); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:16px;"><span data-lang="pt" class="on">Valor a negociar</span><span data-lang="en">Price upon request</span><span data-lang="fr">Prix sur demande</span><span data-lang="es">Precio a negociar</span></p>
+        <p style="font-size:12px; color:var(--ice); letter-spacing:0.1em; text-transform:uppercase; border:1px solid var(--ice); display:inline-block; padding:5px 12px; margin-bottom:16px;"><span data-lang="pt" class="on">Temporariamente fechado</span><span data-lang="en">Temporarily closed</span><span data-lang="fr">Temporairement fermé</span><span data-lang="es">Temporalmente cerrado</span></p>
       </div>
     </div>
   </div>
@@ -1284,7 +1285,8 @@ var lbGalleries = {
   diamondResidenciaSlides: [
     {src:'https://a0.muscache.com/im/pictures/hosting/Hosting-1688414837064834175/original/a0bb902a-3ee3-4387-b499-585f2e30339e.jpeg?im_w=720', cap:{pt:'Fachada e piscina',en:'Façade and pool',fr:'Façade et piscine',es:'Fachada y piscina'}},
     {src:'GOAT DIAMOND clubb', cap:{pt:'Beach club com vista pro mar',en:'Beach club with sea view',fr:'Beach club avec vue mer',es:'Beach club con vista al mar'}},
-    {src:'helicoptero.webp', cap:{pt:'Helicóptero privativo',en:'Private helicopter',fr:'Hélicoptère privé',es:'Helicóptero privado'}}
+    {src:'helicoptero.webp', cap:{pt:'Helicóptero privativo',en:'Private helicopter',fr:'Hélicoptère privé',es:'Helicóptero privado'}},
+    {src:'jetsky_clean.jpg', cap:{pt:'Jet Ski',en:'Jet Ski',fr:'Jet Ski',es:'Jet Ski'}}
   ],
   diamondResidencia: [
     {src:'https://a0.muscache.com/im/pictures/hosting/Hosting-1688414837064834175/original/a0bb902a-3ee3-4387-b499-585f2e30339e.jpeg?im_w=720', cap:{pt:'Fachada e piscina',en:'Façade and pool',fr:'Façade et piscine',es:'Fachada y piscina'}}
@@ -1299,8 +1301,6 @@ var lbGalleries = {
   diamondAtividades: [
     {src:'helicoptero.webp', cap:{pt:'Helicóptero privativo',en:'Private helicopter',fr:'Hélicoptère privé',es:'Helicóptero privado'}},
     {src:'jetsky_clean.jpg', cap:{pt:'Jet Ski',en:'Jet Ski',fr:'Jet Ski',es:'Jet Ski'}},
-    {src:'cristo-redentor-ingresso-a-pe.jpg', cap:{pt:'Cristo Redentor',en:'Christ the Redeemer',fr:'Christ Rédempteur',es:'Cristo Redentor'}},
-    {src:'atividade-city.webp', cap:{pt:'Atividade',en:'Activity',fr:'Activité',es:'Actividad'}},
     {src:'20241103_20ES1_FOTO-PAULA-REIS-FLAMENGO.webp', cap:{pt:'Jogo de Futebol',en:'Football Game',fr:'Match de Football',es:'Partido de Fútbol'}},
     {src:'atividade2.jpeg', cap:{pt:'Atividade',en:'Activity',fr:'Activité',es:'Actividad'}},
   ]
@@ -1510,12 +1510,17 @@ function restartDiamondResidenceSlider() {
 }
 startDiamondResidenceSlider();
 
-// Acesso admin ao pacote PLATINUM
+// Acesso admin aos pacotes PLATINUM e DIAMOND
 if (new URLSearchParams(window.location.search).get('admin') === 'true') {
   var goldCover = document.querySelector('.pkg-gold .pkg-cover');
   if (goldCover) {
     goldCover.style.cursor = 'pointer';
     goldCover.onclick = function() { openModal('gold'); };
+  }
+  var diamondCoverEl = document.getElementById('diamondCover');
+  if (diamondCoverEl) {
+    diamondCoverEl.style.cursor = 'pointer';
+    diamondCoverEl.onclick = function() { openModal('diamond'); };
   }
 }
 var blackSlideIndex = 0;
