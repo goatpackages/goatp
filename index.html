@@ -1311,6 +1311,15 @@ var lbCurrent = {set: null, idx: 0};
 
 var blackSpotsAvailable = 8;
 
+// Incrementar a cada novo evento realizado
+var eventoEdicao = 1;
+var eventoEdicaoLabels = {
+  pt: 'Edição ' + String(eventoEdicao).padStart(2, '0'),
+  en: 'Edition ' + String(eventoEdicao).padStart(2, '0'),
+  fr: 'Édition ' + String(eventoEdicao).padStart(2, '0'),
+  es: 'Edición ' + String(eventoEdicao).padStart(2, '0'),
+};
+
 var pkgModalData = {
   black: {
     title: 'VERSÃO BLACK',
@@ -1384,7 +1393,7 @@ function renderModal(pkg) {
   if (!data) return;
   var i18n = data.i18n[currentLang] || data.i18n['pt'];
   document.getElementById('modalHeaderImg').src = data.img;
-  document.getElementById('modalEdition').textContent = i18n.edition;
+  document.getElementById('modalEdition').textContent = eventoEdicaoLabels[currentLang] || eventoEdicaoLabels['pt'];
   document.getElementById('modalTitle').textContent = i18n.title || data.title;
   document.getElementById('modalTagline').textContent = i18n.tagline;
   var descEl = document.getElementById('modalDesc');
