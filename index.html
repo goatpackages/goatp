@@ -956,27 +956,25 @@ span[data-lang].on { display: inline; }
     <div class="pkg-card pkg-black">
       <div class="pkg-cover" id="blackCover" onclick="openModal('black')">
         <img id="blackCoverImg" src="PHOTO-2026-05-23-22-29-16.jpg" alt="Black Edition" loading="lazy">
-        <div class="pkg-cover-badge">BLACK</div>
+        <div class="pkg-cover-badge">Versão Black</div>
         <div class="pkg-cover-title">
-          <p class="pkg-edition"><span data-lang="pt" class="on">Edição 01</span><span data-lang="en">Edition 01</span><span data-lang="fr">Édition 01</span><span data-lang="es">Edición 01</span></p>
-          <h3 class="pkg-name">BLACK</h3>
+          <h3 class="pkg-name">VERSÃO BLACK</h3>
         </div>
       </div>
       <div class="pkg-body" style="background: transparent;">
         <p class="pkg-tagline"><span data-lang="pt" class="on">Viva o Rio de Janeiro sem limitações. O Pacote Black combina hospedagem premium, experiências exclusivas, acesso privilegiado aos melhores eventos da cidade e o suporte de uma rede local de confiança, permitindo que você explore cada momento com conforto, segurança e total tranquilidade.</span><span data-lang="en">Live Rio de Janeiro without limits. The Black Package combines premium accommodation, exclusive experiences, privileged access to the city's best events and the support of a trusted local network, allowing you to explore every moment with comfort, safety and complete peace of mind.</span><span data-lang="fr">Vivez Rio de Janeiro sans limites. Le Black Package combine hébergement premium, expériences exclusives, accès privilégié aux meilleurs événements de la ville et le soutien d'un réseau local de confiance, vous permettant d'explorer chaque instant avec confort, sécurité et une tranquillité totale.</span><span data-lang="es">Vive Río de Janeiro sin limitaciones. El Black Package combina alojamiento premium, experiencias exclusivas, acceso privilegiado a los mejores eventos de la ciudad y el apoyo de una red local de confianza, permitiéndote explorar cada momento con comodidad, seguridad y total tranquilidad.</span></p>
         <p style="font-size:22px; font-weight:700; color:var(--white); letter-spacing:0.04em; margin-bottom:12px;" id="blackPriceDisplay">R$5.990<span style="font-size:12px; font-weight:400; color:var(--cream-dim); letter-spacing:0.1em;"><span data-lang="pt" class="on">por pessoa</span><span data-lang="en">per person</span><span data-lang="fr">par personne</span><span data-lang="es">por persona</span></span></p>
         <p style="font-size:12px; color:var(--gold); letter-spacing:0.07em; line-height:1.7; margin-bottom:16px; border:1px solid var(--gold); padding:10px 14px; background:rgba(180,145,80,0.08);"><span data-lang="pt" class="on">⚠ A ativação deste pacote está condicionada à confirmação mínima de 14 participantes inscritos.</span><span data-lang="en">⚠ The activation of this package is subject to a minimum confirmation of 14 registered participants.</span><span data-lang="fr">⚠ L'activation de ce forfait est conditionnée à la confirmation d'un minimum de 14 participants inscrits.</span><span data-lang="es">⚠ La activación de este paquete está condicionada a la confirmación mínima de 14 participantes inscritos.</span></p>
-        <button class="pkg-btn" id="blackCartBtn" onclick="addToCartDynamic('BLACK','Edição 01','black')"><span data-lang="pt" class="on">Reservar</span><span data-lang="en">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
+        <button class="pkg-btn" id="blackCartBtn" onclick="addToCartDynamic('VERSÃO BLACK','Versão Black','black')"><span data-lang="pt" class="on">Reservar</span><span data-lang="en">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
       </div>
     </div>
     <!-- PLATINUM -->
     <div class="pkg-card pkg-gold" id="goldCard">
       <div class="pkg-cover" style="cursor:default;">
         <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="Platinum Edition" loading="lazy">
-        <div class="pkg-cover-badge">PLATINUM</div>
+        <div class="pkg-cover-badge">Versão Platinum</div>
         <div class="pkg-cover-title">
-          <p class="pkg-edition"><span data-lang="pt" class="on">Edição 02</span><span data-lang="en">Edition 02</span><span data-lang="fr">Édition 02</span><span data-lang="es">Edición 02</span></p>
-          <h3 class="pkg-name">PLATINUM</h3>
+          <h3 class="pkg-name">VERSÃO PLATINUM</h3>
         </div>
       </div>
       <div class="pkg-body" style="background: transparent;">
@@ -990,10 +988,9 @@ span[data-lang].on { display: inline; }
     <div class="pkg-card pkg-diamond" id="diamondCard">
       <div class="pkg-cover" id="diamondCover" onclick="openModal('diamond')">
         <img id="diamondCoverImg" src="GOAT DIAMOND clubb" alt="Diamond Residence" loading="lazy">
-        <div class="pkg-cover-badge">DIAMOND</div>
+        <div class="pkg-cover-badge">Versão Diamond</div>
         <div class="pkg-cover-title">
-          <p class="pkg-edition"><span data-lang="pt" class="on">Edição 03</span><span data-lang="en">Edition 03</span><span data-lang="fr">Édition 03</span><span data-lang="es">Edición 03</span></p>
-          <h3 class="pkg-name">DIAMOND</h3>
+          <h3 class="pkg-name">VERSÃO DIAMOND</h3>
         </div>
         <div class="diamond-slide-caption"><span id="diamondCoverCaption">Beach club com vista pro mar</span></div>
       </div>
@@ -1310,7 +1307,7 @@ var blackSpotsAvailable = 8;
 
 var pkgModalData = {
   black: {
-    title: 'BLACK',
+    title: 'VERSÃO BLACK',
     img: 'https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=800&q=80',
     galleries: [
       {set:'blackResidencia', labels:{pt:'Ver residências ↗', en:'See residences ↗', fr:'Voir résidences ↗', es:'Ver residencias ↗'}},
@@ -1319,29 +1316,29 @@ var pkgModalData = {
     ],
     i18n: {
       pt: {
-        edition: 'Edição 01',
+        edition: 'Versão Black',
         tagline: 'Imagine fazer check-in em uma residência exclusiva ao lado de outras 21 pessoas que compartilham o mesmo objetivo: viver o melhor que o Rio de Janeiro tem a oferecer.',
         desc: 'RESIDÊNCIA\n• Acomodação exclusiva em Santa Teresa, Bairro Histórico do Rio de Janeiro, 22 suítes privativas e piscina centralizada\n• Serviço de segurança e bar on-site disponíveis 24 horas por dia\n• Open bar de caipirinha, 3 horas de serviço, das 18h às 21h, de quinta-feira a domingo\n\nFESTAS\n• Acesso VIP à Lapa, entrada prioritária (pula fila) garantida em 4 boates mediante pulseira do pacote\n• Festa no Barco, experiência náutica exclusiva com transfer incluído\n• Local Experience VIP Party, mesa reservada com garrafas inclusas\n• Techno Sunset + Club na Barra da Tijuca\n\nATIVIDADES\n• City tour com guia bilíngue certificado\n• Visita guiada ao Cristo Redentor e ao Pão de Açúcar\n• Trilha no Morro Dois Irmãos com guia profissional credenciado\n• Ingresso para partida de futebol em estádio oficial\n• Transfer bilíngue e confiável em todos os eventos e deslocamentos\n\nRecomendamos o check-in na quinta-feira, assim o cronograma da semana flui da melhor forma possível.'
       },
       en: {
-        edition: 'Edition 01',
+        edition: 'Black Edition',
         tagline: 'Imagine checking into an exclusive residence alongside 21 other people who share the same goal: experiencing the best Rio de Janeiro has to offer.',
         desc: 'RESIDENCE\n• Exclusive accommodation in Santa Teresa, Historic District of Rio de Janeiro, 22 private suites and a central pool\n• On-site security and bar service available 24 hours a day\n• Caipirinha open bar, 3-hour service, from 6pm to 9pm, Thursday to Sunday\n\nPARTIES\n• VIP access to Lapa, priority entry (skip the line) guaranteed at 4 nightclubs with the package wristband\n• Boat Party, exclusive nautical experience with transfer included\n• Local Experience VIP Party, reserved table with bottles included\n• Techno Sunset + Club at Barra da Tijuca\n\nACTIVITIES\n• City tour with certified bilingual guide\n• Guided visit to Christ the Redeemer and Sugarloaf Mountain\n• Hike on Morro Dois Irmãos with accredited professional guide\n• Ticket to a football match at an official stadium\n• Bilingual and trusted transfer at all events and outings\n\nWe suggest arriving on a Thursday, it\'s the best way to sync with the week\'s full schedule.'
       },
       fr: {
-        edition: 'Édition 01',
+        edition: 'Édition Black',
         tagline: 'Imaginez faire votre check-in dans une résidence exclusive aux côtés de 21 autres personnes partageant le même objectif : vivre le meilleur de ce que Rio de Janeiro a à offrir.',
         desc: 'RÉSIDENCE\n• Hébergement exclusif à Santa Teresa, Quartier Historique de Rio de Janeiro, 22 suites privées et piscine centrale\n• Service de sécurité et bar sur place disponibles 24 heures sur 24\n• Open bar de caipirinha, service de 3 heures, de 18h à 21h, du jeudi au dimanche\n\nFÊTES\n• Accès VIP à Lapa, entrée prioritaire (coupe-file) garantie dans 4 clubs avec le bracelet du forfait\n• Fête en Bateau, expérience nautique exclusive avec transfert inclus\n• Local Experience VIP Party, table réservée avec bouteilles incluses\n• Techno Sunset + Club à Barra da Tijuca\n\nACTIVITÉS\n• Visite de la ville avec guide bilingue certifié\n• Visite guidée du Christ Rédempteur et du Pain de Sucre\n• Randonnée sur le Morro Dois Irmãos avec guide professionnel accrédité\n• Billet pour un match de football dans un stade officiel\n• Transfert bilingue et fiable pour tous les événements et déplacements\n\nNous suggérons un check-in le jeudi, c\'est la meilleure façon de profiter pleinement du programme de la semaine.'
       },
       es: {
-        edition: 'Edición 01',
+        edition: 'Edición Black',
         tagline: 'Imagina hacer el check-in en una residencia exclusiva junto a otras 21 personas que comparten el mismo objetivo: vivir lo mejor que Río de Janeiro tiene para ofrecer.',
         desc: 'RESIDENCIA\n• Alojamiento exclusivo en Santa Teresa, Barrio Histórico de Río de Janeiro, 22 suites privadas y piscina centralizada\n• Servicio de seguridad y bar en sitio disponibles las 24 horas del día\n• Barra libre de caipirinha, servicio de 3 horas, de 18h a 21h, de jueves a domingo\n\nFIESTAS\n• Acceso VIP a Lapa, entrada prioritaria (salta la fila) garantizada en 4 discotecas con la pulsera del paquete\n• Fiesta en el Barco, experiencia náutica exclusiva con traslado incluido\n• Local Experience VIP Party, mesa reservada con botellas incluidas\n• Techno Sunset + Club en Barra da Tijuca\n\nACTIVIDADES\n• City tour con guía bilingüe certificado\n• Visita guiada al Cristo Redentor y al Pan de Azúcar\n• Senderismo en el Morro Dois Irmãos con guía profesional acreditado\n• Entrada para partido de fútbol en estadio oficial\n• Traslado bilingüe y confiable en todos los eventos y desplazamientos\n\nSugerimos el check-in el jueves, es la mejor manera de aprovechar al máximo el cronograma de la semana.'
       }
     }
   },
   gold: {
-    title: 'PLATINUM',
+    title: 'VERSÃO PLATINUM',
     img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
     galleries: [
       {set:'goldResidencia', labels:{pt:'Ver residências ↗', en:'See residences ↗', fr:'Voir résidences ↗', es:'Ver residencias ↗'}},
@@ -1349,14 +1346,14 @@ var pkgModalData = {
       {set:'goldAtividades', labels:{pt:'Ver atividades ↗',  en:'See activities ↗', fr:'Voir activités ↗',  es:'Ver actividades ↗'}}
     ],
     i18n: {
-      pt: {edition:'Edição 02', tagline:'', desc:'• Hospedagem em residência exclusiva com piscina de borda infinita\n• Segurança privada disponível 24 horas na residência\n• Concierge dedicado disponível 24 horas por dia\n• Equipe de transfer disponível 12 horas por dia para todos os deslocamentos\n• Acesso VIP a clubs da Barra da Tijuca com entrada exclusiva em camarote\n• Festa no barco com transfer incluído\n• Tours pelos principais pontos turísticos do Rio de Janeiro\n• Trilhas guiadas\n• Ingresso para jogo de futebol'},
-      en: {edition:'Edition 02', tagline:'', desc:'• Accommodation in an exclusive residence with infinity pool\n• Private security available 24 hours at the residence\n• Dedicated concierge available 24 hours a day\n• Transfer team available 12 hours a day for all journeys\n• VIP access to clubs in Barra da Tijuca with exclusive entry to private boxes\n• Boat party with transfer included\n• Tours of Rio de Janeiro\'s main tourist attractions\n• Guided hikes\n• Football match ticket'},
-      fr: {edition:'Édition 02', tagline:'', desc:'• Hébergement dans une résidence exclusive avec piscine à débordement\n• Sécurité privée disponible 24h à la résidence\n• Concierge dédié disponible 24h sur 24\n• Équipe de transfert disponible 12h par jour pour tous les déplacements\n• Accès VIP aux clubs de Barra da Tijuca avec entrée exclusive en loge privée\n• Fête en bateau avec transfert inclus\n• Visites des principaux sites touristiques de Rio de Janeiro\n• Randonnées guidées\n• Billet pour un match de football'},
-      es: {edition:'Edición 02', tagline:'', desc:'• Alojamiento en residencia exclusiva con piscina de borde infinito\n• Seguridad privada disponible 24 horas en la residencia\n• Concierge dedicado disponible las 24 horas del día\n• Equipo de traslado disponible 12 horas al día para todos los desplazamientos\n• Acceso VIP a clubs de Barra da Tijuca con entrada exclusiva en palco privado\n• Fiesta en el barco con traslado incluido\n• Tours por los principales atractivos turísticos de Río de Janeiro\n• Senderismo guiado\n• Entrada para partido de fútbol'}
+      pt: {edition:'Versão Platinum', tagline:'', desc:'• Hospedagem em residência exclusiva com piscina de borda infinita\n• Segurança privada disponível 24 horas na residência\n• Concierge dedicado disponível 24 horas por dia\n• Equipe de transfer disponível 12 horas por dia para todos os deslocamentos\n• Acesso VIP a clubs da Barra da Tijuca com entrada exclusiva em camarote\n• Festa no barco com transfer incluído\n• Tours pelos principais pontos turísticos do Rio de Janeiro\n• Trilhas guiadas\n• Ingresso para jogo de futebol'},
+      en: {edition:'Platinum Edition', tagline:'', desc:'• Accommodation in an exclusive residence with infinity pool\n• Private security available 24 hours at the residence\n• Dedicated concierge available 24 hours a day\n• Transfer team available 12 hours a day for all journeys\n• VIP access to clubs in Barra da Tijuca with exclusive entry to private boxes\n• Boat party with transfer included\n• Tours of Rio de Janeiro\'s main tourist attractions\n• Guided hikes\n• Football match ticket'},
+      fr: {edition:'Édition Platinum', tagline:'', desc:'• Hébergement dans une résidence exclusive avec piscine à débordement\n• Sécurité privée disponible 24h à la résidence\n• Concierge dédié disponible 24h sur 24\n• Équipe de transfert disponible 12h par jour pour tous les déplacements\n• Accès VIP aux clubs de Barra da Tijuca avec entrée exclusive en loge privée\n• Fête en bateau avec transfert inclus\n• Visites des principaux sites touristiques de Rio de Janeiro\n• Randonnées guidées\n• Billet pour un match de football'},
+      es: {edition:'Edición Platinum', tagline:'', desc:'• Alojamiento en residencia exclusiva con piscina de borde infinito\n• Seguridad privada disponible 24 horas en la residencia\n• Concierge dedicado disponible las 24 horas del día\n• Equipo de traslado disponible 12 horas al día para todos los desplazamientos\n• Acceso VIP a clubs de Barra da Tijuca con entrada exclusiva en palco privado\n• Fiesta en el barco con traslado incluido\n• Tours por los principales atractivos turísticos de Río de Janeiro\n• Senderismo guiado\n• Entrada para partido de fútbol'}
     }
   },
   diamond: {
-    title: 'DIAMOND',
+    title: 'VERSÃO DIAMOND',
     img: 'GOAT DIAMOND clubb',
     galleries: [
       {set:'diamondResidencia', labels:{pt:'Ver residências ↗', en:'See residences ↗', fr:'Voir résidences ↗', es:'Ver residencias ↗'}},
@@ -1364,10 +1361,10 @@ var pkgModalData = {
       {set:'diamondAtividades', labels:{pt:'Ver atividades ↗',  en:'See activities ↗', fr:'Voir activités ↗',  es:'Ver actividades ↗'}}
     ],
     i18n: {
-      pt: {edition:'Edição 03', tagline:'', desc:'O pacote Diamond foi concebido para aqueles que não aceitam menos do que o extraordinário. Cada detalhe é gerido pela nossa equipe para que a sua única responsabilidade seja desfrutar.\n\nRESIDÊNCIA\n• Hospedagem em mansão privativa com piscina infinita e vista panorâmica\n• Chef privado e concierge dedicado disponíveis 24 horas por dia\n• Equipe de segurança privada disponível 24 horas acompanhando o grupo\n\nFESTAS\n• Acesso exclusivo aos melhores camarotes dos principais clubs da Barra da Tijuca\n• Evento exclusivo a bordo do mais sofisticado iate de luxo da Marina da Glória\n\nATIVIDADES\n• Passeio panorâmico de helicóptero sobre o Rio de Janeiro\n• Experiências náuticas exclusivas, incluindo jetski e passeios privados\n• Itinerário personalizado e transfer executivo incluídos em todos os deslocamentos'},
-      en: {edition:'Edition 03', tagline:'', desc:'The Diamond package was designed for those who accept nothing less than the extraordinary. Every detail is managed by our team so that your only responsibility is to enjoy.\n\nRESIDENCE\n• Accommodation in a private mansion with infinity pool and panoramic view\n• Private chef and dedicated concierge available 24 hours a day\n• Private security team available 24 hours accompanying the group\n\nPARTIES\n• Exclusive access to the finest VIP boxes at Barra da Tijuca\'s top clubs\n• Exclusive event aboard the most sophisticated luxury yacht at Marina da Glória\n\nACTIVITIES\n• Panoramic helicopter tour over Rio de Janeiro\n• Exclusive nautical experiences, including jet ski and private boat tours\n• Personalised itinerary and executive transfer included for all transfers'},
-      fr: {edition:'Édition 03', tagline:'', desc:'Le forfait Diamond a été conçu pour ceux qui n\'acceptent rien de moins que l\'extraordinaire. Chaque détail est géré par notre équipe afin que votre seule responsabilité soit de profiter.\n\nRÉSIDENCE\n• Hébergement dans un manoir privé avec piscine à débordement et vue panoramique\n• Chef privé et concierge dédié disponibles 24h sur 24\n• Équipe de sécurité privée disponible 24h accompagnant le groupe\n\nFÊTES\n• Accès exclusif aux meilleures loges des principaux clubs de Barra da Tijuca\n• Événement exclusif à bord du yacht de luxe le plus sophistiqué de la Marina da Glória\n\nACTIVITÉS\n• Tour panoramique en hélicoptère au-dessus de Rio de Janeiro\n• Expériences nautiques exclusives, incluant jet ski et excursions privées\n• Itinéraire personnalisé et transfert exécutif inclus pour tous les déplacements'},
-      es: {edition:'Edición 03', tagline:'Mansión privada con piscina infinita. Itinerario a medida. Host dedicado 24h al día.', desc:'El paquete Diamond fue concebido para quienes no aceptan nada menos que lo extraordinario. Cada detalle es gestionado por nuestro equipo para que su única responsabilidad sea disfrutar.\n\nRESIDENCIA\n• Alojamiento en mansión privada con piscina infinita y vista panorámica\n• Chef privado y concierge dedicado disponibles las 24 horas del día\n• Equipo de seguridad privada disponible 24 horas acompañando al grupo\n\nFIESTAS\n• Acceso exclusivo a los mejores palcos de los principales clubs de Barra da Tijuca\n• Evento exclusivo a bordo del yate de lujo más sofisticado de la Marina da Glória\n\nACTIVIDADES\n• Tour panorámico en helicóptero sobre Río de Janeiro\n• Experiencias náuticas exclusivas, incluyendo jet ski y paseos privados\n• Itinerario personalizado y traslado ejecutivo incluidos en todos los desplazamientos'}
+      pt: {edition:'Versão Diamond', tagline:'', desc:'O pacote Diamond foi concebido para aqueles que não aceitam menos do que o extraordinário. Cada detalhe é gerido pela nossa equipe para que a sua única responsabilidade seja desfrutar.\n\nRESIDÊNCIA\n• Hospedagem em mansão privativa com piscina infinita e vista panorâmica\n• Chef privado e concierge dedicado disponíveis 24 horas por dia\n• Equipe de segurança privada disponível 24 horas acompanhando o grupo\n\nFESTAS\n• Acesso exclusivo aos melhores camarotes dos principais clubs da Barra da Tijuca\n• Evento exclusivo a bordo do mais sofisticado iate de luxo da Marina da Glória\n\nATIVIDADES\n• Passeio panorâmico de helicóptero sobre o Rio de Janeiro\n• Experiências náuticas exclusivas, incluindo jetski e passeios privados\n• Itinerário personalizado e transfer executivo incluídos em todos os deslocamentos'},
+      en: {edition:'Diamond Edition', tagline:'', desc:'The Diamond package was designed for those who accept nothing less than the extraordinary. Every detail is managed by our team so that your only responsibility is to enjoy.\n\nRESIDENCE\n• Accommodation in a private mansion with infinity pool and panoramic view\n• Private chef and dedicated concierge available 24 hours a day\n• Private security team available 24 hours accompanying the group\n\nPARTIES\n• Exclusive access to the finest VIP boxes at Barra da Tijuca\'s top clubs\n• Exclusive event aboard the most sophisticated luxury yacht at Marina da Glória\n\nACTIVITIES\n• Panoramic helicopter tour over Rio de Janeiro\n• Exclusive nautical experiences, including jet ski and private boat tours\n• Personalised itinerary and executive transfer included for all transfers'},
+      fr: {edition:'Édition Diamond', tagline:'', desc:'Le forfait Diamond a été conçu pour ceux qui n\'acceptent rien de moins que l\'extraordinaire. Chaque détail est géré par notre équipe afin que votre seule responsabilité soit de profiter.\n\nRÉSIDENCE\n• Hébergement dans un manoir privé avec piscine à débordement et vue panoramique\n• Chef privé et concierge dédié disponibles 24h sur 24\n• Équipe de sécurité privée disponible 24h accompagnant le groupe\n\nFÊTES\n• Accès exclusif aux meilleures loges des principaux clubs de Barra da Tijuca\n• Événement exclusif à bord du yacht de luxe le plus sophistiqué de la Marina da Glória\n\nACTIVITÉS\n• Tour panoramique en hélicoptère au-dessus de Rio de Janeiro\n• Expériences nautiques exclusives, incluant jet ski et excursions privées\n• Itinéraire personnalisé et transfert exécutif inclus pour tous les déplacements'},
+      es: {edition:'Edición Diamond', tagline:'Mansión privada con piscina infinita. Itinerario a medida. Host dedicado 24h al día.', desc:'El paquete Diamond fue concebido para quienes no aceptan nada menos que lo extraordinario. Cada detalle es gestionado por nuestro equipo para que su única responsabilidad sea disfrutar.\n\nRESIDENCIA\n• Alojamiento en mansión privada con piscina infinita y vista panorámica\n• Chef privado y concierge dedicado disponibles las 24 horas del día\n• Equipo de seguridad privada disponible 24 horas acompañando al grupo\n\nFIESTAS\n• Acceso exclusivo a los mejores palcos de los principales clubs de Barra da Tijuca\n• Evento exclusivo a bordo del yate de lujo más sofisticado de la Marina da Glória\n\nACTIVIDADES\n• Tour panorámico en helicóptero sobre Río de Janeiro\n• Experiencias náuticas exclusivas, incluyendo jet ski y paseos privados\n• Itinerario personalizado y traslado ejecutivo incluidos en todos los desplazamientos'}
     }
   }
 };
