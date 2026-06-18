@@ -314,17 +314,26 @@ section { padding: 96px 48px; }
   transform: scale(1.2);
 }
 .pkg-cover-badge {
-  position: absolute; top: 0; right: 0;
+  position: absolute; bottom: 0; right: 0;
   padding: 10px 14px;
-  font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase;
+  font-size: 18px; letter-spacing: 0; display: flex; align-items: center; justify-content: center;
+  width: 42px; height: 42px;
 }
 .pkg-black .pkg-cover-badge { background: var(--white); color: var(--black); }
 .pkg-gold .pkg-cover-badge { background: var(--gold); color: var(--black); }
 .pkg-diamond .pkg-cover-badge { background: var(--ice); color: var(--black); }
+.pkg-cover-version {
+  position: absolute; top: 0; left: 0;
+  padding: 10px 14px;
+  font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase;
+}
+.pkg-black .pkg-cover-version { background: var(--white); color: var(--black); }
+.pkg-gold .pkg-cover-version { background: var(--gold); color: var(--black); }
+.pkg-diamond .pkg-cover-version { background: var(--ice); color: var(--black); }
 .pkg-cover-title {
-  position: absolute; bottom: 0; left: 0; right: 0;
+  position: absolute; top: 0; left: 0; right: 0;
   padding: 20px 24px;
-  background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, transparent 100%);
+  background: linear-gradient(to bottom, rgba(10,10,10,0.85) 0%, transparent 100%);
 }
 .pkg-edition {
   font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase;
@@ -958,9 +967,9 @@ span[data-lang].on { display: inline; }
         <video autoplay muted loop playsinline style="pointer-events:none;">
           <source src="casa1.mov" type="video/mp4">
         </video>
-        <div class="pkg-cover-badge"><span data-lang="pt" class="on">Versão Black</span><span data-lang="en">Black Edition</span><span data-lang="fr">Édition Black</span><span data-lang="es">Versión Black</span></div>
+        <div class="pkg-cover-version"><span data-lang="pt" class="on">Versão Black</span><span data-lang="en">Black Edition</span><span data-lang="fr">Édition Black</span><span data-lang="es">Versión Black</span></div>
+        <div class="pkg-cover-badge">↗</div>
         <div class="pkg-cover-title">
-          <h3 class="pkg-name"><span style="display:block; font-size:11px; letter-spacing:0.3em; font-weight:400; margin-bottom:4px; opacity:0.7;"><span data-lang="pt" class="on">VERSÃO</span><span data-lang="en">VERSION</span><span data-lang="fr">VERSION</span><span data-lang="es">VERSIÓN</span></span>BLACK</h3>
         </div>
       </div>
       <div class="pkg-body" style="background: transparent;">
@@ -974,9 +983,9 @@ span[data-lang].on { display: inline; }
     <div class="pkg-card pkg-gold" id="goldCard">
       <div class="pkg-cover" style="cursor:default;">
         <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="Platinum Edition" loading="lazy">
-        <div class="pkg-cover-badge"><span data-lang="pt" class="on">Versão Platinum</span><span data-lang="en">Platinum Edition</span><span data-lang="fr">Édition Platinum</span><span data-lang="es">Versión Platinum</span></div>
+        <div class="pkg-cover-version"><span data-lang="pt" class="on">Versão Platinum</span><span data-lang="en">Platinum Edition</span><span data-lang="fr">Édition Platinum</span><span data-lang="es">Versión Platinum</span></div>
+        <div class="pkg-cover-badge">↗</div>
         <div class="pkg-cover-title">
-          <h3 class="pkg-name"><span style="display:block; font-size:11px; letter-spacing:0.3em; font-weight:400; margin-bottom:4px; opacity:0.7;"><span data-lang="pt" class="on">VERSÃO</span><span data-lang="en">VERSION</span><span data-lang="fr">VERSION</span><span data-lang="es">VERSIÓN</span></span>PLATINUM</h3>
         </div>
       </div>
       <div class="pkg-body" style="background: transparent;">
@@ -990,9 +999,9 @@ span[data-lang].on { display: inline; }
     <div class="pkg-card pkg-diamond" id="diamondCard">
       <div class="pkg-cover" id="diamondCover" onclick="openModal('diamond')">
         <img id="diamondCoverImg" src="GOAT DIAMOND clubb" alt="Diamond Residence" loading="lazy">
-        <div class="pkg-cover-badge"><span data-lang="pt" class="on">Versão Diamond</span><span data-lang="en">Diamond Edition</span><span data-lang="fr">Édition Diamond</span><span data-lang="es">Versión Diamond</span></div>
+        <div class="pkg-cover-version"><span data-lang="pt" class="on">Versão Diamond</span><span data-lang="en">Diamond Edition</span><span data-lang="fr">Édition Diamond</span><span data-lang="es">Versión Diamond</span></div>
+        <div class="pkg-cover-badge">↗</div>
         <div class="pkg-cover-title">
-          <h3 class="pkg-name"><span style="display:block; font-size:11px; letter-spacing:0.3em; font-weight:400; margin-bottom:4px; opacity:0.7;"><span data-lang="pt" class="on">VERSÃO</span><span data-lang="en">VERSION</span><span data-lang="fr">VERSION</span><span data-lang="es">VERSIÓN</span></span>DIAMOND</h3>
         </div>
         <div class="diamond-slide-caption"><span id="diamondCoverCaption">Beach club com vista pro mar</span></div>
       </div>
