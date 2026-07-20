@@ -2082,7 +2082,7 @@ function addToCartDynamic(name, edition, pkg) {
 }
 
 function initCurrency() {
-  fetch('https://api.frankfurter.app/latest?from=BRL&to=USD')
+  fetch('https://open.er-api.com/v6/latest/BRL')
     .then(function(r) { return r.json(); })
     .then(function(fx) {
       if (fx && fx.rates && fx.rates.USD) {
