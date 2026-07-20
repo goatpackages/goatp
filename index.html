@@ -7,12 +7,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>G.O.A.T PACKAGES — Rio de Janeiro</title>
 <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2GYBWC5VML"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0L5HESH63W"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-2GYBWC5VML');
+  gtag('config', 'G-0L5HESH63W');
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -334,14 +334,13 @@ section { padding: 96px 48px; }
 .pkg-cover-title {
   position: absolute; top: 0; left: 0; right: 0;
   padding: 20px 24px;
-  background: linear-gradient(to bottom, rgba(10,10,10,0.85) 0%, transparent 100%);
 }
 .pkg-edition {
   font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase;
   color: var(--cream-dim); margin-bottom: 4px;
 }
 .pkg-name {
-  font-family: var(--serif); font-size: 32px; font-weight: 400; color: var(--white);
+  font-family: var(--serif); font-size: 48px; font-weight: 400; color: var(--white);
 }
 .pkg-body { padding: 24px; }
 .pkg-tagline {
@@ -364,7 +363,60 @@ section { padding: 96px 48px; }
 .pkg-black .pkg-btn { background: var(--white); color: var(--black); }
 .pkg-gold .pkg-btn { background: var(--gold); color: var(--black); }
 .pkg-diamond .pkg-btn { background: var(--ice); color: var(--black); }
-.pkg-btn:hover { opacity: 0.88; }  .pkg-gallery-btn {
+.pkg-btn:hover { opacity: 0.88; }
+.pkg-ver-mais {
+  display: block; width: 100%;
+  border: none;
+  font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600;
+  padding: 14px; margin-bottom: 14px;
+  transition: opacity 0.2s, box-shadow 0.2s, transform 0.15s;
+  cursor: pointer;
+}
+.pkg-black .pkg-ver-mais {
+  background: var(--white); color: var(--black);
+  box-shadow: 0 0 18px rgba(255,255,255,0.25);
+}
+.pkg-gold .pkg-ver-mais {
+  background: var(--gold); color: var(--black);
+  box-shadow: 0 0 18px rgba(200,169,126,0.35);
+}
+.pkg-diamond .pkg-ver-mais {
+  background: var(--ice); color: var(--black);
+  box-shadow: 0 0 18px rgba(138,181,200,0.35);
+}
+.pkg-ver-mais:not([disabled]):hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 24px rgba(255,255,255,0.2);
+}
+.pkg-ver-mais[disabled] { opacity: 0.25; cursor: not-allowed; }
+
+@keyframes pkg-pulse {
+  0%, 100% { box-shadow: 0 0 18px rgba(255,255,255,0.2); }
+  50% { box-shadow: 0 0 32px rgba(255,255,255,0.45); }
+}
+@keyframes pkg-pulse-gold {
+  0%, 100% { box-shadow: 0 0 18px rgba(200,169,126,0.3); }
+  50% { box-shadow: 0 0 32px rgba(200,169,126,0.65); }
+}
+@keyframes pkg-pulse-ice {
+  0%, 100% { box-shadow: 0 0 18px rgba(138,181,200,0.3); }
+  50% { box-shadow: 0 0 32px rgba(138,181,200,0.65); }
+}
+
+@media (max-width: 960px) {
+  .pkg-ver-mais {
+    padding: 20px 14px;
+    font-size: 15px;
+    letter-spacing: 0.18em;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+  .pkg-black .pkg-ver-mais:not([disabled]) { animation: pkg-pulse 2.2s ease-in-out infinite; }
+  .pkg-gold .pkg-ver-mais:not([disabled])  { animation: pkg-pulse-gold 2.2s ease-in-out infinite; }
+  .pkg-diamond .pkg-ver-mais:not([disabled]) { animation: pkg-pulse-ice 2.2s ease-in-out infinite; }
+}
+  .pkg-gallery-btn {
     width: 100%; padding: 13px;
     font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
     background: none; border: 1px solid rgba(255,255,255,0.14);
@@ -885,6 +937,86 @@ span[data-lang].on { display: inline; }
   <div class="hero-scroll"><div class="hero-scroll-line"></div><span>scroll</span></div>
 </section>
 
+<!-- PACKAGES -->
+<section class="packages" id="pacotes">
+  <div class="packages-header">
+    <div>
+      <p class="section-label"><span data-lang="pt">Escolha sua edição</span><span data-lang="en" class="on">Choose your edition</span><span data-lang="fr">Choisissez votre édition</span><span data-lang="es">Elige tu edición</span></p>
+      <h2 class="section-title"><span data-lang="pt">Três níveis.<br>Uma cidade.</span><span data-lang="en" class="on">Three tiers.<br>One city.</span><span data-lang="fr">Trois niveaux.<br>Une ville.</span><span data-lang="es">Tres niveles.<br>Una ciudad.</span></h2>
+    </div>
+    <p class="packages-header-desc">
+      <span data-lang="pt">Durante toda a estadia, você não precisa se preocupar com logística, transporte ou organização. Nossa equipe bilíngue está disponível para orientar, simplificar processos e ajudar você a aproveitar a cidade com mais conforto e segurança. Selecione a Edição disponível e descubra o que está incluído.</span>
+      <span data-lang="en" class="on">Throughout your stay, you don't need to worry about logistics, transport or organization. Our bilingual team is available to guide you, simplify processes and help you enjoy the city with more comfort and safety. Select the available Edition and discover what's included.</span>
+      <span data-lang="fr">Pendant tout votre séjour, vous n'avez pas à vous soucier de la logistique, du transport ou de l'organisation. Notre équipe bilingue est disponible pour vous guider, simplifier les démarches et vous aider à profiter de la ville avec plus de confort et de sécurité. Sélectionnez l'Édition disponible et découvrez ce qui est inclus.</span>
+      <span data-lang="es">Durante toda tu estadía, no necesitas preocuparte por la logística, el transporte ni la organización. Nuestro equipo bilingüe está disponible para guiarte, simplificar procesos y ayudarte a disfrutar la ciudad con más comodidad y seguridad. Selecciona la Edición disponible y descubre qué está incluido.</span>
+    </p>
+  </div>
+  <div class="pkg-grid">
+    <!-- BLACK -->
+    <div class="pkg-card pkg-black">
+      <div class="pkg-cover" id="blackCover" onclick="openModal('black')">
+        <video autoplay muted loop playsinline style="pointer-events:none; position:absolute; inset:0; width:100%; height:100%; object-fit:fill; transform:scaleX(1.3);">
+          <source src="casa1.mov" type="video/mp4">
+        </video>
+        <div class="pkg-cover-version"><span data-lang="pt">Versão Black</span><span data-lang="en" class="on">Black Edition</span><span data-lang="fr">Édition Black</span><span data-lang="es">Versión Black</span></div>
+        <div class="pkg-cover-title">
+        </div>
+      </div>
+      <div class="pkg-body" style="background: transparent;">
+        <button class="pkg-ver-mais" onclick="openModal('black')"><span data-lang="pt">Ver mais</span><span data-lang="en" class="on">See more</span><span data-lang="fr">Voir plus</span><span data-lang="es">Ver más</span></button>
+        <p class="pkg-tagline"><span data-lang="pt">Viva o Rio de Janeiro sem limitações. O Pacote Black combina hospedagem premium, experiências exclusivas, acesso privilegiado aos melhores eventos da cidade e o suporte de uma rede local de confiança, permitindo que você explore cada momento com conforto, segurança e total tranquilidade.</span><span data-lang="en" class="on">Live Rio de Janeiro without limits. The Black Package combines premium accommodation, exclusive experiences, privileged access to the city's best events and the support of a trusted local network, allowing you to explore every moment with comfort, safety and complete peace of mind.</span><span data-lang="fr">Vivez Rio de Janeiro sans limites. Le Black Package combine hébergement premium, expériences exclusives, accès privilégié aux meilleurs événements de la ville et le soutien d'un réseau local de confiance, vous permettant d'explorer chaque instant avec confort, sécurité et une tranquillité totale.</span><span data-lang="es">Vive Río de Janeiro sin limitaciones. El Black Package combina alojamiento premium, experiencias exclusivas, acceso privilegiado a los mejores eventos de la ciudad y el apoyo de una red local de confianza, permitiéndote explorar cada momento con comodidad, seguridad y total tranquilidad.</span></p>
+        <p style="font-size:22px; font-weight:700; color:var(--white); letter-spacing:0.04em; margin-bottom:12px;" id="blackPriceDisplay">R$5.990<span style="font-size:12px; font-weight:400; color:var(--cream-dim); letter-spacing:0.1em;"><span data-lang="pt">por pessoa</span><span data-lang="en" class="on">per person</span><span data-lang="fr">par personne</span><span data-lang="es">por persona</span></span></p>
+        <p style="font-size:12px; color:var(--gold); letter-spacing:0.07em; line-height:1.7; margin-bottom:16px; border:1px solid var(--gold); padding:10px 14px; background:rgba(180,145,80,0.08);"><span data-lang="pt">⚠ A ativação deste pacote está condicionada à confirmação mínima de 14 participantes inscritos.</span><span data-lang="en" class="on">⚠ The activation of this package is subject to a minimum confirmation of 14 registered participants.</span><span data-lang="fr">⚠ L'activation de ce forfait est conditionnée à la confirmation d'un minimum de 14 participants inscrits.</span><span data-lang="es">⚠ La activación de este paquete está condicionada a la confirmación mínima de 14 participantes inscritos.</span></p>
+        <button class="pkg-btn" id="blackCartBtn" onclick="addToCartDynamic('VERSÃO BLACK','Versão Black','black')"><span data-lang="pt">Reservar</span><span data-lang="en" class="on">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
+      </div>
+    </div>
+    <!-- PLATINUM -->
+    <div class="pkg-card pkg-gold" id="goldCard">
+      <div class="pkg-cover" style="cursor:default;">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="Platinum Edition" loading="lazy">
+        <div class="pkg-cover-version"><span data-lang="pt">Versão Platinum</span><span data-lang="en" class="on">Platinum Edition</span><span data-lang="fr">Édition Platinum</span><span data-lang="es">Versión Platinum</span></div>
+        <div class="pkg-cover-title">
+        </div>
+      </div>
+      <div class="pkg-body" style="background: transparent;">
+        <button class="pkg-ver-mais" disabled><span data-lang="pt">Ver mais</span><span data-lang="en" class="on">See more</span><span data-lang="fr">Voir plus</span><span data-lang="es">Ver más</span></button>
+        <p class="pkg-tagline"><span data-lang="pt">A porta de entrada para uma experiência premium no Rio de Janeiro. O Pacote Platinum reúne hospedagem selecionada, festas e atrações turísticas, trilhas e experiências autênticas para quem deseja aproveitar o melhor do Rio com conforto, segurança e praticidade. Uma semana de diversão, comodidade e momentos inesquecíveis na Cidade Maravilhosa.</span><span data-lang="en" class="on">The gateway to a premium experience in Rio de Janeiro. The Platinum Package combines selected accommodation, parties and tourist attractions, hikes and authentic experiences for those who want to enjoy the best of Rio with comfort, safety and convenience. A week of fun, comfort and unforgettable moments in the Marvellous City.</span><span data-lang="fr">La porte d'entrée vers une expérience premium à Rio de Janeiro. Le Forfait Platinum réunit hébergement sélectionné, fêtes et attractions touristiques, randonnées et expériences authentiques. Une semaine de plaisir, de confort et de moments inoubliables dans la Ville Merveilleuse.</span><span data-lang="es">La puerta de entrada a una experiencia premium en Río de Janeiro. El Paquete Platinum reúne alojamiento seleccionado, fiestas y atracciones turísticas, senderismo y experiencias auténticas. Una semana de diversión, comodidad y momentos inolvidables en la Ciudad Maravillosa.</span></p>
+        <p style="font-size:22px; font-weight:700; color:var(--white); letter-spacing:0.04em; margin-bottom:12px;" id="goldPriceDisplay">R$11.990 <span style="font-size:12px; font-weight:400; color:var(--cream-dim); letter-spacing:0.1em;"><span data-lang="pt">por pessoa</span><span data-lang="en" class="on">per person</span><span data-lang="fr">par personne</span><span data-lang="es">por persona</span></span></p>
+        <p style="font-size:12px; color:var(--gold); letter-spacing:0.1em; text-transform:uppercase; border:1px solid var(--gold); display:inline-block; padding:5px 12px; margin-bottom:16px;"><span data-lang="pt">Temporariamente fechado</span><span data-lang="en" class="on">Temporarily closed</span><span data-lang="fr">Temporairement fermé</span><span data-lang="es">Temporalmente cerrado</span></p>
+        <button class="pkg-btn" disabled style="opacity:0.35; cursor:not-allowed;"><span data-lang="pt">Reservar</span><span data-lang="en" class="on">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
+      </div>
+    </div>
+    <!-- DIAMOND -->
+    <div class="pkg-card pkg-diamond" id="diamondCard">
+      <div class="pkg-cover" id="diamondCover" onclick="openModal('diamond')">
+        <img id="diamondCoverImg" src="GOAT DIAMOND clubb" alt="Diamond Residence" loading="lazy">
+        <div class="pkg-cover-version"><span data-lang="pt">Versão Diamond</span><span data-lang="en" class="on">Diamond Edition</span><span data-lang="fr">Édition Diamond</span><span data-lang="es">Versión Diamond</span></div>
+        <div class="pkg-cover-title">
+        </div>
+        <div class="diamond-slide-caption"><span id="diamondCoverCaption">Beach club com vista pro mar</span></div>
+      </div>
+      <div class="pkg-body" style="background: transparent;">
+        <button class="pkg-ver-mais" onclick="openModal('diamond')"><span data-lang="pt">Ver mais</span><span data-lang="en" class="on">See more</span><span data-lang="fr">Voir plus</span><span data-lang="es">Ver más</span></button>
+        <p class="pkg-tagline"><span data-lang="pt">Uma semana de luxo, acesso exclusivo a experiências exclusivas na cidade mais icônica do Brasil.</span><span data-lang="en" class="on">A week of luxury, exclusive access to exclusive experiences in the most iconic city in Brazil.</span><span data-lang="fr">Une semaine de luxe, accès exclusif à des expériences exclusives dans la ville la plus emblématique du Brésil.</span><span data-lang="es">Una semana de lujo, acceso exclusivo a experiencias exclusivas en la ciudad más icónica de Brasil.</span></p>
+        <div style="margin-bottom:20px; display:flex; flex-direction:column; gap:6px;">
+          <p style="font-size:11px; letter-spacing:0.08em; color:var(--cream-dim); line-height:1.7;"><span data-lang="pt">Para aqueles que não seguem tendências. Eles as criam.</span><span data-lang="en" class="on">For those who don't follow trends. They set them.</span><span data-lang="fr">Pour ceux qui ne suivent pas les tendances. Ils les créent.</span><span data-lang="es">Para quienes no siguen tendencias. Las crean.</span></p>
+          <p style="font-size:11px; letter-spacing:0.08em; color:var(--cream-dim); line-height:1.7;"><span data-lang="pt">Onde o extraordinário se torna o padrão.</span><span data-lang="en" class="on">Where the extraordinary becomes the standard.</span><span data-lang="fr">Là où l'extraordinaire devient la norme.</span><span data-lang="es">Donde lo extraordinario se convierte en el estándar.</span></p>
+          <p style="font-size:11px; letter-spacing:0.08em; color:var(--cream-dim); line-height:1.7;"><span data-lang="pt">Uma experiência reservada para quem exige o melhor.</span><span data-lang="en" class="on">An experience reserved for those who demand the best.</span><span data-lang="fr">Une expérience réservée à ceux qui exigent le meilleur.</span><span data-lang="es">Una experiencia reservada para quienes exigen lo mejor.</span></p>
+          <p style="font-size:11px; letter-spacing:0.08em; color:var(--cream-dim); line-height:1.7;"><span data-lang="pt">O luxo não é um privilégio. É um estilo de vida.</span><span data-lang="en" class="on">Luxury is not a privilege. It's a lifestyle.</span><span data-lang="fr">Le luxe n'est pas un privilège. C'est un art de vivre.</span><span data-lang="es">El lujo no es un privilegio. Es un estilo de vida.</span></p>
+          <p style="font-size:11px; letter-spacing:0.08em; color:var(--ice); font-weight:500; line-height:1.7;"><span data-lang="pt">Viva o Rio como poucos podem viver.</span><span data-lang="en" class="on">Live Rio like only a few can.</span><span data-lang="fr">Vivez Rio comme peu peuvent le faire.</span><span data-lang="es">Vive Río como pocos pueden vivirlo.</span></p>
+        </div>
+        <p style="font-size:12px; color:var(--cream-dim); letter-spacing:0.04em; line-height:1.8; margin-bottom:20px; border-left:2px solid var(--ice); padding-left:14px;">
+          <span data-lang="pt">O preço desta versão é estabelecido mediante consulta e negociação direta com a nossa equipe. Para mais informações, entre em contato.</span>
+          <span data-lang="en" class="on">The price of this version is established through direct consultation and negotiation with our team. For more information, please get in touch.</span>
+          <span data-lang="fr">Le prix de cette version est établi par consultation et négociation directe avec notre équipe. Pour plus d'informations, contactez-nous.</span>
+          <span data-lang="es">El precio de esta versión se establece mediante consulta y negociación directa con nuestro equipo. Para más información, contáctenos.</span>
+        </p>
+        <p style="font-size:12px; color:var(--ice); letter-spacing:0.1em; text-transform:uppercase; border:1px solid var(--ice); display:inline-block; padding:5px 12px; margin-bottom:16px;"><span data-lang="pt">Temporariamente inativo</span><span data-lang="en" class="on">Temporarily inactive</span><span data-lang="fr">Temporairement inactif</span><span data-lang="es">Temporalmente inactivo</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- MISSION -->
 <section class="mission" id="missao">
   <div class="mission-inner">
@@ -942,86 +1074,6 @@ span[data-lang].on { display: inline; }
       </div>
       <div class="mission-img">
         <img src="morro-dois-irmaos.jpg" alt="Morro Dois Irmãos" loading="lazy">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PACKAGES -->
-<section class="packages" id="pacotes">
-  <div class="packages-header">
-    <div>
-      <p class="section-label"><span data-lang="pt">Escolha sua edição</span><span data-lang="en" class="on">Choose your edition</span><span data-lang="fr">Choisissez votre édition</span><span data-lang="es">Elige tu edición</span></p>
-      <h2 class="section-title"><span data-lang="pt">Três níveis.<br>Uma cidade.</span><span data-lang="en" class="on">Three tiers.<br>One city.</span><span data-lang="fr">Trois niveaux.<br>Une ville.</span><span data-lang="es">Tres niveles.<br>Una ciudad.</span></h2>
-    </div>
-    <p class="packages-header-desc">
-      <span data-lang="pt">Durante toda a estadia, você não precisa se preocupar com logística, transporte ou organização. Nossa equipe bilíngue está disponível para orientar, simplificar processos e ajudar você a aproveitar a cidade com mais conforto e segurança. Selecione a Edição disponível e descubra o que está incluído.</span>
-      <span data-lang="en" class="on">Throughout your stay, you don't need to worry about logistics, transport or organization. Our bilingual team is available to guide you, simplify processes and help you enjoy the city with more comfort and safety. Select the available Edition and discover what's included.</span>
-      <span data-lang="fr">Pendant tout votre séjour, vous n'avez pas à vous soucier de la logistique, du transport ou de l'organisation. Notre équipe bilingue est disponible pour vous guider, simplifier les démarches et vous aider à profiter de la ville avec plus de confort et de sécurité. Sélectionnez l'Édition disponible et découvrez ce qui est inclus.</span>
-      <span data-lang="es">Durante toda tu estadía, no necesitas preocuparte por la logística, el transporte ni la organización. Nuestro equipo bilingüe está disponible para guiarte, simplificar procesos y ayudarte a disfrutar la ciudad con más comodidad y seguridad. Selecciona la Edición disponible y descubre qué está incluido.</span>
-    </p>
-  </div>
-  <div class="pkg-grid">
-    <!-- BLACK -->
-    <div class="pkg-card pkg-black">
-      <div class="pkg-cover" id="blackCover" onclick="openModal('black')">
-        <video autoplay muted loop playsinline style="pointer-events:none; position:absolute; inset:0; width:100%; height:100%; object-fit:fill; transform:scaleX(1.3);">
-          <source src="casa1.mov" type="video/mp4">
-        </video>
-        <div class="pkg-cover-version"><span data-lang="pt">Versão Black</span><span data-lang="en" class="on">Black Edition</span><span data-lang="fr">Édition Black</span><span data-lang="es">Versión Black</span></div>
-        <div class="pkg-cover-badge">↗</div>
-        <div class="pkg-cover-title">
-        </div>
-      </div>
-      <div class="pkg-body" style="background: transparent;">
-        <p class="pkg-tagline"><span data-lang="pt">Viva o Rio de Janeiro sem limitações. O Pacote Black combina hospedagem premium, experiências exclusivas, acesso privilegiado aos melhores eventos da cidade e o suporte de uma rede local de confiança, permitindo que você explore cada momento com conforto, segurança e total tranquilidade.</span><span data-lang="en" class="on">Live Rio de Janeiro without limits. The Black Package combines premium accommodation, exclusive experiences, privileged access to the city's best events and the support of a trusted local network, allowing you to explore every moment with comfort, safety and complete peace of mind.</span><span data-lang="fr">Vivez Rio de Janeiro sans limites. Le Black Package combine hébergement premium, expériences exclusives, accès privilégié aux meilleurs événements de la ville et le soutien d'un réseau local de confiance, vous permettant d'explorer chaque instant avec confort, sécurité et une tranquillité totale.</span><span data-lang="es">Vive Río de Janeiro sin limitaciones. El Black Package combina alojamiento premium, experiencias exclusivas, acceso privilegiado a los mejores eventos de la ciudad y el apoyo de una red local de confianza, permitiéndote explorar cada momento con comodidad, seguridad y total tranquilidad.</span></p>
-        <p style="font-size:22px; font-weight:700; color:var(--white); letter-spacing:0.04em; margin-bottom:12px;" id="blackPriceDisplay">R$5.990<span style="font-size:12px; font-weight:400; color:var(--cream-dim); letter-spacing:0.1em;"><span data-lang="pt">por pessoa</span><span data-lang="en" class="on">per person</span><span data-lang="fr">par personne</span><span data-lang="es">por persona</span></span></p>
-        <p style="font-size:12px; color:var(--gold); letter-spacing:0.07em; line-height:1.7; margin-bottom:16px; border:1px solid var(--gold); padding:10px 14px; background:rgba(180,145,80,0.08);"><span data-lang="pt">⚠ A ativação deste pacote está condicionada à confirmação mínima de 14 participantes inscritos.</span><span data-lang="en" class="on">⚠ The activation of this package is subject to a minimum confirmation of 14 registered participants.</span><span data-lang="fr">⚠ L'activation de ce forfait est conditionnée à la confirmation d'un minimum de 14 participants inscrits.</span><span data-lang="es">⚠ La activación de este paquete está condicionada a la confirmación mínima de 14 participantes inscritos.</span></p>
-        <button class="pkg-btn" id="blackCartBtn" onclick="addToCartDynamic('VERSÃO BLACK','Versão Black','black')"><span data-lang="pt">Reservar</span><span data-lang="en" class="on">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
-      </div>
-    </div>
-    <!-- PLATINUM -->
-    <div class="pkg-card pkg-gold" id="goldCard">
-      <div class="pkg-cover" style="cursor:default;">
-        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="Platinum Edition" loading="lazy">
-        <div class="pkg-cover-version"><span data-lang="pt">Versão Platinum</span><span data-lang="en" class="on">Platinum Edition</span><span data-lang="fr">Édition Platinum</span><span data-lang="es">Versión Platinum</span></div>
-        <div class="pkg-cover-badge">↗</div>
-        <div class="pkg-cover-title">
-        </div>
-      </div>
-      <div class="pkg-body" style="background: transparent;">
-        <p class="pkg-tagline"><span data-lang="pt">A porta de entrada para uma experiência premium no Rio de Janeiro. O Pacote Platinum reúne hospedagem selecionada, festas e atrações turísticas, trilhas e experiências autênticas para quem deseja aproveitar o melhor do Rio com conforto, segurança e praticidade. Uma semana de diversão, comodidade e momentos inesquecíveis na Cidade Maravilhosa.</span><span data-lang="en" class="on">The gateway to a premium experience in Rio de Janeiro. The Platinum Package combines selected accommodation, parties and tourist attractions, hikes and authentic experiences for those who want to enjoy the best of Rio with comfort, safety and convenience. A week of fun, comfort and unforgettable moments in the Marvellous City.</span><span data-lang="fr">La porte d'entrée vers une expérience premium à Rio de Janeiro. Le Forfait Platinum réunit hébergement sélectionné, fêtes et attractions touristiques, randonnées et expériences authentiques. Une semaine de plaisir, de confort et de moments inoubliables dans la Ville Merveilleuse.</span><span data-lang="es">La puerta de entrada a una experiencia premium en Río de Janeiro. El Paquete Platinum reúne alojamiento seleccionado, fiestas y atracciones turísticas, senderismo y experiencias auténticas. Una semana de diversión, comodidad y momentos inolvidables en la Ciudad Maravillosa.</span></p>
-        <p style="font-size:22px; font-weight:700; color:var(--white); letter-spacing:0.04em; margin-bottom:12px;" id="goldPriceDisplay">R$11.990 <span style="font-size:12px; font-weight:400; color:var(--cream-dim); letter-spacing:0.1em;"><span data-lang="pt">por pessoa</span><span data-lang="en" class="on">per person</span><span data-lang="fr">par personne</span><span data-lang="es">por persona</span></span></p>
-        <p style="font-size:12px; color:var(--gold); letter-spacing:0.1em; text-transform:uppercase; border:1px solid var(--gold); display:inline-block; padding:5px 12px; margin-bottom:16px;"><span data-lang="pt">Temporariamente fechado</span><span data-lang="en" class="on">Temporarily closed</span><span data-lang="fr">Temporairement fermé</span><span data-lang="es">Temporalmente cerrado</span></p>
-        <button class="pkg-btn" disabled style="opacity:0.35; cursor:not-allowed;"><span data-lang="pt">Reservar</span><span data-lang="en" class="on">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
-      </div>
-    </div>
-    <!-- DIAMOND -->
-    <div class="pkg-card pkg-diamond" id="diamondCard">
-      <div class="pkg-cover" id="diamondCover" onclick="openModal('diamond')">
-        <img id="diamondCoverImg" src="GOAT DIAMOND clubb" alt="Diamond Residence" loading="lazy">
-        <div class="pkg-cover-version"><span data-lang="pt">Versão Diamond</span><span data-lang="en" class="on">Diamond Edition</span><span data-lang="fr">Édition Diamond</span><span data-lang="es">Versión Diamond</span></div>
-        <div class="pkg-cover-badge">↗</div>
-        <div class="pkg-cover-title">
-        </div>
-        <div class="diamond-slide-caption"><span id="diamondCoverCaption">Beach club com vista pro mar</span></div>
-      </div>
-      <div class="pkg-body" style="background: transparent;">
-        <p class="pkg-tagline"><span data-lang="pt">Uma semana de luxo, acesso exclusivo a experiências exclusivas na cidade mais icônica do Brasil.</span><span data-lang="en" class="on">A week of luxury, exclusive access to exclusive experiences in the most iconic city in Brazil.</span><span data-lang="fr">Une semaine de luxe, accès exclusif à des expériences exclusives dans la ville la plus emblématique du Brésil.</span><span data-lang="es">Una semana de lujo, acceso exclusivo a experiencias exclusivas en la ciudad más icónica de Brasil.</span></p>
-        <div style="margin-bottom:20px; display:flex; flex-direction:column; gap:6px;">
-          <p style="font-size:11px; letter-spacing:0.08em; color:var(--cream-dim); line-height:1.7;"><span data-lang="pt">Para aqueles que não seguem tendências. Eles as criam.</span><span data-lang="en" class="on">For those who don't follow trends. They set them.</span><span data-lang="fr">Pour ceux qui ne suivent pas les tendances. Ils les créent.</span><span data-lang="es">Para quienes no siguen tendencias. Las crean.</span></p>
-          <p style="font-size:11px; letter-spacing:0.08em; color:var(--cream-dim); line-height:1.7;"><span data-lang="pt">Onde o extraordinário se torna o padrão.</span><span data-lang="en" class="on">Where the extraordinary becomes the standard.</span><span data-lang="fr">Là où l'extraordinaire devient la norme.</span><span data-lang="es">Donde lo extraordinario se convierte en el estándar.</span></p>
-          <p style="font-size:11px; letter-spacing:0.08em; color:var(--cream-dim); line-height:1.7;"><span data-lang="pt">Uma experiência reservada para quem exige o melhor.</span><span data-lang="en" class="on">An experience reserved for those who demand the best.</span><span data-lang="fr">Une expérience réservée à ceux qui exigent le meilleur.</span><span data-lang="es">Una experiencia reservada para quienes exigen lo mejor.</span></p>
-          <p style="font-size:11px; letter-spacing:0.08em; color:var(--cream-dim); line-height:1.7;"><span data-lang="pt">O luxo não é um privilégio. É um estilo de vida.</span><span data-lang="en" class="on">Luxury is not a privilege. It's a lifestyle.</span><span data-lang="fr">Le luxe n'est pas un privilège. C'est un art de vivre.</span><span data-lang="es">El lujo no es un privilegio. Es un estilo de vida.</span></p>
-          <p style="font-size:11px; letter-spacing:0.08em; color:var(--ice); font-weight:500; line-height:1.7;"><span data-lang="pt">Viva o Rio como poucos podem viver.</span><span data-lang="en" class="on">Live Rio like only a few can.</span><span data-lang="fr">Vivez Rio comme peu peuvent le faire.</span><span data-lang="es">Vive Río como pocos pueden vivirlo.</span></p>
-        </div>
-        <p style="font-size:12px; color:var(--cream-dim); letter-spacing:0.04em; line-height:1.8; margin-bottom:20px; border-left:2px solid var(--ice); padding-left:14px;">
-          <span data-lang="pt">O preço desta versão é estabelecido mediante consulta e negociação direta com a nossa equipe. Para mais informações, entre em contato.</span>
-          <span data-lang="en" class="on">The price of this version is established through direct consultation and negotiation with our team. For more information, please get in touch.</span>
-          <span data-lang="fr">Le prix de cette version est établi par consultation et négociation directe avec notre équipe. Pour plus d'informations, contactez-nous.</span>
-          <span data-lang="es">El precio de esta versión se establece mediante consulta y negociación directa con nuestro equipo. Para más información, contáctenos.</span>
-        </p>
-        <p style="font-size:12px; color:var(--ice); letter-spacing:0.1em; text-transform:uppercase; border:1px solid var(--ice); display:inline-block; padding:5px 12px; margin-bottom:16px;"><span data-lang="pt">Temporariamente inativo</span><span data-lang="en" class="on">Temporarily inactive</span><span data-lang="fr">Temporairement inactif</span><span data-lang="es">Temporalmente inactivo</span></p>
       </div>
     </div>
   </div>
@@ -1153,7 +1205,7 @@ span[data-lang].on { display: inline; }
         </div>
         <div class="contact-detail">
           <span class="contact-detail-label">Email</span>
-          <span class="contact-detail-value"><a href="mailto:hellogoatrio@gmail.com">hellogoatrio@gmail.com</a></span>
+          <span class="contact-detail-value"><a href="mailto:contact@goatpackages.com">contact@goatpackages.com</a></span>
         </div>
         <div class="contact-detail">
           <span class="contact-detail-label"><span data-lang="pt">Local</span><span data-lang="en" class="on">Location</span><span data-lang="fr">Lieu</span><span data-lang="es">Ubicación</span></span>
@@ -1792,9 +1844,9 @@ modalEl.addEventListener('touchend', function(e) {
       <h3>Cookies e Analytics</h3>
       <p>Utilizamos o Google Analytics para compreender como os visitantes interagem com nosso site. Esses dados são anonimizados e usados exclusivamente para melhorar a experiência de navegação.</p>
       <h3>Seus Direitos</h3>
-      <p>Você tem o direito de solicitar acesso, correção ou exclusão dos seus dados pessoais a qualquer momento, enviando um e-mail para hellogoatrio@gmail.com.</p>
+      <p>Você tem o direito de solicitar acesso, correção ou exclusão dos seus dados pessoais a qualquer momento, enviando um e-mail para contact@goatpackages.com.</p>
       <h3>Contato</h3>
-      <p>Para qualquer dúvida sobre privacidade, entre em contato pelo e-mail hellogoatrio@gmail.com.</p>
+      <p>Para qualquer dúvida sobre privacidade, entre em contato pelo e-mail contact@goatpackages.com.</p>
     </div>
 
     <div data-lang="en" class="on">
@@ -1807,7 +1859,7 @@ modalEl.addEventListener('touchend', function(e) {
       <h3>Cookies and Analytics</h3>
       <p>We use Google Analytics to understand how visitors interact with our site. This data is anonymised and used solely to improve the browsing experience.</p>
       <h3>Your Rights</h3>
-      <p>You have the right to request access, correction or deletion of your personal data at any time by emailing hellogoatrio@gmail.com.</p>
+      <p>You have the right to request access, correction or deletion of your personal data at any time by emailing contact@goatpackages.com.</p>
     </div>
 
     <div data-lang="fr">
@@ -1818,7 +1870,7 @@ modalEl.addEventListener('touchend', function(e) {
       <h3>Partage des Données</h3>
       <p>Nous ne vendons, louons ni partageons vos données avec des tiers, sauf avec des partenaires opérationnels strictement nécessaires à l'exécution du forfait.</p>
       <h3>Vos Droits</h3>
-      <p>Vous avez le droit de demander l'accès, la correction ou la suppression de vos données personnelles à tout moment en écrivant à hellogoatrio@gmail.com.</p>
+      <p>Vous avez le droit de demander l'accès, la correction ou la suppression de vos données personnelles à tout moment en écrivant à contact@goatpackages.com.</p>
     </div>
 
     <div data-lang="es">
@@ -1829,7 +1881,7 @@ modalEl.addEventListener('touchend', function(e) {
       <h3>Compartir Datos</h3>
       <p>No vendemos, alquilamos ni compartimos sus datos con terceros, salvo con socios operativos estrictamente necesarios para la ejecución del paquete.</p>
       <h3>Sus Derechos</h3>
-      <p>Tiene derecho a solicitar acceso, corrección o eliminación de sus datos personales en cualquier momento escribiendo a hellogoatrio@gmail.com.</p>
+      <p>Tiene derecho a solicitar acceso, corrección o eliminación de sus datos personales en cualquier momento escribiendo a contact@goatpackages.com.</p>
     </div>
   </div>
 </div>
