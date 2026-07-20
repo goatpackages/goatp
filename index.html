@@ -1219,7 +1219,7 @@ span[data-lang].on { display: inline; }
         <div class="fgroup"><label><span data-lang="pt">Sobrenome</span><span data-lang="en" class="on">Last name</span><span data-lang="fr">Nom</span><span data-lang="es">Apellido</span></label><input type="text" id="contactLastName"></div>
       </div>
       <div class="fgroup"><label>Email</label><input type="email" id="contactEmail"></div>
-      <div class="fgroup"><label>WhatsApp</label><input type="tel" id="contactPhone" placeholder="+55..."></div>
+      <div class="fgroup"><label>WhatsApp</label><input type="tel" id="contactPhone" placeholder="+1..."></div>
       <div class="fgroup">
         <label><span data-lang="pt">Pacote</span><span data-lang="en" class="on">Package</span><span data-lang="fr">Forfait</span><span data-lang="es">Paquete</span></label>
         <select>
@@ -1276,6 +1276,9 @@ var currentOpenPkg = null;
 
 var notSureLabels = {pt:'Ainda não sei', en:'Not sure yet', fr:'Pas encore sûr', es:'Aún no lo sé'};
 var datePlaceholders = {pt:'DD/MM/AAAA — DD/MM/AAAA', en:'DD/MM/YYYY — DD/MM/YYYY', fr:'JJ/MM/AAAA — JJ/MM/AAAA', es:'DD/MM/AAAA — DD/MM/AAAA'};
+var checkoutDatePlaceholders = {pt:'DD/MM/AAAA', en:'DD/MM/YYYY', fr:'JJ/MM/AAAA', es:'DD/MM/AAAA'};
+var checkoutNamePlaceholders = {pt:'Nome completo', en:'Full name', fr:'Nom complet', es:'Nombre completo'};
+var contactPhonePlaceholders = {pt:'+55...', en:'+1...', fr:'+33...', es:'+1...'};
 
 function setLang(lang) {
   currentLang = lang;
@@ -1288,6 +1291,14 @@ function setLang(lang) {
   if (optNotSure) optNotSure.textContent = notSureLabels[lang] || notSureLabels['pt'];
   var dateInput = document.getElementById('datePlaceholderInput');
   if (dateInput) dateInput.placeholder = datePlaceholders[lang] || datePlaceholders['pt'];
+  var chkIn = document.getElementById('chkDateIn');
+  if (chkIn) chkIn.placeholder = checkoutDatePlaceholders[lang] || checkoutDatePlaceholders['pt'];
+  var chkOut = document.getElementById('chkDateOut');
+  if (chkOut) chkOut.placeholder = checkoutDatePlaceholders[lang] || checkoutDatePlaceholders['pt'];
+  var chkName = document.getElementById('chkName');
+  if (chkName) chkName.placeholder = checkoutNamePlaceholders[lang] || checkoutNamePlaceholders['pt'];
+  var contactPhone = document.getElementById('contactPhone');
+  if (contactPhone) contactPhone.placeholder = contactPhonePlaceholders[lang] || contactPhonePlaceholders['pt'];
   var modal = document.getElementById('pkgModal');
   if (modal && modal.classList.contains('open') && currentOpenPkg) renderModal(currentOpenPkg);
 }
@@ -1978,11 +1989,11 @@ modalEl.addEventListener('touchend', function(e) {
       <div class="date-fields">
         <div class="date-field">
           <div class="date-field-label">CHECK IN</div>
-          <input class="date-field-input" type="text" id="chkDateIn" placeholder="DD/MM/AAAA" maxlength="10" inputmode="numeric" onkeydown="dateMaskKey(this,event)" oninput="dateMaskInput(this)">
+          <input class="date-field-input" type="text" id="chkDateIn" placeholder="DD/MM/YYYY" maxlength="10" inputmode="numeric" onkeydown="dateMaskKey(this,event)" oninput="dateMaskInput(this)">
         </div>
         <div class="date-field">
           <div class="date-field-label">CHECKOUT</div>
-          <input class="date-field-input" type="text" id="chkDateOut" placeholder="DD/MM/AAAA" maxlength="10" inputmode="numeric" onkeydown="dateMaskKey(this,event)" oninput="dateMaskInput(this)">
+          <input class="date-field-input" type="text" id="chkDateOut" placeholder="DD/MM/YYYY" maxlength="10" inputmode="numeric" onkeydown="dateMaskKey(this,event)" oninput="dateMaskInput(this)">
         </div>
       </div>
       <p id="dateAvailError" style="display:none;color:#e08888;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;margin:-8px 0 16px;"></p>
@@ -1993,7 +2004,7 @@ modalEl.addEventListener('touchend', function(e) {
         <span data-lang="es">Sus datos</span>
       </p>
       <div class="checkout-form">
-        <input class="checkout-input" type="text" id="chkName" placeholder="Nome completo · Full name" autocomplete="name">
+        <input class="checkout-input" type="text" id="chkName" placeholder="Full name" autocomplete="name">
         <input class="checkout-input" type="email" id="chkEmail" placeholder="E-mail" autocomplete="email">
         <input class="checkout-input" type="tel" id="chkPhone" placeholder="WhatsApp · Phone" autocomplete="tel">
       </div>
@@ -2094,7 +2105,7 @@ function initCurrency() {
     .catch(function() { updatePriceDisplays(); });
 }
 
-document.addEventListener('DOMContentLoaded', initCurrency);
+document.addEventListener('DOMContentLoaded', function() { setLang('en'); initCurrency(); });
 
 // Swipe down para fechar carrinho, checkout e modais no celular
 function addSwipeToClose(elOrId, closeFn) {
