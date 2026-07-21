@@ -893,6 +893,33 @@ span[data-lang].on { display: inline; }
 .policy-modal h3 { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); margin: 24px 0 8px; }
 .policy-modal p { font-size: 13px; color: var(--cream-dim); line-height: 1.8; margin-bottom: 12px; }
 @media (max-width: 600px) { .policy-modal { padding: 40px 20px 32px; } }
+
+@media (max-width: 960px) {
+  /* Mission section mobile */
+  .mission-inner {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 40px !important;
+    padding: 0 !important;
+  }
+  #missionImgWrap {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+  /* About box mobile */
+  .about-box { padding: 40px 20px !important; }
+  /* Checkout mobile */
+  .checkout-modal { padding: 40px 20px 32px !important; }
+  /* Packages section padding */
+  .packages { padding: 0 !important; }
+  /* Hero font size */
+  .hero-title { font-size: clamp(36px, 10vw, 80px) !important; }
+}
+
+@media (max-width: 480px) {
+  .cart-drawer { width: 100vw !important; }
+  .checkout-modal { max-width: 100% !important; padding: 32px 16px 24px !important; }
+}
 .footer-legal-link { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cream-dim); cursor: pointer; transition: color 0.2s; }
 .footer-legal-link:hover { color: var(--white); }
 .checkout-success { text-align: center; padding: 40px 0; display: none; }
@@ -1190,7 +1217,7 @@ span[data-lang].on { display: inline; }
         </div>
       </div>
     </div>
-    <div class="mission-images" style="width:200%; margin-left:100px;">
+    <div class="mission-images" id="missionImgWrap" style="width:200%; margin-left:100px;">
       <div class="mission-img tall" style="overflow:visible;">
         <img src="van-transfer.png" alt="Transfer GOAT" loading="lazy" style="width:100%; height:auto; object-fit:unset; display:block;">
       </div>
