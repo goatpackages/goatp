@@ -54,6 +54,7 @@ button { font-family: inherit; cursor: pointer; }
 
 /* ─── LANG BAR ─── */
 .lang-bar {
+  display: none !important;
   position: fixed; top: 0; left: 0; right: 0; z-index: 300;
   background: transparent;
   border-bottom: 1px solid var(--border);
@@ -1298,17 +1299,17 @@ function setLang(lang) {
   var activeBtn = document.querySelector('.lang-btn[onclick="setLang(\'' + lang + '\')"]');
   if (activeBtn) activeBtn.classList.add('active');
   var optNotSure = document.getElementById('optNotSure');
-  if (optNotSure) optNotSure.textContent = notSureLabels[lang] || notSureLabels['pt'];
+  if (optNotSure) optNotSure.textContent = notSureLabels['en'];
   var dateInput = document.getElementById('datePlaceholderInput');
-  if (dateInput) dateInput.placeholder = datePlaceholders[lang] || datePlaceholders['pt'];
+  if (dateInput) dateInput.placeholder = datePlaceholders['en'];
   var chkIn = document.getElementById('chkDateIn');
-  if (chkIn) chkIn.placeholder = checkoutDatePlaceholders[lang] || checkoutDatePlaceholders['pt'];
+  if (chkIn) chkIn.placeholder = checkoutDatePlaceholders['en'];
   var chkOut = document.getElementById('chkDateOut');
-  if (chkOut) chkOut.placeholder = checkoutDatePlaceholders[lang] || checkoutDatePlaceholders['pt'];
+  if (chkOut) chkOut.placeholder = checkoutDatePlaceholders['en'];
   var chkName = document.getElementById('chkName');
-  if (chkName) chkName.placeholder = checkoutNamePlaceholders[lang] || checkoutNamePlaceholders['pt'];
+  if (chkName) chkName.placeholder = checkoutNamePlaceholders['en'];
   var contactPhone = document.getElementById('contactPhone');
-  if (contactPhone) contactPhone.placeholder = contactPhonePlaceholders[lang] || contactPhonePlaceholders['pt'];
+  if (contactPhone) contactPhone.placeholder = contactPhonePlaceholders['en'];
   var modal = document.getElementById('pkgModal');
   if (modal && modal.classList.contains('open') && currentOpenPkg) renderModal(currentOpenPkg);
 }
