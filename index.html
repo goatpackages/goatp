@@ -2100,8 +2100,7 @@ function updatePriceDisplays() {
 
 function addToCartDynamic(name, edition, pkg) {
   var brlPrice = PRICES_BRL[pkg];
-  var displayPrice = currentCurrency === 'BRL' ? brlPrice : Math.round(brlPrice / currentRate);
-  addToCart(name, edition, displayPrice);
+  addToCart(name, edition, brlPrice);
 }
 
 function initCurrency() {
