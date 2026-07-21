@@ -2373,7 +2373,7 @@ function validateCheckout(el) {
     elDateOut.style.borderBottom = '1px solid #e08888'; valid = false;
   }
   if (elDateIn.value && elDateOut.value && datesBlocked(elDateIn.value, elDateOut.value)) {
-    var bMsgs = {pt:'Período indisponível. Escolha outras datas.',en:'Period unavailable. Please choose different dates.',fr:'Période indisponible.',es:'Período no disponible.'};
+    var bMsgs = {pt:'Period unavailable. Please choose different dates.',en:'Period unavailable. Please choose different dates.',fr:'Period unavailable. Please choose different dates.',es:'Period unavailable. Please choose different dates.'};
     if(dateErr){ dateErr.textContent = bMsgs[currentLang]||bMsgs.pt; dateErr.style.display='block'; }
     return false;
   }
@@ -2384,7 +2384,7 @@ function validateCheckout(el) {
     elEmail.style.borderBottomColor = '#e08888'; valid = false;
   }
   if (!valid) {
-    var msgs = {pt:'Preencha os campos destacados para continuar.',en:'Please fill in the highlighted fields.',fr:'Veuillez remplir les champs en rouge.',es:'Complete los campos indicados para continuar.'};
+    var msgs = {pt:'Please fill in the highlighted fields.',en:'Please fill in the highlighted fields.',fr:'Please fill in the highlighted fields.',es:'Please fill in the highlighted fields.'};
     errEl.textContent = msgs[currentLang] || msgs.pt;
     errEl.style.display = 'block';
     return false;
