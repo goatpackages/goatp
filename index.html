@@ -2208,7 +2208,7 @@ function renderCart() {
   var hasBlack = false;
   cart.forEach(function(item, i) {
     total += item.price;
-    if (item.name === 'BLACK') hasBlack = true;
+    if (item.name.indexOf('BLACK') !== -1 || item.name.indexOf('black') !== -1 || (item.edition && item.edition.toLowerCase().indexOf('black') !== -1)) hasBlack = true;
     html += '<div class="cart-item"><div class="cart-item-info"><h4>' + item.name + '</h4><p>' + item.edition + '</p></div><div style="display:flex;align-items:center;gap:12px;"><span class="cart-item-price">' + formatPrice(item.price) + '</span><button class="cart-item-remove" onclick="removeFromCart(' + i + ')">✕</button></div></div>';
   });
   if (hasBlack) {
