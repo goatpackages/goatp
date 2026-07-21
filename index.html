@@ -1267,7 +1267,19 @@ span[data-lang].on { display: inline; }
           <option id="optNotSure">Ainda não sei</option>
         </select>
       </div>
-      <div class="fgroup"><label><span data-lang="pt">Datas preferidas</span><span data-lang="en" class="on">Preferred dates</span><span data-lang="fr">Dates souhaitées</span><span data-lang="es">Fechas preferidas</span></label><input type="text" id="datePlaceholderInput" placeholder="DD/MM/AAAA — DD/MM/AAAA"></div>
+      <div class="fgroup">
+        <label><span data-lang="pt">Datas preferidas</span><span data-lang="en" class="on">Preferred dates</span><span data-lang="fr">Dates souhaitées</span><span data-lang="es">Fechas preferidas</span></label>
+        <div class="date-fields" style="display:flex; gap:12px;">
+          <div class="date-field" style="flex:1;">
+            <div class="date-field-label" style="font-size:9px; letter-spacing:0.15em; color:var(--cream-dim); margin-bottom:4px;">CHECK IN</div>
+            <input class="date-field-input" type="text" id="datePlaceholderInput" placeholder="DD/MM/YYYY" maxlength="10" inputmode="numeric" onkeydown="dateMaskKey(this,event)" oninput="dateMaskInput(this)" style="background:transparent; border:none; border-bottom:1px solid rgba(255,255,255,0.12); color:var(--white); padding:8px 0; font-size:14px; width:100%; outline:none; font-family:inherit;">
+          </div>
+          <div class="date-field" style="flex:1;">
+            <div class="date-field-label" style="font-size:9px; letter-spacing:0.15em; color:var(--cream-dim); margin-bottom:4px;">CHECK OUT</div>
+            <input class="date-field-input" type="text" id="contactDateOut" placeholder="DD/MM/YYYY" maxlength="10" inputmode="numeric" onkeydown="dateMaskKey(this,event)" oninput="dateMaskInput(this)" style="background:transparent; border:none; border-bottom:1px solid rgba(255,255,255,0.12); color:var(--white); padding:8px 0; font-size:14px; width:100%; outline:none; font-family:inherit;">
+          </div>
+        </div>
+      </div>
       <div class="fgroup"><label><span data-lang="pt">Grupo + observações</span><span data-lang="en" class="on">Group + notes</span><span data-lang="fr">Groupe + notes</span><span data-lang="es">Grupo + notas</span></label><textarea></textarea></div>
       <button class="form-submit"><span data-lang="pt">Enviar mensagem</span><span data-lang="en" class="on">Send message</span><span data-lang="fr">Envoyer</span><span data-lang="es">Enviar mensaje</span></button>
     </div>
