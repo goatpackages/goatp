@@ -9,22 +9,22 @@
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0L5HESH63W">
 // Slide-in notices on scroll
-(function(){
+document.addEventListener('DOMContentLoaded', function(){
   var observer = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(e.isIntersecting){
         var el = e.target;
-        var delay = el.dataset.delay || 0;
+        var delay = parseInt(el.dataset.delay) || 0;
         setTimeout(function(){ el.classList.add('visible'); }, delay);
         observer.unobserve(el);
       }
     });
-  }, { threshold: 0.2 });
+  }, { threshold: 0.15 });
   document.querySelectorAll('.slide-notice').forEach(function(el, i){
-    el.dataset.delay = i * 200;
+    el.dataset.delay = i * 250;
     observer.observe(el);
   });
-})();
+});
 
 function toggleMobileMenu() {
   var menu = document.getElementById('mobileMenu');
