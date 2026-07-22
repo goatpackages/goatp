@@ -7,7 +7,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>G.O.A.T PACKAGES — Rio de Janeiro</title>
 <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0L5HESH63W"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0L5HESH63W">
+function toggleMobileMenu() {
+  var menu = document.getElementById('mobileMenu');
+  var overlay = document.getElementById('mobileMenuOverlay');
+  menu.classList.toggle('open');
+  overlay.classList.toggle('open');
+}
+</script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -20,7 +27,7 @@
 
 /* ─── RESET ─── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
   background: #000000;
   color: #e8e4dc;
@@ -936,6 +943,73 @@ span[data-lang].on { display: inline; }
 .date-field-label { font-size:8px; letter-spacing:.25em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:5px; }
 .date-field-input { background:none; border:none; outline:none; color:var(--white); font-size:14px; font-weight:600; width:100%; font-family:inherit; letter-spacing:.04em; padding:0; }
 .date-field-input::placeholder { color:rgba(255,255,255,.25); font-weight:400; letter-spacing:.02em; }
+
+/* ─── MOBILE MENU ─── */
+.hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; }
+.hamburger span { display:block; width:22px; height:2px; background:var(--white); transition:all 0.3s; }
+.mobile-menu {
+  position:fixed; top:0; right:0; bottom:0; width:75vw; max-width:300px;
+  background:#0c0c0c; border-left:1px solid var(--border);
+  z-index:2000; transform:translateX(100%); transition:transform 0.3s ease;
+  display:flex; flex-direction:column; padding:80px 32px 40px;
+}
+.mobile-menu.open { transform:translateX(0); }
+.mobile-menu-close {
+  position:absolute; top:20px; right:20px; background:none; border:none;
+  color:var(--white); font-size:20px; cursor:pointer;
+}
+.mobile-menu ul { list-style:none; display:flex; flex-direction:column; gap:28px; }
+.mobile-menu ul li a {
+  font-size:13px; letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--white); text-decoration:none;
+}
+.mobile-menu-overlay {
+  position:fixed; inset:0; background:rgba(0,0,0,0.6);
+  z-index:1999; opacity:0; pointer-events:none; transition:opacity 0.3s;
+}
+.mobile-menu-overlay.open { opacity:1; pointer-events:all; }
+
+@media (max-width: 960px) {
+  .hamburger { display:flex; }
+  .nav-cta { display:none; }
+  .hero { padding: 0 20px 60px !important; }
+  .airport-notice { padding: 20px 20px !important; }
+  section { padding: 56px 20px !important; }
+  .packages { padding: 0 !important; }
+  .pkg-card { margin: 0; }
+  .pkg-body { padding: 20px !important; }
+  .modal-body { padding: 20px !important; }
+  .modal-header-text { padding: 16px 20px !important; }
+  .modal-title { font-size: 28px !important; }
+  .gallery-thumb { width: 180px !important; height: 130px !important; }
+  .modal-footer { flex-direction: column !important; }
+  .included-inner { padding: 0 !important; }
+  .about-box { padding: 32px 20px !important; }
+  .contact-inner { gap: 32px !important; }
+  .itin-days { grid-template-columns: 1fr 1fr !important; }
+  footer { padding: 32px 20px 20px !important; }
+  .checkout-modal { padding: 40px 20px 32px !important; }
+  .lapa-divider { height: 35vh !important; }
+}
+
+@media (max-width: 480px) {
+  .itin-days { grid-template-columns: 1fr !important; }
+  .hero-title { font-size: clamp(26px, 8vw, 42px) !important; }
+  .hero-eyebrow { font-size: 9px !important; letter-spacing: 0.2em !important; }
+  section { padding: 44px 16px !important; }
+  .airport-notice { padding: 16px !important; }
+  .airport-notice p { font-size: 13px !important; }
+  .modal-body { padding: 16px !important; }
+  footer { padding: 28px 16px 16px !important; }
+  .pkg-header { padding: 24px 16px 16px !important; }
+  .pkg-body { padding: 16px !important; }
+  .checkout-modal { padding: 32px 16px 24px !important; max-width: 100% !important; }
+  .cart-drawer { width: 100vw !important; }
+  .lapa-divider { height: 30vh !important; }
+  .cc-row { flex-direction: column !important; gap: 0 !important; }
+  .modal-cols { gap: 16px !important; }
+  .modal-footer { gap: 8px !important; }
+}
 </style>
 </head>
 <body>
@@ -967,7 +1041,20 @@ span[data-lang].on { display: inline; }
   <button class="nav-cta" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">
     <span data-lang="pt">Reservar</span><span data-lang="en" class="on">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span>
   </button>
+  <button class="hamburger" id="hamburgerBtn" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="toggleMobileMenu()">&#x2715;</button>
+  <ul>
+    <li><a href="#pacotes" onclick="toggleMobileMenu()">Packages</a></li>
+    <li><a href="#sobre" onclick="toggleMobileMenu()">About</a></li>
+    <li><a href="#contato" onclick="toggleMobileMenu()">Contact</a></li>
+  </ul>
+</div>
+<div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
 
 <!-- HERO -->
 <section class="hero" style="padding:0 48px 80px">
@@ -1084,7 +1171,7 @@ span[data-lang].on { display: inline; }
 </section>
 
 <!-- AIRPORT NOTICE -->
-<div style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:26px 40px; text-align:center;">
+<div class="airport-notice" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:26px 40px; text-align:center;">
   <p style="font-size:16px; font-weight:600; letter-spacing:0.1em; color:var(--cream); margin:0 0 10px 0; text-transform:uppercase;">
     <span style="color:var(--gold); margin-right:10px;">✈</span>
     <span data-lang="pt">Todos os pacotes incluem pick up e drop off no aeroporto</span>
