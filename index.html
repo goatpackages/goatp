@@ -417,6 +417,13 @@ section { padding: 96px 48px; }
   box-shadow: 0 4px 24px rgba(255,255,255,0.2);
 }
 .pkg-ver-mais[disabled] { opacity: 0.25; cursor: not-allowed; }
+.black-plan-selector { display:flex; gap:8px; margin-bottom:16px; }
+.black-plan-opt { flex:1; border:1px solid var(--border); padding:12px 10px; cursor:pointer; transition:border-color 0.2s, background 0.2s; }
+.black-plan-opt.selected { border-color:var(--white); background:rgba(255,255,255,0.06); }
+.black-plan-opt:hover:not(.selected) { border-color:rgba(255,255,255,0.3); }
+.black-plan-opt-name { font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:4px; }
+.black-plan-opt-days { font-size:13px; color:var(--white); font-weight:600; letter-spacing:0.03em; margin-bottom:3px; }
+.black-plan-opt-desc { font-size:11px; color:var(--cream-dim); letter-spacing:0.04em; }
 
 @keyframes pkg-pulse {
   0%, 100% { box-shadow: 0 0 18px rgba(255,255,255,0.2); }
@@ -1105,7 +1112,7 @@ span[data-lang].on { display: inline; }
     <div class="hero-tags">
       <span class="hero-tag"><span data-lang="pt">1 Semana</span><span data-lang="en" class="on">1 Week</span><span data-lang="fr">1 Semaine</span><span data-lang="es">1 Semana</span></span>
       <span class="hero-tag">VIP</span>
-      <span class="hero-tag">Black · Platinum · Diamond</span>
+      <span class="hero-tag">Plus · Platinum · Diamond</span>
     </div>
     <div class="hero-dots">
       <button class="hero-dot active" onclick="goSlide(0)"></button>
@@ -1136,17 +1143,35 @@ span[data-lang].on { display: inline; }
         <video autoplay muted loop playsinline style="pointer-events:none; position:absolute; inset:0; width:100%; height:100%; object-fit:fill; transform:scaleX(1.3);">
           <source src="casa1.mov" type="video/mp4">
         </video>
-        <div class="pkg-cover-version"><span data-lang="pt">Versão Black</span><span data-lang="en" class="on">Black Edition</span><span data-lang="fr">Édition Black</span><span data-lang="es">Versión Black</span></div>
+        <div class="pkg-cover-version"><span data-lang="pt">Plus Edition</span><span data-lang="en" class="on">Plus Edition</span><span data-lang="fr">Plus Edition</span><span data-lang="es">Plus Edition</span></div>
         <div class="pkg-cover-title">
         </div>
       </div>
       <div class="pkg-body" style="background: transparent;">
         <button class="pkg-ver-mais" onclick="openModal('black')"><span data-lang="pt">Ver mais</span><span data-lang="en" class="on">See more</span><span data-lang="fr">Voir plus</span><span data-lang="es">Ver más</span></button>
-        <p class="pkg-tagline"><span data-lang="pt">Viva o Rio de Janeiro sem limitações. O Pacote Black combina hospedagem premium, experiências exclusivas, acesso privilegiado aos melhores eventos da cidade e o suporte de uma rede local de confiança, permitindo que você explore cada momento com conforto, segurança e total tranquilidade.</span><span data-lang="en" class="on">Live Rio de Janeiro without limits. The Black Package combines premium accommodation, exclusive experiences, privileged access to the city's best events and the support of a trusted local network, allowing you to explore every moment with comfort, safety and complete peace of mind.</span><span data-lang="fr">Vivez Rio de Janeiro sans limites. Le Black Package combine hébergement premium, expériences exclusives, accès privilégié aux meilleurs événements de la ville et le soutien d'un réseau local de confiance, vous permettant d'explorer chaque instant avec confort, sécurité et une tranquillité totale.</span><span data-lang="es">Vive Río de Janeiro sin limitaciones. El Black Package combina alojamiento premium, experiencias exclusivas, acceso privilegiado a los mejores eventos de la ciudad y el apoyo de una red local de confianza, permitiéndote explorar cada momento con comodidad, seguridad y total tranquilidad.</span></p>
+        <p class="pkg-tagline"><span data-lang="pt">Viva o Rio de Janeiro sem limitações. O Pacote Plus combina hospedagem premium, experiências exclusivas, acesso privilegiado aos melhores eventos da cidade e o suporte de uma rede local de confiança, permitindo que você explore cada momento com conforto, segurança e total tranquilidade.</span><span data-lang="en" class="on">Live Rio de Janeiro without limits. The Plus Package combines premium accommodation, exclusive experiences, privileged access to the city's best events and the support of a trusted local network, allowing you to explore every moment with comfort, safety and complete peace of mind.</span><span data-lang="fr">Vivez Rio de Janeiro sans limites. Le Plus Package combine hébergement premium, expériences exclusives, accès privilégié aux meilleurs événements de la ville et le soutien d'un réseau local de confiance, vous permettant d'explorer chaque instant avec confort, sécurité et une tranquillité totale.</span><span data-lang="es">Vive Río de Janeiro sin limitaciones. El Plus Package combina alojamiento premium, experiencias exclusivas, acceso privilegiado a los mejores eventos de la ciudad y el apoyo de una red local de confianza, permitiéndote explorar cada momento con comodidad, seguridad y total tranquilidad.</span></p>
+        <div class="black-plan-selector">
+          <div id="blackPlanExpress" style="flex:1; border:1px solid var(--gold); padding:10px 12px; background:rgba(180,145,80,0.07);">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;">
+              <div>
+                <span style="font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--white); font-weight:600;">GOAT Weekend Escape</span>
+                <span style="font-size:9px; color:rgba(255,255,255,0.3); margin:0 5px;">·</span>
+                <span style="font-size:9px; letter-spacing:0.06em; color:rgba(255,255,255,0.75);">4 Days / 3 Nights</span>
+              </div>
+              <span style="font-size:12px; font-weight:600; color:var(--white); letter-spacing:0.03em;">$600 <span style="font-size:9px; font-weight:400; color:var(--cream-dim);">USD</span></span>
+            </div>
+            <div style="display:flex; gap:8px; margin-top:8px;">
+              <button style="flex:1; height:28px; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; font-weight:600; border:1px solid rgba(255,255,255,0.3); background:transparent; color:var(--white); cursor:pointer;" onclick="event.stopPropagation(); openExpressModal()">
+                <span data-lang="pt">Ver mais</span><span data-lang="en" class="on">See more</span><span data-lang="fr">Voir plus</span><span data-lang="es">Ver más</span>
+              </button>
+              <button style="flex:1; height:28px; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; font-weight:600; border:none; background:var(--white); color:var(--black); cursor:pointer;" onclick="event.stopPropagation(); addToCart('PLUS EDITION','GOAT Weekend Escape — 4 Days / 3 Nights', 600 * currentRate, 'https://buy.stripe.com/3cI3co8npaBa7oL2b12Ry03')"><span data-lang="pt">Reservar</span><span data-lang="en" class="on">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
+            </div>
+          </div>
+        </div>
         <p style="font-size:16px; color:var(--cream); margin-bottom:4px; letter-spacing:0.05em;"><s>$1,500 USD</s></p>
         <p style="font-size:22px; font-weight:700; color:var(--white); letter-spacing:0.04em; margin-bottom:12px;" id="blackPriceDisplay">R$5.990<span style="font-size:12px; font-weight:400; color:var(--cream-dim); letter-spacing:0.1em;"><span data-lang="pt">por pessoa</span><span data-lang="en" class="on">per person</span><span data-lang="fr">par personne</span><span data-lang="es">por persona</span></span></p>
         <p style="font-size:12px; color:var(--gold); letter-spacing:0.07em; line-height:1.7; margin-bottom:16px; border:1px solid var(--gold); padding:10px 14px; background:rgba(180,145,80,0.08);"><span data-lang="pt">⚠ A ativação deste pacote está condicionada à confirmação mínima de 14 participantes inscritos.</span><span data-lang="en" class="on">⚠ The activation of this package is subject to a minimum confirmation of 14 registered participants.</span><span data-lang="fr">⚠ L'activation de ce forfait est conditionnée à la confirmation d'un minimum de 14 participants inscrits.</span><span data-lang="es">⚠ La activación de este paquete está condicionada a la confirmación mínima de 14 participantes inscritos.</span></p>
-        <button class="pkg-btn" id="blackCartBtn" onclick="addToCartDynamic('BLACK EDITION','Black Edition','black')"><span data-lang="pt">Reservar</span><span data-lang="en" class="on">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
+        <button class="pkg-btn" id="blackCartBtn" onclick="addBlackToCart()"><span data-lang="pt">Reservar</span><span data-lang="en" class="on">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
       </div>
     </div>
     <!-- PLATINUM -->
@@ -1295,23 +1320,19 @@ span[data-lang].on { display: inline; }
         <div class="about-inner">
           <div class="about-text">
             <span data-lang="pt">
-              <p>Sou Carlos, nascido e criado na Rocinha, a maior favela da América Latina. Aos 15 anos comecei a praticar kickboxing em um projeto social do bairro, esporte que me ensinou disciplina e autocontrole, mudando o rumo da minha vida.</p>
-              <p>Meu mentor e Mestre Mauricio Casaes, que me graduou por todos esses anos até a faixa preta de kickboxing, foi uma influência decisiva. O inglês que ele aprendeu por conta própria me motivou a fazer o mesmo, aprendi 3 a 4 línguas de forma autônoma, abrindo portas que eu jamais imaginava cruzar. Em 2015 viajei para a Suíça e a Alemanha por dois meses, algo que parecia impossível para um menino da favela.</p>
+              <p>Sou Carlos, nascido e criado na Rocinha, a maior favela da América Latina. Aprendi 3 a 4 línguas de forma autônoma, abrindo portas que eu jamais imaginava cruzar. Em 2015 viajei para a Suíça e a Alemanha por dois meses, algo que parecia impossível para um menino da favela.</p>
               <p>Por mais de uma década, trabalhando no setor de turismo como guia, conhecendo pessoas de origens e culturas muito diferentes. Essas experiências, juntamente com a vontade de trazer melhoria para minha comunidade, me trouxeram a este projeto, que estará abrindo portas de trabalho para muitas pessoas que estão em situação de vulnerabilidade financeira.</p>
             </span>
             <span data-lang="en" class="on">
-              <p>I'm Carlos, born and raised in Rocinha, the largest favela in Latin America. At 15 I started kickboxing at a local social project in the neighbourhood, a sport that taught me discipline and self-control, changing the course of my life.</p>
-              <p>My mentor and Master Mauricio Casaes, who guided me through all those years until I earned my black belt in kickboxing, was a decisive influence. The English he learned on his own motivated me to do the same, I learned 3 to 4 languages on my own, opening doors I never imagined crossing. In 2015 I travelled to Switzerland and Germany for two months, something that seemed impossible for a kid from the favela.</p>
+              <p>I'm Carlos, born and raised in Rocinha, the largest favela in Latin America. I learned 3 to 4 languages on my own, opening doors I never imagined crossing. In 2015 I travelled to Switzerland and Germany for two months, something that seemed impossible for a kid from the favela.</p>
               <p>For over a decade, working in the tourism sector as a guide, meeting people from very different backgrounds and cultures. These experiences, together with the desire to bring improvement to my community, brought me to this project, which will be opening doors of work for many people who are in a situation of financial vulnerability.</p>
             </span>
             <span data-lang="fr">
-              <p>Je suis Carlos, né et grandi à Rocinha, la plus grande favela d'Amérique latine. À 15 ans j'ai commencé le kickboxing dans un projet social du quartier, un sport qui m'a appris la discipline et la maîtrise de moi-même, changeant le cours de ma vie.</p>
-              <p>Mon mentor et Maître Mauricio Casaes, qui m'a accompagné pendant toutes ces années jusqu'à la ceinture noire de kickboxing, a été une influence décisive. L'anglais qu'il a appris seul m'a motivé à faire de même, j'ai appris 3 à 4 langues par moi-même, ouvrant des portes que je n'imaginais jamais franchir. En 2015 j'ai voyagé en Suisse et en Allemagne pendant deux mois, quelque chose qui semblait impossible pour un enfant de la favela.</p>
+              <p>Je suis Carlos, né et grandi à Rocinha, la plus grande favela d'Amérique latine. J'ai appris 3 à 4 langues par moi-même, ouvrant des portes que je n'imaginais jamais franchir. En 2015 j'ai voyagé en Suisse et en Allemagne pendant deux mois, quelque chose qui semblait impossible pour un enfant de la favela.</p>
               <p>Depuis plus d'une décennie, je travaille dans le secteur du tourisme comme guide, rencontrant des personnes d'origines et de cultures très différentes. Ces expériences, ainsi que la volonté d'apporter des améliorations à ma communauté, m'ont conduit à ce projet, qui ouvrira des portes d'emploi pour de nombreuses personnes en situation de vulnérabilité financière.</p>
             </span>
             <span data-lang="es">
-              <p>Soy Carlos, nacido y criado en Rocinha, la favela más grande de América Latina. A los 15 años empecé el kickboxing en un proyecto social del barrio, un deporte que me enseñó disciplina y autocontrol, cambiando el rumbo de mi vida.</p>
-              <p>Mi mentor y Maestro Mauricio Casaes, quien me graduó durante todos esos años hasta el cinturón negro de kickboxing, fue una influencia decisiva. El inglés que aprendió por su cuenta me motivó a hacer lo mismo, aprendí 3 a 4 idiomas por mi cuenta, abriendo puertas que nunca imaginé cruzar. En 2015 viajé a Suiza y Alemania durante dos meses, algo que parecía imposible para un niño de la favela.</p>
+              <p>Soy Carlos, nacido y criado en Rocinha, la favela más grande de América Latina. Aprendí 3 a 4 idiomas por mi cuenta, abriendo puertas que nunca imaginé cruzar. En 2015 viajé a Suiza y Alemania durante dos meses, algo que parecía imposible para un niño de la favela.</p>
               <p>Durante más de una década, trabajando en el sector del turismo como guía, conociendo personas de orígenes y culturas muy diferentes. Estas experiencias, junto con el deseo de traer mejoras a mi comunidad, me llevaron a este proyecto, que estará abriendo puertas de trabajo para muchas personas que se encuentran en situación de vulnerabilidad financiera.</p>
             </span>
           </div>
@@ -1420,7 +1441,7 @@ span[data-lang].on { display: inline; }
       <div class="fgroup">
         <label><span data-lang="pt">Pacote</span><span data-lang="en" class="on">Package</span><span data-lang="fr">Forfait</span><span data-lang="es">Paquete</span></label>
         <select>
-          <option>BLACK</option>
+          <option>PLUS</option>
           <option>PLATINUM</option>
           <option>DIAMOND</option>
           <option id="optNotSure">Ainda não sei</option>
@@ -1447,6 +1468,40 @@ span[data-lang].on { display: inline; }
 
 <!-- FOOTER -->
 <!-- MODAL -->
+<div class="modal-backdrop" id="expressModal" onclick="if(event.target===this)closeExpressModal()" style="z-index:9999;">
+  <div style="background:#0d0d0d; border:1px solid rgba(180,145,80,0.3); width:100%; max-width:420px; max-height:90vh; overflow-y:auto; position:relative; padding:48px 32px 40px; margin:auto;">
+    <button class="modal-close" onclick="closeExpressModal()">✕</button>
+    <p style="font-size:9px; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:16px;">GOAT Weekend Escape · 4 Days / 3 Nights</p>
+    <h2 style="font-family:var(--serif); font-size:28px; font-weight:400; color:var(--white); line-height:1.2; margin-bottom:28px;">What's Included</h2>
+    <div style="border-top:1px solid var(--border); padding-top:24px; display:flex; flex-direction:column; gap:14px;">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span style="font-size:18px; color:var(--gold); min-width:20px; text-align:center;">◈</span>
+        <p style="font-size:13px; color:var(--white); letter-spacing:0.05em; line-height:1.6; margin:0;">5 Parties included in GOAT Pass Wristband</p>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span style="font-size:18px; color:var(--gold); min-width:20px; text-align:center;">◈</span>
+        <p style="font-size:13px; color:var(--white); letter-spacing:0.05em; line-height:1.6; margin:0;">Boat Party</p>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span style="font-size:18px; color:var(--gold); min-width:20px; text-align:center;">◈</span>
+        <p style="font-size:13px; color:var(--white); letter-spacing:0.05em; line-height:1.6; margin:0;">Local Party Experience</p>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span style="font-size:18px; color:var(--gold); min-width:20px; text-align:center;">◈</span>
+        <p style="font-size:13px; color:var(--white); letter-spacing:0.05em; line-height:1.6; margin:0;">Techno Sunset</p>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span style="font-size:18px; color:var(--gold); min-width:20px; text-align:center;">◈</span>
+        <p style="font-size:13px; color:var(--white); letter-spacing:0.05em; line-height:1.6; margin:0;"><span data-lang="pt">Acomodação</span><span data-lang="en" class="on">Accommodation</span><span data-lang="fr">Hébergement</span><span data-lang="es">Alojamiento</span></p>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span style="font-size:18px; color:var(--gold); min-width:20px; text-align:center;">◈</span>
+        <p style="font-size:13px; color:var(--white); letter-spacing:0.05em; line-height:1.6; margin:0;"><span data-lang="pt">Transporte incluso para todas as festas</span><span data-lang="en" class="on">Transport included for all parties</span><span data-lang="fr">Transport inclus pour toutes les fêtes</span><span data-lang="es">Transporte incluido para todas las fiestas</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal-backdrop" id="pkgModal" onclick="if(event.target===this)closeModal()">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">✕</button>
@@ -1526,7 +1581,6 @@ var lbGalleries = {
   ],
   blackResidencia: [
     {src:'PHOTO-2026-05-23-22-29-16.jpg', cap:{pt:'Residência',en:'Residence',fr:'Résidence',es:'Residencia'}},
-    {src:'PHOTO-2026-05-23-22-31-29.jpg', cap:{pt:'Residência',en:'Residence',fr:'Résidence',es:'Residencia'}},
     {src:'PHOTO-2026-05-23-22-32-07.jpg', cap:{pt:'Residência',en:'Residence',fr:'Résidence',es:'Residencia'}},
     {src:'PHOTO-2026-05-23-22-32-32.jpg', cap:{pt:'Residência',en:'Residence',fr:'Résidence',es:'Residencia'}},
   ],
@@ -1613,35 +1667,36 @@ var eventoEdicaoLabels = {
 
 var pkgModalData = {
   black: {
-    title: 'BLACK EDITION',
-    img: 'https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=800&q=80',
+    title: 'PLUS EDITION',
+    img: 'PHOTO-2026-05-23-22-29-16.jpg',
+    imgPosition: 'center 60%',
     galleries: [
-      {set:'blackResidencia', labels:{pt:'Ver residências ↗', en:'See residences ↗', fr:'Voir résidences ↗', es:'Ver residencias ↗'}},
-      {set:'blackFestas',     labels:{pt:'Ver festas ↗',      en:'See parties ↗',    fr:'Voir fêtes ↗',      es:'Ver fiestas ↗'}},
-      {set:'blackAtividades', labels:{pt:'Ver atividades ↗',  en:'See activities ↗', fr:'Voir activités ↗',  es:'Ver actividades ↗'}}
+      {set:'blackResidencia', labels:{pt:'Residências', en:'Residences', fr:'Résidences', es:'Residencias'}},
+      {set:'blackFestas',     labels:{pt:'Festas',      en:'Parties',   fr:'Fêtes',     es:'Fiestas'}},
+      {set:'blackAtividades', labels:{pt:'Atividades',  en:'Activities', fr:'Activités', es:'Actividades'}}
     ],
     i18n: {
       pt: {
-        title: 'BLACK EDITION',
-        edition: 'Black Edition',
+        title: 'PLUS EDITION',
+        edition: 'Plus Edition',
         tagline: 'Imagine fazer check-in em uma residência exclusiva ao lado de outras 21 pessoas que compartilham o mesmo objetivo: viver o melhor que o Rio de Janeiro tem a oferecer.',
         desc: 'RESIDÊNCIA\n• Acomodação exclusiva em Santa Teresa, Bairro Histórico do Rio de Janeiro, 22 suítes privativas e piscina centralizada\n• Serviço de segurança e bar on-site disponíveis 24 horas por dia\n• Open bar de caipirinha, 3 horas de serviço, das 18h às 21h, de quinta-feira a domingo\n• Brunch diário durante a sua estadia\n\nFESTAS\n• Acesso VIP à Lapa, entrada prioritária (pula fila) garantida em 4 boates mediante pulseira do pacote\n• Festa no Barco, experiência náutica exclusiva com transfer incluído\n• Local Experience VIP Party, mesa reservada com garrafas inclusas\n• Techno Sunset + Club na Barra da Tijuca\n\nATIVIDADES\n• City tour com guia bilíngue certificado\n• Visita guiada ao Cristo Redentor e ao Pão de Açúcar\n• Trilha no Morro Dois Irmãos com guia profissional credenciado\n• Ingresso para partida de futebol em estádio oficial\n• Transfer bilíngue e confiável em todos os eventos e deslocamentos\n\nRecomendamos o check-in na quinta-feira, assim o cronograma da semana flui da melhor forma possível.'
       },
       en: {
-        title: 'BLACK EDITION',
-        edition: 'Black Edition',
+        title: 'PLUS EDITION',
+        edition: 'Plus Edition',
         tagline: 'Imagine checking into an exclusive residence alongside 21 other people who share the same goal: experiencing the best Rio de Janeiro has to offer.',
         desc: 'RESIDENCE\n• Exclusive accommodation in Santa Teresa, Historic District of Rio de Janeiro, 22 private suites and a central pool\n• On-site security and bar service available 24 hours a day\n• Caipirinha open bar, 3-hour service, from 6pm to 9pm, Thursday to Sunday\n• Daily brunch during your stay\n\nPARTIES\n• VIP access to Lapa, priority entry (skip the line) guaranteed at 4 nightclubs with the package wristband\n• Boat Party, exclusive nautical experience with transfer included\n• Local Experience VIP Party, reserved table with bottles included\n• Techno Sunset + Club at Barra da Tijuca\n\nACTIVITIES\n• City tour with certified bilingual guide\n• Guided visit to Christ the Redeemer and Sugarloaf Mountain\n• Hike on Morro Dois Irmãos with accredited professional guide\n• Ticket to a football match at an official stadium\n• Bilingual and trusted transfer at all events and outings\n\nWe suggest arriving on a Thursday, it\'s the best way to sync with the week\'s full schedule.'
       },
       fr: {
-        title: 'ÉDITION BLACK',
-        edition: 'Édition Black',
+        title: 'PLUS EDITION',
+        edition: 'Plus Edition',
         tagline: 'Imaginez faire votre check-in dans une résidence exclusive aux côtés de 21 autres personnes partageant le même objectif : vivre le meilleur de ce que Rio de Janeiro a à offrir.',
         desc: 'RÉSIDENCE\n• Hébergement exclusif à Santa Teresa, Quartier Historique de Rio de Janeiro, 22 suites privées et piscine centrale\n• Service de sécurité et bar sur place disponibles 24 heures sur 24\n• Open bar de caipirinha, service de 3 heures, de 18h à 21h, du jeudi au dimanche\n• Brunch quotidien pendant votre séjour\n\nFÊTES\n• Accès VIP à Lapa, entrée prioritaire (coupe-file) garantie dans 4 clubs avec le bracelet du forfait\n• Fête en Bateau, expérience nautique exclusive avec transfert inclus\n• Local Experience VIP Party, table réservée avec bouteilles incluses\n• Techno Sunset + Club à Barra da Tijuca\n\nACTIVITÉS\n• Visite de la ville avec guide bilingue certifié\n• Visite guidée du Christ Rédempteur et du Pain de Sucre\n• Randonnée sur le Morro Dois Irmãos avec guide professionnel accrédité\n• Billet pour un match de football dans un stade officiel\n• Transfert bilingue et fiable pour tous les événements et déplacements\n\nNous suggérons un check-in le jeudi, c\'est la meilleure façon de profiter pleinement du programme de la semaine.'
       },
       es: {
-        title: 'VERSIÓN BLACK',
-        edition: 'Edición Black',
+        title: 'PLUS EDITION',
+        edition: 'Plus Edition',
         tagline: 'Imagina hacer el check-in en una residencia exclusiva junto a otras 21 personas que comparten el mismo objetivo: vivir lo mejor que Río de Janeiro tiene para ofrecer.',
         desc: 'RESIDENCIA\n• Alojamiento exclusivo en Santa Teresa, Barrio Histórico de Río de Janeiro, 22 suites privadas y piscina centralizada\n• Servicio de seguridad y bar en sitio disponibles las 24 horas del día\n• Barra libre de caipirinha, servicio de 3 horas, de 18h a 21h, de jueves a domingo\n• Brunch diario durante su estadía\n\nFIESTAS\n• Acceso VIP a Lapa, entrada prioritaria (salta la fila) garantizada en 4 discotecas con la pulsera del paquete\n• Fiesta en el Barco, experiencia náutica exclusiva con traslado incluido\n• Local Experience VIP Party, mesa reservada con botellas incluidas\n• Techno Sunset + Club en Barra da Tijuca\n\nACTIVIDADES\n• City tour con guía bilingüe certificado\n• Visita guiada al Cristo Redentor y al Pan de Azúcar\n• Senderismo en el Morro Dois Irmãos con guía profesional acreditado\n• Entrada para partido de fútbol en estadio oficial\n• Traslado bilingüe y confiable en todos los eventos y desplazamientos\n\nSugerimos el check-in el jueves, es la mejor manera de aprovechar al máximo el cronograma de la semana.'
       }
@@ -1651,9 +1706,9 @@ var pkgModalData = {
     title: 'PLATINUM EDITION',
     img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
     galleries: [
-      {set:'goldResidencia', labels:{pt:'Ver residências ↗', en:'See residences ↗', fr:'Voir résidences ↗', es:'Ver residencias ↗'}},
-      {set:'goldFestas',     labels:{pt:'Ver festas ↗',      en:'See parties ↗',    fr:'Voir fêtes ↗',      es:'Ver fiestas ↗'}},
-      {set:'goldAtividades', labels:{pt:'Ver atividades ↗',  en:'See activities ↗', fr:'Voir activités ↗',  es:'Ver actividades ↗'}}
+      {set:'goldResidencia', labels:{pt:'Residências', en:'Residences', fr:'Résidences', es:'Residencias'}},
+      {set:'goldFestas',     labels:{pt:'Festas',      en:'Parties',   fr:'Fêtes',     es:'Fiestas'}},
+      {set:'goldAtividades', labels:{pt:'Atividades',  en:'Activities', fr:'Activités', es:'Actividades'}}
     ],
     i18n: {
       pt: {title:'VERSÃO PLATINUM', edition:'Versão Platinum', tagline:'', desc:'• Hospedagem em residência exclusiva com piscina de borda infinita\n• Segurança privada disponível 24 horas na residência\n• Concierge dedicado disponível 24 horas por dia\n• Equipe de transfer disponível 12 horas por dia para todos os deslocamentos\n• Acesso VIP a clubs da Barra da Tijuca com entrada exclusiva em camarote\n• Festa no barco com transfer incluído\n• Tours pelos principais pontos turísticos do Rio de Janeiro\n• Trilhas guiadas\n• Ingresso para jogo de futebol'},
@@ -1666,9 +1721,9 @@ var pkgModalData = {
     title: 'DIAMOND EDITION',
     img: '<span class="notranslate" translate="no">GOAT DIAMOND</span> clubb',
     galleries: [
-      {set:'diamondResidencia', labels:{pt:'Ver residências ↗', en:'See residences ↗', fr:'Voir résidences ↗', es:'Ver residencias ↗'}},
-      {set:'diamondFestas',     labels:{pt:'Ver festas ↗',      en:'See parties ↗',    fr:'Voir fêtes ↗',      es:'Ver fiestas ↗'}},
-      {set:'diamondAtividades', labels:{pt:'Ver atividades ↗',  en:'See activities ↗', fr:'Voir activités ↗',  es:'Ver actividades ↗'}}
+      {set:'diamondResidencia', labels:{pt:'Residências', en:'Residences', fr:'Résidences', es:'Residencias'}},
+      {set:'diamondFestas',     labels:{pt:'Festas',      en:'Parties',   fr:'Fêtes',     es:'Fiestas'}},
+      {set:'diamondAtividades', labels:{pt:'Atividades',  en:'Activities', fr:'Activités', es:'Actividades'}}
     ],
     i18n: {
       pt: {title:'VERSÃO DIAMOND', edition:'Versão Diamond', tagline:'', desc:'O pacote Diamond foi concebido para aqueles que não aceitam menos do que o extraordinário. Cada detalhe é gerido pela nossa equipe para que a sua única responsabilidade seja desfrutar.\n\nRESIDÊNCIA\n• Hospedagem em mansão privativa com piscina infinita e vista panorâmica\n• Chef privado e concierge dedicado disponíveis 24 horas por dia\n• Equipe de segurança privada disponível 24 horas acompanhando o grupo\n\nFESTAS\n• Acesso exclusivo aos melhores camarotes dos principais clubs da Barra da Tijuca\n• Evento exclusivo a bordo do mais sofisticado iate de luxo da Marina da Glória\n\nATIVIDADES\n• Passeio panorâmico de helicóptero sobre o Rio de Janeiro\n• Experiências náuticas exclusivas, incluindo jetski e passeios privados\n• Itinerário personalizado e transfer executivo incluídos em todos os deslocamentos'},
@@ -1683,7 +1738,9 @@ function renderModal(pkg) {
   var data = pkgModalData[pkg];
   if (!data) return;
   var i18n = data.i18n[currentLang] || data.i18n['pt'];
-  document.getElementById('modalHeaderImg').src = data.img;
+  var headerImg = document.getElementById('modalHeaderImg');
+  headerImg.src = data.img;
+  headerImg.style.objectPosition = data.imgPosition || 'center center';
   document.getElementById('modalEdition').textContent = eventoEdicaoLabels[currentLang] || eventoEdicaoLabels['pt'];
   document.getElementById('modalTitle').textContent = i18n.title || data.title;
   document.getElementById('modalTagline').textContent = i18n.tagline;
@@ -1884,6 +1941,8 @@ document.addEventListener('keydown', function(e) {
     closeCheckout();
   } else if (e.key === 'Escape' && cartOverlay && cartOverlay.classList.contains('open')) {
     closeCart();
+  } else if (e.key === 'Escape' && document.getElementById('expressModal') && document.getElementById('expressModal').classList.contains('open')) {
+    closeExpressModal();
   } else if (e.key === 'Escape' && modal && modal.classList.contains('open')) {
     closeModal();
   } else if (e.key === 'Escape' && document.getElementById('policyOverlay') && document.getElementById('policyOverlay').classList.contains('open')) {
@@ -2323,6 +2382,26 @@ function addToCartDynamic(name, edition, pkg) {
   addToCart(name, edition, brlPrice);
 }
 
+var selectedBlackPlan = 'express';
+
+function openExpressModal() {
+  var m = document.getElementById('expressModal');
+  if (m) { m.classList.add('open'); document.body.style.overflow = 'hidden'; }
+}
+function closeExpressModal() {
+  var m = document.getElementById('expressModal');
+  if (m) { m.classList.remove('open'); document.body.style.overflow = ''; }
+}
+
+function addBlackToCart() {
+  var planLabels = {
+    express: 'GOAT Weekend Escape — 4 Days / 3 Nights',
+    premium: 'GOAT Premium — 7 Days / 6 Nights'
+  };
+  var edition = planLabels[selectedBlackPlan] || planLabels.express;
+  addToCart('PLUS EDITION', edition, PRICES_BRL.black);
+}
+
 function initCurrency() {
   fetch('https://open.er-api.com/v6/latest/BRL')
     .then(function(r) { return r.json(); })
@@ -2403,8 +2482,8 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() { openCart(); }, 350);
   });
 });
-function addToCart(name, edition, price) {
-  cart = [{name:name, edition:edition, price:price}];
+function addToCart(name, edition, price, stripeUrl) {
+  cart = [{name:name, edition:edition, price:price, stripeUrl:stripeUrl||null}];
   renderCart();
   var fab = document.getElementById('cartFab');
   fab.style.display = 'flex';
@@ -2428,7 +2507,7 @@ function renderCart() {
   var hasBlack = false;
   cart.forEach(function(item, i) {
     total += item.price;
-    if (item.name.indexOf('BLACK') !== -1 || item.name.indexOf('black') !== -1 || (item.edition && item.edition.toLowerCase().indexOf('black') !== -1)) hasBlack = true;
+    if (item.name.indexOf('PLUS') !== -1 || item.name.indexOf('plus') !== -1 || (item.edition && item.edition.toLowerCase().indexOf('plus') !== -1)) hasBlack = true;
     html += '<div class="cart-item"><div class="cart-item-info"><h4>' + item.name + '</h4><p>' + item.edition + '</p></div><div style="display:flex;align-items:center;gap:12px;"><span class="cart-item-price">' + formatPrice(item.price) + '</span><button class="cart-item-remove" onclick="removeFromCart(' + i + ')">✕</button></div></div>';
   });
   if (hasBlack) {
@@ -2458,7 +2537,7 @@ function openCheckout() {
   cart.forEach(function(item) {
     total += item.price;
     summary += '<div class="checkout-summary-name">' + item.name + ', ' + item.edition + '</div>';
-    if (item.name === 'BLACK') {
+    if (item.name === 'PLUS EDITION') {
       summary += '<div style="font-size:11px;color:#e08888;margin-top:3px;font-weight:500;">' +
         '<span data-lang="pt">⚠ ' + blackSpotsAvailable + ' vagas restantes</span>' +
         '<span data-lang="en" class="on">⚠ ' + blackSpotsAvailable + ' spots remaining</span>' +
@@ -2478,6 +2557,12 @@ function openCheckout() {
   if (fullName) document.getElementById('chkName').value = fullName;
   if (email) document.getElementById('chkEmail').value = email;
   if (phone) document.getElementById('chkPhone').value = phone;
+  var stripeBase = 'https://buy.stripe.com/7sY8wIbzBfVu8sP8zp2Ry02';
+  for (var ci = 0; ci < cart.length; ci++) {
+    if (cart[ci].stripeUrl) { stripeBase = cart[ci].stripeUrl; break; }
+  }
+  var payBtn = document.getElementById('chkPayBtn');
+  if (payBtn) payBtn.href = stripeBase;
   document.getElementById('checkoutFormWrap').style.display = 'block';
   document.getElementById('checkoutSuccess').style.display = 'none';
   document.getElementById('checkoutOverlay').classList.add('open');
@@ -2527,7 +2612,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var linksHtml = '<div class="footer-bottom" style="margin-top:32px;">' +
     '<p>© 2025 <span class="notranslate" translate="no">G.O.A.T Packages</span>. All rights reserved.</p>' +
     '<p>CNPJ 52.929.182/0001-83</p>' +
-    '<p style="margin-bottom:12px;"><a href="https://www.instagram.com/goat.packages" target="_blank" rel="noopener" style="color:var(--cream-dim);text-decoration:none;font-size:12px;letter-spacing:0.1em;">Instagram: @goat.packages</a></p>' +
+    '<p style="margin-bottom:16px;"><a href="https://www.instagram.com/goat.packages" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;color:var(--cream-dim);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color=\'#E1306C\'" onmouseout="this.style.color=\'var(--cream-dim)\'"><svg xmlns=\'http://www.w3.org/2000/svg\' width=\'22\' height=\'22\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><rect x=\'2\' y=\'2\' width=\'20\' height=\'20\' rx=\'5\' ry=\'5\'/><path d=\'M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z\'/><line x1=\'17.5\' y1=\'6.5\' x2=\'17.51\' y2=\'6.5\'/></svg><span style=\'font-size:12px;letter-spacing:0.1em;\'>@goat.packages</span></a></p>' +
     '<div style="display:flex;gap:20px;flex-wrap:wrap;">' +
     '<span class="footer-legal-link" onclick="openPolicy()">' +
       '<span data-lang="pt">Política de Reembolso</span>' +
@@ -2551,7 +2636,8 @@ document.addEventListener('DOMContentLoaded', function() {
   footer.insertAdjacentHTML('beforeend', linksHtml);
 })();
 var STRIPE_LINKS = {
-  'BLACK': 'https://buy.stripe.com/7sY8wIbzBfVu8sP8zp2Ry02',
+  'PLUS EDITION': 'https://buy.stripe.com/7sY8wIbzBfVu8sP8zp2Ry02',
+  'WEEKEND ESCAPE': 'https://buy.stripe.com/3cI3co8npaBa7oL2b12Ry03',
   'PLATINUM': null,
   'DIAMOND': null
 };
@@ -2608,9 +2694,9 @@ function validateCheckout(el) {
     errEl.style.display = 'block';
     return false;
   }
-  var base = 'https://buy.stripe.com/7sY8wIbzBfVu8sP8zp2Ry02';
-  window.location.href = base + '?prefilled_email=' + encodeURIComponent(elEmail.value.trim());
-  return false;
+  var baseUrl = el.href.split('?')[0];
+  el.href = baseUrl + '?prefilled_email=' + encodeURIComponent(elEmail.value.trim());
+  return true;
 }
 function applyDateFormat(el) {
   if (!el) return;
@@ -2669,7 +2755,6 @@ function dateMaskInput(el){
 </script>
 
 <a class="wa-float" href="https://wa.me/5521995413306" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-  <span class="wa-float-label">Chat on WhatsApp</span>
   <div class="wa-float-btn">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </div>
