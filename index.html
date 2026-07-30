@@ -1163,7 +1163,7 @@ span[data-lang].on { display: inline; }
               <button style="flex:1; height:28px; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; font-weight:600; border:1px solid rgba(255,255,255,0.3); background:transparent; color:var(--white); cursor:pointer;" onclick="event.stopPropagation(); openExpressModal()">
                 <span data-lang="pt">Ver mais</span><span data-lang="en" class="on">See more</span><span data-lang="fr">Voir plus</span><span data-lang="es">Ver más</span>
               </button>
-              <button style="flex:1; height:28px; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; font-weight:600; border:none; background:var(--white); color:var(--black); cursor:pointer;" onclick="event.stopPropagation(); addToCart('PLUS EDITION','<span class=\'notranslate\' translate=\'no\'>GOAT</span> Weekend Escape — 4 Days / 3 Nights', 600 * currentRate, 'https://buy.stripe.com/3cI3co8npaBa7oL2b12Ry03')"><span data-lang="pt">Reservar</span><span data-lang="en" class="on">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
+              <button style="flex:1; height:28px; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; font-weight:600; border:none; background:var(--white); color:var(--black); cursor:pointer;" onclick="event.stopPropagation(); addToCart('PLUS EDITION','<span class=\'notranslate\' translate=\'no\'>GOAT </span>Weekend Escape — 4 Days / 3 Nights', 600 * currentRate, 'https://buy.stripe.com/3cI3co8npaBa7oL2b12Ry03')"><span data-lang="pt">Reservar</span><span data-lang="en" class="on">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
             </div>
           </div>
         </div>
@@ -2386,7 +2386,7 @@ function closeExpressModal() {
 
 function addBlackToCart() {
   var planLabels = {
-    express: '<span class="notranslate" translate="no">GOAT</span> Weekend Escape — 4 Days / 3 Nights',
+    express: '<span class="notranslate" translate="no">GOAT </span>Weekend Escape — 4 Days / 3 Nights',
     premium: 'GOAT Premium — 7 Days / 6 Nights'
   };
   var edition = planLabels[selectedBlackPlan] || planLabels.express;
