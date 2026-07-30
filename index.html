@@ -2352,7 +2352,7 @@ function formatPrice(value) {
     return 'R$' + value.toLocaleString('pt-BR');
   } else {
     var usd = Math.round(value / currentRate);
-    return '$' + usd.toLocaleString('en-US');
+    return '$' + usd.toLocaleString('en-US') + ' USD';
   }
 }
 
