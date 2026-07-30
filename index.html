@@ -2385,12 +2385,7 @@ function closeExpressModal() {
 }
 
 function addBlackToCart() {
-  var planLabels = {
-    express: '<span class="notranslate" translate="no">GOAT </span>Weekend Escape — 4 Days / 3 Nights',
-    premium: 'GOAT Premium — 7 Days / 6 Nights'
-  };
-  var edition = planLabels[selectedBlackPlan] || planLabels.express;
-  addToCart('PLUS EDITION', edition, PRICES_BRL.black);
+  addToCart('PLUS EDITION', '<span class="notranslate" translate="no">PLUS EDITION </span>— 7 Days / 6 Nights', PRICES_BRL.black);
 }
 
 function initCurrency() {
