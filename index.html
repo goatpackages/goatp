@@ -1163,7 +1163,7 @@ span[data-lang].on { display: inline; }
               <button style="flex:1; height:28px; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; font-weight:600; border:1px solid rgba(255,255,255,0.3); background:transparent; color:var(--white); cursor:pointer;" onclick="event.stopPropagation(); openExpressModal()">
                 <span data-lang="pt">Ver mais</span><span data-lang="en" class="on">See more</span><span data-lang="fr">Voir plus</span><span data-lang="es">Ver más</span>
               </button>
-              <button style="flex:1; height:28px; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; font-weight:600; border:none; background:var(--white); color:var(--black); cursor:pointer;" onclick="event.stopPropagation(); addToCart('PLUS EDITION','GOAT Weekend Escape — 4 Days / 3 Nights', 600 * currentRate, 'https://buy.stripe.com/3cI3co8npaBa7oL2b12Ry03')"><span data-lang="pt">Reservar</span><span data-lang="en" class="on">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
+              <button style="flex:1; height:28px; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; font-weight:600; border:none; background:var(--white); color:var(--black); cursor:pointer;" onclick="event.stopPropagation(); addToCart('PLUS EDITION','<span class=\'notranslate\' translate=\'no\'>GOAT</span> Weekend Escape — 4 Days / 3 Nights', 600 * currentRate, 'https://buy.stripe.com/3cI3co8npaBa7oL2b12Ry03')"><span data-lang="pt">Reservar</span><span data-lang="en" class="on">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
             </div>
           </div>
         </div>
@@ -2386,7 +2386,7 @@ function closeExpressModal() {
 
 function addBlackToCart() {
   var planLabels = {
-    express: 'GOAT Weekend Escape — 4 Days / 3 Nights',
+    express: '<span class="notranslate" translate="no">GOAT</span> Weekend Escape — 4 Days / 3 Nights',
     premium: 'GOAT Premium — 7 Days / 6 Nights'
   };
   var edition = planLabels[selectedBlackPlan] || planLabels.express;
@@ -2499,7 +2499,7 @@ function renderCart() {
   cart.forEach(function(item, i) {
     total += item.price;
     if (item.name.indexOf('PLUS') !== -1 || item.name.indexOf('plus') !== -1 || (item.edition && item.edition.toLowerCase().indexOf('plus') !== -1)) hasBlack = true;
-    html += '<div class="cart-item"><div class="cart-item-info"><h4 class="notranslate" translate="no">' + item.name + '</h4><p class="notranslate" translate="no">' + item.edition + '</p></div><div style="display:flex;align-items:center;gap:12px;"><span class="cart-item-price">' + formatPrice(item.price) + '</span><button class="cart-item-remove" onclick="removeFromCart(' + i + ')">✕</button></div></div>';
+    html += '<div class="cart-item"><div class="cart-item-info"><h4 class="notranslate" translate="no">' + item.name + '</h4><p>' + item.edition + '</p></div><div style="display:flex;align-items:center;gap:12px;"><span class="cart-item-price">' + formatPrice(item.price) + '</span><button class="cart-item-remove" onclick="removeFromCart(' + i + ')">✕</button></div></div>';
   });
   if (hasBlack) {
     html += '<div style="text-align:center;padding:20px 0 8px;"><div style="background:#ffffff;width:100%;height:260px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;"><img src="logo.png" alt="G.O.A.T" style="height:180px;width:auto;display:block;filter:brightness(0);"></div></div>';
@@ -2527,7 +2527,7 @@ function openCheckout() {
   var total = 0;
   cart.forEach(function(item) {
     total += item.price;
-    summary += '<div class="checkout-summary-name notranslate" translate="no">' + item.name + ', ' + item.edition + '</div>';
+    summary += '<div class="checkout-summary-name">' + item.name + ', ' + item.edition + '</div>';
     if (item.name === 'PLUS EDITION') {
       summary += '<div style="font-size:11px;color:#e08888;margin-top:3px;font-weight:500;">' +
         '<span data-lang="pt">⚠ ' + blackSpotsAvailable + ' vagas restantes</span>' +
