@@ -1236,18 +1236,18 @@ span[data-lang].on { display: inline; }
                 <span style="font-size:9px; color:rgba(255,255,255,0.3); margin:0 5px;">·</span>
                 <span style="font-size:9px; letter-spacing:0.06em; color:rgba(255,255,255,0.75);">4 Days / 3 Nights</span>
               </div>
-              <span style="font-size:12px; font-weight:600; color:var(--white); letter-spacing:0.03em;">$600 <span style="font-size:9px; font-weight:400; color:var(--cream-dim);">USD</span></span>
+              <span style="font-size:12px; font-weight:600; color:var(--white); letter-spacing:0.03em;">$520 <span style="font-size:9px; font-weight:400; color:var(--cream-dim);">USD</span></span>
             </div>
             <div style="display:flex; gap:8px; margin-top:8px;">
               <button style="flex:1; height:28px; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; font-weight:600; border:1px solid rgba(255,255,255,0.3); background:transparent; color:var(--white); cursor:pointer;" onclick="event.stopPropagation(); openExpressModal()">
                 <span data-lang="pt">Ver mais</span><span data-lang="en" class="on">See more</span><span data-lang="fr">Voir plus</span><span data-lang="es">Ver más</span>
               </button>
-              <button style="flex:1; height:28px; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; font-weight:600; border:none; background:var(--white); color:var(--black); cursor:pointer;" onclick="event.stopPropagation(); addToCart('PLUS EDITION','<span class=\'notranslate\' translate=\'no\'>Plus Express</span> — 4 Days / 3 Nights', 600 * currentRate, 'https://buy.stripe.com/28E5kw0UXcJifVh2b12Ry04')"><span data-lang="pt">Reservar</span><span data-lang="en" class="on">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
+              <button style="flex:1; height:28px; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; font-weight:600; border:none; background:var(--white); color:var(--black); cursor:pointer;" onclick="event.stopPropagation(); addToCart('PLUS EDITION','<span class=\'notranslate\' translate=\'no\'>Plus Express</span> — 4 Days / 3 Nights', 520 * currentRate, 'https://buy.stripe.com/28E5kw0UXcJifVh2b12Ry04')"><span data-lang="pt">Reservar</span><span data-lang="en" class="on">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
             </div>
           </div>
         </div>
-        <p style="font-size:16px; color:var(--cream); margin-bottom:4px; letter-spacing:0.05em;"><s>$1,500 USD</s></p>
-        <p style="font-size:22px; font-weight:700; color:var(--white); letter-spacing:0.04em; margin-bottom:12px;" id="blackPriceDisplay">R$5.990<span style="font-size:12px; font-weight:400; color:var(--cream-dim); letter-spacing:0.1em;"><span data-lang="pt">por pessoa</span><span data-lang="en" class="on">per person</span><span data-lang="fr">par personne</span><span data-lang="es">por persona</span></span></p>
+        <p style="font-size:16px; color:var(--cream); margin-bottom:4px; letter-spacing:0.05em;"><s>$1,000 USD</s></p>
+        <p style="font-size:22px; font-weight:700; color:var(--white); letter-spacing:0.04em; margin-bottom:12px;" id="blackPriceDisplay">$890 USD<span style="font-size:12px; font-weight:400; color:var(--cream-dim); letter-spacing:0.1em;"><span data-lang="pt">por pessoa</span><span data-lang="en" class="on">per person</span><span data-lang="fr">par personne</span><span data-lang="es">por persona</span></span></p>
         <p style="font-size:12px; color:var(--gold); letter-spacing:0.07em; line-height:1.7; margin-bottom:16px; border:1px solid var(--gold); padding:10px 14px; background:rgba(180,145,80,0.08);"><span data-lang="pt">⚠ A ativação deste pacote está condicionada à confirmação mínima de 14 participantes inscritos.</span><span data-lang="en" class="on">⚠ The activation of this package is subject to a minimum confirmation of 14 registered participants.</span><span data-lang="fr">⚠ L'activation de ce forfait est conditionnée à la confirmation d'un minimum de 14 participants inscrits.</span><span data-lang="es">⚠ La activación de este paquete está condicionada a la confirmación mínima de 14 participantes inscritos.</span></p>
         <button class="pkg-btn" id="blackCartBtn" onclick="addBlackToCart()"><span data-lang="pt">Reservar</span><span data-lang="en" class="on">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
       </div>
@@ -2399,6 +2399,7 @@ var BLOCKED_DATES = [
 
 // Preços base em BRL
 var PRICES_BRL = { black: 5990, gold: 11990 };
+var PRICE_GOAT_PLUS_USD = 890;
 var currentCurrency = 'BRL';
 var currentRate = 1;
 
@@ -2415,8 +2416,10 @@ function updatePriceDisplays() {
   var blackEl = document.getElementById('blackPriceDisplay');
   var goldEl = document.getElementById('goldPriceDisplay');
   if (blackEl) {
-    var perPersonSpan = blackEl.querySelector('span');
-    blackEl.childNodes[0].textContent = formatPrice(PRICES_BRL.black) + ' ';
+    var goatPlusPrice = currentCurrency === 'BRL'
+      ? 'R$' + Math.round(PRICE_GOAT_PLUS_USD * currentRate).toLocaleString('pt-BR')
+      : '$' + PRICE_GOAT_PLUS_USD.toLocaleString('en-US') + ' USD';
+    blackEl.childNodes[0].textContent = goatPlusPrice + ' ';
   }
   if (goldEl) {
     goldEl.childNodes[0].textContent = formatPrice(PRICES_BRL.gold) + ' ';
@@ -2440,7 +2443,7 @@ function closeExpressModal() {
 }
 
 function addBlackToCart() {
-  addToCart('PLUS EDITION', '<span class="notranslate" translate="no">PLUS EDITION </span>— 7 Days / 6 Nights', PRICES_BRL.black);
+  addToCart('PLUS EDITION', '<span class="notranslate" translate="no">PLUS EDITION </span>— 7 Days / 6 Nights', PRICE_GOAT_PLUS_USD * currentRate);
 }
 
 function initCurrency() {
