@@ -1040,6 +1040,42 @@ span[data-lang].on { display: inline; }
   cursor: default !important;
 }
 
+.pkg-swipe-hint {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20002;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,0,0,0.72);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 24px;
+  padding: 9px 18px 9px 14px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s;
+  white-space: nowrap;
+}
+.pkg-swipe-hint.visible { opacity: 1; }
+.pkg-swipe-hint .hint-arrow {
+  display: flex;
+  align-items: center;
+  animation: swipeLeft 1.2s ease-in-out infinite;
+}
+.pkg-swipe-hint span {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+}
+@keyframes swipeLeft {
+  0%   { transform: translateX(6px); opacity: 0.3; }
+  50%  { transform: translateX(-4px); opacity: 1; }
+  100% { transform: translateX(6px); opacity: 0.3; }
+}
+
 .pkg-showcase-close {
   position: fixed;
   top: 14px;
@@ -2904,6 +2940,12 @@ function openPkgShowcase(pkg) {
   document.getElementById('pkgShowcase').classList.add('open');
   document.getElementById('pkgShowcase').scrollTop = 0;
   document.body.style.overflow = 'hidden';
+  var hint = document.getElementById('swipeHint');
+  if (hint) {
+    clearTimeout(hint._hideTimer);
+    hint.classList.add('visible');
+    hint._hideTimer = setTimeout(function() { hint.classList.remove('visible'); }, 3000);
+  }
 }
 
 function closePkgShowcase() {
@@ -2911,6 +2953,8 @@ function closePkgShowcase() {
   panel.classList.remove('open');
   panel.style.transition = 'transform 0.38s cubic-bezier(0.4, 0, 0.2, 1)';
   document.body.style.overflow = '';
+  var hint = document.getElementById('swipeHint');
+  if (hint) { hint.classList.remove('visible'); }
 }
 
 function goToPkg(pkg) {
@@ -2951,6 +2995,8 @@ function goToPkg(pkg) {
       panel.style.transition = 'transform 0.38s cubic-bezier(0.4, 0, 0.2, 1)';
       if (isDragging && dx < -80) {
         panel.style.transform = 'translateX(-100%)';
+        var hint = document.getElementById('swipeHint');
+        if (hint) { hint.classList.remove('visible'); }
         setTimeout(function() {
           panel.classList.remove('open');
           panel.style.transform = '';
@@ -2969,6 +3015,14 @@ function goToPkg(pkg) {
 <div class="pkg-showcase" id="pkgShowcase">
   <button class="pkg-showcase-close" onclick="closePkgShowcase()">✕</button>
   <div class="pkg-showcase-inner" id="showcaseInner"></div>
+  <div class="pkg-swipe-hint" id="swipeHint">
+    <span class="hint-arrow">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </span>
+    <span>deslize para fechar</span>
+  </div>
 </div>
 
 <a class="wa-float" href="https://wa.me/5521995413306" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
