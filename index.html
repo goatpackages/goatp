@@ -1242,7 +1242,7 @@ span[data-lang].on { display: inline; }
               <button style="flex:1; height:28px; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; font-weight:600; border:1px solid rgba(255,255,255,0.3); background:transparent; color:var(--white); cursor:pointer;" onclick="event.stopPropagation(); openExpressModal()">
                 <span data-lang="pt">Ver mais</span><span data-lang="en" class="on">See more</span><span data-lang="fr">Voir plus</span><span data-lang="es">Ver más</span>
               </button>
-              <button style="flex:1; height:28px; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; font-weight:600; border:none; background:var(--white); color:var(--black); cursor:pointer;" onclick="event.stopPropagation(); addToCart('PLUS EDITION','<span class=\'notranslate\' translate=\'no\'>Plus Express</span> — 4 Days / 3 Nights', 600 * currentRate, 'https://buy.stripe.com/3cI3co8npaBa7oL2b12Ry03')"><span data-lang="pt">Reservar</span><span data-lang="en" class="on">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
+              <button style="flex:1; height:28px; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; font-weight:600; border:none; background:var(--white); color:var(--black); cursor:pointer;" onclick="event.stopPropagation(); addToCart('PLUS EDITION','<span class=\'notranslate\' translate=\'no\'>Plus Express</span> — 4 Days / 3 Nights', 600 * currentRate, 'https://buy.stripe.com/28E5kw0UXcJifVh2b12Ry04')"><span data-lang="pt">Reservar</span><span data-lang="en" class="on">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
             </div>
           </div>
         </div>
@@ -2348,7 +2348,7 @@ modalEl.addEventListener('touchend', function(e) {
       <p id="chkFormError" style="display:none;color:#e08888;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;margin:4px 0 12px;"></p>
 
       <div style="margin-top: 8px;">
-        <a class="checkout-pay-btn" id="chkPayBtn" href="https://buy.stripe.com/7sY8wIbzBfVu8sP8zp2Ry02" onclick="return validateCheckout(this)" style="display:block;text-align:center;text-decoration:none;">
+        <a class="checkout-pay-btn" id="chkPayBtn" href="https://buy.stripe.com/eVq6oAfPR9x6eRd8zp2Ry06" onclick="return validateCheckout(this)" style="display:block;text-align:center;text-decoration:none;">
           <span data-lang="pt">Confirmar reserva</span>
           <span data-lang="en" class="on">Confirm booking</span>
           <span data-lang="fr">Confirmer la réservation</span>
@@ -2598,7 +2598,7 @@ function openCheckout() {
   if (fullName) document.getElementById('chkName').value = fullName;
   if (email) document.getElementById('chkEmail').value = email;
   if (phone) document.getElementById('chkPhone').value = phone;
-  var stripeBase = 'https://buy.stripe.com/7sY8wIbzBfVu8sP8zp2Ry02';
+  var stripeBase = 'https://buy.stripe.com/eVq6oAfPR9x6eRd8zp2Ry06';
   for (var ci = 0; ci < cart.length; ci++) {
     if (cart[ci].stripeUrl) { stripeBase = cart[ci].stripeUrl; break; }
   }
@@ -2706,7 +2706,7 @@ document.addEventListener('DOMContentLoaded', function() {
   footer.insertAdjacentHTML('beforeend', linksHtml);
 })();
 var STRIPE_LINKS = {
-  'PLUS EDITION': 'https://buy.stripe.com/7sY8wIbzBfVu8sP8zp2Ry02',
+  'PLUS EDITION': 'https://buy.stripe.com/eVq6oAfPR9x6eRd8zp2Ry06',
   'WEEKEND ESCAPE': 'https://buy.stripe.com/3cI3co8npaBa7oL2b12Ry03',
   'PLATINUM': null,
   'DIAMOND': null
