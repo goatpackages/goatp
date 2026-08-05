@@ -589,6 +589,79 @@ section { padding: 96px 48px; }
 }
 .about-text p { margin-bottom: 16px; }
 .about-text p:last-child { margin-bottom: 0; }
+
+/* Overview preview + read-more modal */
+.overview-preview {
+  position: relative;
+  max-height: 72px;
+  overflow: hidden;
+}
+.overview-preview::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 40px;
+  background: linear-gradient(to bottom, transparent, var(--black));
+  pointer-events: none;
+}
+.overview-read-more {
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 10px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: opacity 0.2s;
+}
+.overview-read-more:hover { opacity: 0.75; }
+.overview-read-more svg { transition: transform 0.2s; }
+.overview-read-more:hover svg { transform: translateX(3px); }
+
+.overview-modal-backdrop {
+  position: fixed; inset: 0;
+  z-index: 26500;
+  background: rgba(0,0,0,0.82);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s;
+  padding: 24px;
+}
+.overview-modal-backdrop.open { opacity: 1; pointer-events: all; }
+.overview-modal-box {
+  background: #111;
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--gold);
+  width: 100%; max-width: 600px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 40px 36px 36px;
+  position: relative;
+  transform: translateY(12px);
+  transition: transform 0.25s;
+  scrollbar-width: thin; scrollbar-color: #333 transparent;
+}
+.overview-modal-backdrop.open .overview-modal-box { transform: translateY(0); }
+.overview-modal-close {
+  position: absolute; top: 14px; right: 14px;
+  background: none; border: 1px solid var(--border);
+  color: var(--white); width: 30px; height: 30px;
+  font-size: 15px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.overview-modal-label {
+  font-size: 9px; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 20px;
+}
+.overview-modal-body {
+  font-size: 14px; line-height: 1.9; color: var(--cream-dim);
+}
+.overview-modal-body p { margin-bottom: 16px; }
+.overview-modal-body p:last-child { margin-bottom: 0; }
 .about-photo-wrap {
   flex-shrink: 0;
 }
@@ -1454,22 +1527,16 @@ span[data-lang].on { display: inline; }
         <div style="display:flex; align-items:flex-start; gap:32px;">
           <img src="logo.png" alt="G.O.A.T Rio" style="height:160px; width:auto; flex-shrink:0;" translate="no">
           <div class="about-text">
-          <span data-lang="pt">
-            <p>Somos uma equipe de profissionais com mais de 10 anos de experiência no turismo, que desenvolveu uma rede de parceiros selecionados para oferecer uma experiência completa e confiável, com hospedagem, transporte e atrações cuidadosamente organizados.</p>
-            <p>Assim, você aproveita o melhor da cidade sem preocupações com golpes, cobranças abusivas ou imprevistos, focando apenas em viver momentos inesquecíveis no Rio de Janeiro.</p>
-          </span>
-          <span data-lang="en" class="on">
-            <p>We are a team of professionals with over 10 years of experience in tourism, who have developed a network of selected partners to offer a complete and reliable experience, with accommodation, transportation and attractions carefully organised.</p>
-            <p>This way, you enjoy the best of the city without worrying about scams, overcharging or unexpected surprises, focusing only on living unforgettable moments in Rio de Janeiro.</p>
-          </span>
-          <span data-lang="fr">
-            <p>Nous sommes une équipe de professionnels avec plus de 10 ans d'expérience dans le tourisme, qui a développé un réseau de partenaires sélectionnés pour offrir une expérience complète et fiable, avec hébergement, transport et attractions soigneusement organisés.</p>
-            <p>Ainsi, vous profitez du meilleur de la ville sans vous soucier des arnaques, des surfacturations ou des imprévus, en vous concentrant uniquement sur des moments inoubliables à Rio de Janeiro.</p>
-          </span>
-          <span data-lang="es">
-            <p>Somos un equipo de profesionales con más de 10 años de experiencia en el turismo, que ha desarrollado una red de socios seleccionados para ofrecer una experiencia completa y confiable, con alojamiento, transporte y atracciones cuidadosamente organizados.</p>
-            <p>Así, disfrutas lo mejor de la ciudad sin preocuparte por estafas, cobros abusivos o imprevistos, enfocándote únicamente en vivir momentos inolvidables en Río de Janeiro.</p>
-          </span>
+            <div class="overview-preview">
+              <span data-lang="pt"><p>Somos uma equipe de profissionais com mais de 10 anos de experiência no turismo, que desenvolveu uma rede de parceiros selecionados para oferecer uma experiência completa e confiável, com hospedagem, transporte e atrações cuidadosamente organizados.</p></span>
+              <span data-lang="en" class="on"><p>We are a team of professionals with over 10 years of experience in tourism, who have developed a network of selected partners to offer a complete and reliable experience, with accommodation, transportation and attractions carefully organised.</p></span>
+              <span data-lang="fr"><p>Nous sommes une équipe de professionnels avec plus de 10 ans d'expérience dans le tourisme, qui a développé un réseau de partenaires sélectionnés pour offrir une expérience complète et fiable, avec hébergement, transport et attractions soigneusement organisés.</p></span>
+              <span data-lang="es"><p>Somos un equipo de profesionales con más de 10 años de experiencia en el turismo, que ha desarrollado una red de socios seleccionados para ofrecer una experiencia completa y confiable, con alojamiento, transporte y atracciones cuidadosamente organizados.</p></span>
+            </div>
+            <button class="overview-read-more" onclick="openOverviewModal('service')">
+              <span data-lang="pt">Ver mais</span><span data-lang="en" class="on">Read more</span><span data-lang="fr">Lire plus</span><span data-lang="es">Ver más</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
           </div>
         </div>
       </div>
@@ -1481,22 +1548,16 @@ span[data-lang].on { display: inline; }
         <p class="section-label" style="margin-bottom:16px; color:var(--gold);">Founder & CEO</p>
         <div class="about-inner">
           <div class="about-text">
-            <span data-lang="pt">
-              <p>Sou Carlos, nascido e criado na Rocinha, a maior favela da América Latina. Aprendi 3 a 4 línguas de forma autônoma, abrindo portas que eu jamais imaginava cruzar. Em 2015 viajei para a Suíça e a Alemanha por dois meses, algo que parecia impossível para um menino da favela.</p>
-              <p>Por mais de uma década, trabalhando no setor de turismo como guia, conhecendo pessoas de origens e culturas muito diferentes. Essas experiências, juntamente com a vontade de trazer melhoria para minha comunidade, me trouxeram a este projeto, que estará abrindo portas de trabalho para muitas pessoas que estão em situação de vulnerabilidade financeira.</p>
-            </span>
-            <span data-lang="en" class="on">
-              <p>I'm Carlos, born and raised in Rocinha, the largest favela in Latin America. I learned 3 to 4 languages on my own, opening doors I never imagined crossing. In 2015 I travelled to Switzerland and Germany for two months, something that seemed impossible for a kid from the favela.</p>
-              <p>For over a decade, working in the tourism sector as a guide, meeting people from very different backgrounds and cultures. These experiences, together with the desire to bring improvement to my community, brought me to this project, which will be opening doors of work for many people who are in a situation of financial vulnerability.</p>
-            </span>
-            <span data-lang="fr">
-              <p>Je suis Carlos, né et grandi à Rocinha, la plus grande favela d'Amérique latine. J'ai appris 3 à 4 langues par moi-même, ouvrant des portes que je n'imaginais jamais franchir. En 2015 j'ai voyagé en Suisse et en Allemagne pendant deux mois, quelque chose qui semblait impossible pour un enfant de la favela.</p>
-              <p>Depuis plus d'une décennie, je travaille dans le secteur du tourisme comme guide, rencontrant des personnes d'origines et de cultures très différentes. Ces expériences, ainsi que la volonté d'apporter des améliorations à ma communauté, m'ont conduit à ce projet, qui ouvrira des portes d'emploi pour de nombreuses personnes en situation de vulnérabilité financière.</p>
-            </span>
-            <span data-lang="es">
-              <p>Soy Carlos, nacido y criado en Rocinha, la favela más grande de América Latina. Aprendí 3 a 4 idiomas por mi cuenta, abriendo puertas que nunca imaginé cruzar. En 2015 viajé a Suiza y Alemania durante dos meses, algo que parecía imposible para un niño de la favela.</p>
-              <p>Durante más de una década, trabajando en el sector del turismo como guía, conociendo personas de orígenes y culturas muy diferentes. Estas experiencias, junto con el deseo de traer mejoras a mi comunidad, me llevaron a este proyecto, que estará abriendo puertas de trabajo para muchas personas que se encuentran en situación de vulnerabilidad financiera.</p>
-            </span>
+            <div class="overview-preview">
+              <span data-lang="pt"><p>Sou Carlos, nascido e criado na Rocinha, a maior favela da América Latina. Aprendi 3 a 4 línguas de forma autônoma, abrindo portas que eu jamais imaginava cruzar. Em 2015 viajei para a Suíça e a Alemanha por dois meses, algo que parecia impossível para um menino da favela.</p></span>
+              <span data-lang="en" class="on"><p>I'm Carlos, born and raised in Rocinha, the largest favela in Latin America. I learned 3 to 4 languages on my own, opening doors I never imagined crossing. In 2015 I travelled to Switzerland and Germany for two months, something that seemed impossible for a kid from the favela.</p></span>
+              <span data-lang="fr"><p>Je suis Carlos, né et grandi à Rocinha, la plus grande favela d'Amérique latine. J'ai appris 3 à 4 langues par moi-même, ouvrant des portes que je n'imaginais jamais franchir. En 2015 j'ai voyagé en Suisse et en Allemagne pendant deux mois, quelque chose qui semblait impossible pour un enfant de la favela.</p></span>
+              <span data-lang="es"><p>Soy Carlos, nacido y criado en Rocinha, la favela más grande de América Latina. Aprendí 3 a 4 idiomas por mi cuenta, abriendo puertas que nunca imaginé cruzar. En 2015 viajé a Suiza y Alemania durante dos meses, algo que parecía imposible para un niño de la favela.</p></span>
+            </div>
+            <button class="overview-read-more" onclick="openOverviewModal('ceo')">
+              <span data-lang="pt">Ver mais</span><span data-lang="en" class="on">Read more</span><span data-lang="fr">Lire plus</span><span data-lang="es">Ver más</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
           </div>
           <div class="about-photo-wrap">
             <img src="carlos.jpg" alt="Carlos" class="about-photo" id="aboutPhoto">
@@ -1679,6 +1740,15 @@ span[data-lang].on { display: inline; }
       <p id="modalDesc" style="font-size:14px;color:var(--cream-dim);line-height:1.7;margin-bottom:24px;display:none;"></p>
       <div id="modalGalleryBtns" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;"></div>
     </div>
+  </div>
+</div>
+
+<!-- OVERVIEW MODAL -->
+<div class="overview-modal-backdrop" id="overviewModal" onclick="if(event.target===this)closeOverviewModal()">
+  <div class="overview-modal-box">
+    <button class="overview-modal-close" onclick="closeOverviewModal()">✕</button>
+    <p class="overview-modal-label" id="overviewModalLabel"></p>
+    <div class="overview-modal-body" id="overviewModalBody"></div>
   </div>
 </div>
 
@@ -1966,6 +2036,34 @@ function openModal(pkg) {
 function closeModal() {
   currentOpenPkg = null;
   document.getElementById('pkgModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+var overviewContent = {
+  service: {
+    pt: { label: 'O Serviço', body: '<p>Somos uma equipe de profissionais com mais de 10 anos de experiência no turismo, que desenvolveu uma rede de parceiros selecionados para oferecer uma experiência completa e confiável, com hospedagem, transporte e atrações cuidadosamente organizados.</p><p>Assim, você aproveita o melhor da cidade sem preocupações com golpes, cobranças abusivas ou imprevistos, focando apenas em viver momentos inesquecíveis no Rio de Janeiro.</p>' },
+    en: { label: 'The Service', body: '<p>We are a team of professionals with over 10 years of experience in tourism, who have developed a network of selected partners to offer a complete and reliable experience, with accommodation, transportation and attractions carefully organised.</p><p>This way, you enjoy the best of the city without worrying about scams, overcharging or unexpected surprises, focusing only on living unforgettable moments in Rio de Janeiro.</p>' },
+    fr: { label: 'Le Service', body: '<p>Nous sommes une équipe de professionnels avec plus de 10 ans d\'expérience dans le tourisme, qui a développé un réseau de partenaires sélectionnés pour offrir une expérience complète et fiable, avec hébergement, transport et attractions soigneusement organisés.</p><p>Ainsi, vous profitez du meilleur de la ville sans vous soucier des arnaques, des surfacturations ou des imprévus, en vous concentrant uniquement sur des moments inoubliables à Rio de Janeiro.</p>' },
+    es: { label: 'El Servicio', body: '<p>Somos un equipo de profesionales con más de 10 años de experiencia en el turismo, que ha desarrollado una red de socios seleccionados para ofrecer una experiencia completa y confiable, con alojamiento, transporte y atracciones cuidadosamente organizados.</p><p>Así, disfrutas lo mejor de la ciudad sin preocuparte por estafas, cobros abusivos o imprevistos, enfocándote únicamente en vivir momentos inolvidables en Río de Janeiro.</p>' }
+  },
+  ceo: {
+    pt: { label: 'Founder & CEO', body: '<p>Sou Carlos, nascido e criado na Rocinha, a maior favela da América Latina. Aprendi 3 a 4 línguas de forma autônoma, abrindo portas que eu jamais imaginava cruzar. Em 2015 viajei para a Suíça e a Alemanha por dois meses, algo que parecia impossível para um menino da favela.</p><p>Por mais de uma década, trabalhando no setor de turismo como guia, conhecendo pessoas de origens e culturas muito diferentes. Essas experiências, juntamente com a vontade de trazer melhoria para minha comunidade, me trouxeram a este projeto, que estará abrindo portas de trabalho para muitas pessoas que estão em situação de vulnerabilidade financeira.</p>' },
+    en: { label: 'Founder & CEO', body: '<p>I\'m Carlos, born and raised in Rocinha, the largest favela in Latin America. I learned 3 to 4 languages on my own, opening doors I never imagined crossing. In 2015 I travelled to Switzerland and Germany for two months, something that seemed impossible for a kid from the favela.</p><p>For over a decade, working in the tourism sector as a guide, meeting people from very different backgrounds and cultures. These experiences, together with the desire to bring improvement to my community, brought me to this project, which will be opening doors of work for many people who are in a situation of financial vulnerability.</p>' },
+    fr: { label: 'Founder & CEO', body: '<p>Je suis Carlos, né et grandi à Rocinha, la plus grande favela d\'Amérique latine. J\'ai appris 3 à 4 langues par moi-même, ouvrant des portes que je n\'imaginais jamais franchir. En 2015 j\'ai voyagé en Suisse et en Allemagne pendant deux mois, quelque chose qui semblait impossible pour un enfant de la favela.</p><p>Depuis plus d\'une décennie, je travaille dans le secteur du tourisme comme guide, rencontrant des personnes d\'origines et de cultures très différentes. Ces expériences, ainsi que la volonté d\'apporter des améliorations à ma communauté, m\'ont conduit à ce projet, qui ouvrira des portes d\'emploi pour de nombreuses personnes en situation de vulnérabilité financière.</p>' },
+    es: { label: 'Founder & CEO', body: '<p>Soy Carlos, nacido y criado en Rocinha, la favela más grande de América Latina. Aprendí 3 a 4 idiomas por mi cuenta, abriendo puertas que nunca imaginé cruzar. En 2015 viajé a Suiza y Alemania durante dos meses, algo que parecía imposible para un niño de la favela.</p><p>Durante más de una década, trabajando en el sector del turismo como guía, conociendo personas de orígenes y culturas muy diferentes. Estas experiencias, junto con el deseo de traer mejoras a mi comunidad, me llevaron a este proyecto, que estará abriendo puertas de trabajo para muchas personas que se encuentran en situación de vulnerabilidad financiera.</p>' }
+  }
+};
+
+function openOverviewModal(type) {
+  var content = overviewContent[type][currentLang] || overviewContent[type]['en'];
+  document.getElementById('overviewModalLabel').textContent = content.label;
+  document.getElementById('overviewModalBody').innerHTML = content.body;
+  document.getElementById('overviewModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeOverviewModal() {
+  document.getElementById('overviewModal').classList.remove('open');
   document.body.style.overflow = '';
 }
 
