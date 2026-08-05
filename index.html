@@ -749,6 +749,35 @@ footer {
 .modal-edition { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--cream-dim); margin-bottom: 4px; }
 .modal-title { font-family: var(--serif); font-size: 36px; font-weight: 400; line-height: 1; color: var(--white); }
 .modal-tagline { font-size: 12px; color: var(--cream-dim); margin-top: 6px; line-height: 1.5; }
+.modal-sticky-bar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: rgba(10,10,10,0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 12px 24px 12px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.modal-sticky-bar-title {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  line-height: 1;
+}
+.modal-sticky-bar-edition {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 3px;
+}
 
 /* GALLERY */
 .modal-gallery-strip { background: var(--black); padding: 2px; }
@@ -1635,6 +1664,12 @@ span[data-lang].on { display: inline; }
 <div class="modal-backdrop" id="pkgModal" onclick="if(event.target===this)closeModal()">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-sticky-bar">
+      <div>
+        <div class="modal-sticky-bar-edition" id="modalStickyEdition"></div>
+        <div class="modal-sticky-bar-title" id="modalStickyTitle"></div>
+      </div>
+    </div>
     <div class="modal-header" id="modalHeader">
       <img id="modalHeaderImg" src="" alt="">
       <div class="modal-header-dim"></div>
@@ -1871,9 +1906,15 @@ function renderModal(pkg) {
   var headerImg = document.getElementById('modalHeaderImg');
   headerImg.src = data.img;
   headerImg.style.objectPosition = data.imgPosition || 'center center';
-  document.getElementById('modalEdition').textContent = eventoEdicaoLabels[currentLang] || eventoEdicaoLabels['pt'];
-  document.getElementById('modalTitle').textContent = i18n.title || data.title;
+  var editionLabel = eventoEdicaoLabels[currentLang] || eventoEdicaoLabels['pt'];
+  var titleLabel = i18n.title || data.title;
+  document.getElementById('modalEdition').textContent = editionLabel;
+  document.getElementById('modalTitle').textContent = titleLabel;
   document.getElementById('modalTagline').textContent = i18n.tagline;
+  var stickyEdition = document.getElementById('modalStickyEdition');
+  var stickyTitle = document.getElementById('modalStickyTitle');
+  if (stickyEdition) stickyEdition.textContent = editionLabel;
+  if (stickyTitle) stickyTitle.textContent = titleLabel;
   var descEl = document.getElementById('modalDesc');
   if (i18n.desc) {
     descEl.style.whiteSpace = '';
