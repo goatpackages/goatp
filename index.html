@@ -65,13 +65,7 @@ function togglePkgSub(e) {
     });
   }
 }
-function goToPkg(pkg) {
-  toggleMobileMenu();
-  setTimeout(function() {
-    var el = pkg === 'black' ? document.querySelector('.pkg-black') : pkg === 'gold' ? document.getElementById('goldCard') : document.getElementById('diamondCard');
-    if (el) el.scrollIntoView({behavior:'smooth', block:'center'});
-  }, 350);
-}
+/* goToPkg is defined at the bottom of the script */
 </script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -1014,6 +1008,110 @@ span[data-lang].on { display: inline; }
 .date-field-label { font-size:8px; letter-spacing:.25em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:5px; }
 .date-field-input { background:none; border:none; outline:none; color:var(--white); font-size:14px; font-weight:600; width:100%; font-family:inherit; letter-spacing:.04em; padding:0; }
 .date-field-input::placeholder { color:rgba(255,255,255,.25); font-weight:400; letter-spacing:.02em; }
+
+/* ─── PKG SHOWCASE PANEL ─── */
+.pkg-showcase {
+  position: fixed;
+  inset: 0;
+  z-index: 20000;
+  background: #0d0d0d;
+  transform: translateX(-100%);
+  transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.pkg-showcase.open { transform: translateX(0); }
+
+.pkg-showcase-img {
+  width: 100%;
+  height: 52vw;
+  max-height: 320px;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+}
+
+.pkg-showcase-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 28px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pkg-showcase-edition {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.pkg-showcase-edition.gold  { color: var(--gold); }
+.pkg-showcase-edition.ice   { color: var(--ice, #a8d8ea); }
+.pkg-showcase-edition.white { color: var(--white); }
+
+.pkg-showcase-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.pkg-showcase-tagline {
+  font-size: 13px;
+  color: var(--cream-dim, rgba(255,255,255,0.55));
+  line-height: 1.75;
+}
+
+.pkg-showcase-price {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.03em;
+}
+
+.pkg-showcase-price small {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--cream-dim, rgba(255,255,255,0.4));
+  letter-spacing: 0.08em;
+}
+
+.pkg-showcase-status {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  display: inline-block;
+  border: 1px solid;
+}
+
+.pkg-showcase-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.pkg-showcase-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--white);
+  font-size: 18px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1;
+  border-radius: 50%;
+}
 
 /* ─── MOBILE MENU ─── */
 .hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; }
@@ -2825,7 +2923,113 @@ function dateMaskInput(el){
   else pos=digits.length+2;
   el.setSelectionRange(pos,pos);
 }
+
+/* ── PKG SHOWCASE ── */
+var PKG_SHOWCASE_DATA = {
+  black: {
+    img: 'GOATBLACK.jpeg',
+    edition: 'Plus Edition',
+    editionClass: 'gold',
+    title: 'GOAT Plus',
+    tagline: 'Live Rio de Janeiro without limits. Premium accommodation, exclusive experiences and privileged access to the city\'s best events — with a trusted local network by your side.',
+    price: '$890 USD',
+    priceLabel: 'per person',
+    status: null,
+    cta: 'Book Now',
+    ctaAction: 'addBlackToCart'
+  },
+  gold: {
+    img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
+    edition: 'Platinum Edition',
+    editionClass: 'gold',
+    title: 'Platinum',
+    tagline: 'The gateway to a premium experience in Rio de Janeiro. Selected accommodation, parties, tourist attractions and authentic experiences — a week of fun in the Marvellous City.',
+    price: 'R$11.990',
+    priceLabel: 'per person',
+    status: 'Temporarily Closed',
+    statusColor: 'var(--gold)',
+    cta: null
+  },
+  diamond: {
+    img: 'diamond-residencia.avif',
+    edition: 'Diamond Edition',
+    editionClass: 'ice',
+    title: 'Diamond',
+    tagline: 'For those who don\'t follow trends. They set them. Where the extraordinary becomes the standard. An experience reserved for those who demand the best.',
+    price: 'By consultation',
+    priceLabel: '',
+    status: 'Temporarily Inactive',
+    statusColor: 'var(--ice, #a8d8ea)',
+    cta: 'Contact Us',
+    ctaAction: 'contact'
+  }
+};
+
+function openPkgShowcase(pkg) {
+  var data = PKG_SHOWCASE_DATA[pkg];
+  if (!data) return;
+  var panel = document.getElementById('pkgShowcase');
+  document.getElementById('showcaseImg').src = data.img;
+  document.getElementById('showcaseEdition').textContent = data.edition;
+  document.getElementById('showcaseEdition').className = 'pkg-showcase-edition ' + data.editionClass;
+  document.getElementById('showcaseTitle').textContent = data.title;
+  document.getElementById('showcaseTagline').textContent = data.tagline;
+  document.getElementById('showcasePrice').innerHTML = data.price + (data.priceLabel ? ' <small>' + data.priceLabel + '</small>' : '');
+  var statusEl = document.getElementById('showcaseStatus');
+  if (data.status) {
+    statusEl.textContent = data.status;
+    statusEl.style.color = data.statusColor;
+    statusEl.style.borderColor = data.statusColor;
+    statusEl.style.display = 'inline-block';
+  } else {
+    statusEl.style.display = 'none';
+  }
+  var ctaEl = document.getElementById('showcaseCta');
+  if (data.cta) {
+    ctaEl.textContent = data.cta;
+    ctaEl.style.display = 'block';
+    ctaEl.onclick = function() {
+      closePkgShowcase();
+      if (data.ctaAction === 'addBlackToCart') {
+        setTimeout(function() { addBlackToCart(); openCart(); }, 300);
+      } else if (data.ctaAction === 'contact') {
+        setTimeout(function() { document.getElementById('contato') && document.getElementById('contato').scrollIntoView({behavior:'smooth'}); }, 300);
+      }
+    };
+  } else {
+    ctaEl.style.display = 'none';
+  }
+  panel.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePkgShowcase() {
+  document.getElementById('pkgShowcase').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function goToPkg(pkg) {
+  toggleMobileMenu();
+  setTimeout(function() { openPkgShowcase(pkg); }, 350);
+}
 </script>
+
+<!-- PKG SHOWCASE PANEL -->
+<div class="pkg-showcase" id="pkgShowcase">
+  <button class="pkg-showcase-close" onclick="closePkgShowcase()">✕</button>
+  <img class="pkg-showcase-img" id="showcaseImg" src="" alt="">
+  <div class="pkg-showcase-body">
+    <div id="showcaseEdition" class="pkg-showcase-edition gold"></div>
+    <h2 class="pkg-showcase-title" id="showcaseTitle"></h2>
+    <p class="pkg-showcase-tagline" id="showcaseTagline"></p>
+    <div class="pkg-showcase-price" id="showcasePrice"></div>
+    <span class="pkg-showcase-status" id="showcaseStatus" style="display:none;"></span>
+    <div class="pkg-showcase-actions">
+      <button class="btn pkg-showcase-cta" id="showcaseCta" style="background:var(--gold);color:#000;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;padding:14px 28px;border:none;cursor:pointer;width:100%;display:none;"></button>
+      <button style="flex-shrink:0;background:transparent;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;padding:14px 20px;cursor:pointer;" onclick="closePkgShowcase()">Back</button>
+    </div>
+  </div>
+</div>
 
 <a class="wa-float" href="https://wa.me/5521995413306" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
   <div class="wa-float-btn">
