@@ -1416,7 +1416,7 @@ span[data-lang].on { display: inline; }
               <div>
                 <span style="font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--white); font-weight:600;" class="notranslate" translate="no">Plus Express</span>
                 <span style="font-size:9px; color:rgba(255,255,255,0.3); margin:0 5px;">·</span>
-                <span style="font-size:9px; letter-spacing:0.06em; color:rgba(255,255,255,0.75);">4 Days / 3 Nights</span>
+                <span style="font-size:14px; letter-spacing:0.06em; color:rgba(255,255,255,0.75);">4 Days / 3 Nights</span>
               </div>
               <span style="font-size:12px; font-weight:600; color:var(--white); letter-spacing:0.03em;">$520 <span style="font-size:9px; font-weight:400; color:var(--cream-dim);">USD</span></span>
             </div>
@@ -1428,8 +1428,8 @@ span[data-lang].on { display: inline; }
             </div>
           </div>
         </div>
-        <p style="font-size:16px; color:var(--cream); margin-bottom:4px; letter-spacing:0.05em;"><s>$1,000 USD</s></p>
-        <p style="font-size:22px; font-weight:700; color:var(--white); letter-spacing:0.04em; margin-bottom:12px;" id="blackPriceDisplay">$890 USD<span style="font-size:12px; font-weight:400; color:var(--cream-dim); letter-spacing:0.1em;"><span data-lang="pt">por pessoa</span><span data-lang="en" class="on">per person</span><span data-lang="fr">par personne</span><span data-lang="es">por persona</span></span><span style="font-size:11px; font-weight:400; color:var(--gold); letter-spacing:0.12em; margin-left:10px;"><span data-lang="pt">· 7 noites</span><span data-lang="en" class="on">· 7 nights</span><span data-lang="fr">· 7 nuits</span><span data-lang="es">· 7 noches</span></span></p>
+        <p style="font-size:16px; color:var(--cream); margin-bottom:4px; letter-spacing:0.05em;"><s>$1,000 <span style="color:rgba(232,228,220,0.45); font-weight:400;">USD</span></s></p>
+        <p style="font-size:22px; font-weight:700; color:var(--white); letter-spacing:0.04em; margin-bottom:12px;" id="blackPriceDisplay">$890 <span id="blackCurrencyLabel" style="font-size:15px; font-weight:400; color:rgba(255,255,255,0.38); letter-spacing:0.06em; margin-right:8px;">USD</span><span style="font-size:12px; font-weight:400; color:var(--cream-dim); letter-spacing:0.1em;"><span data-lang="pt">por pessoa</span><span data-lang="en" class="on">per person</span><span data-lang="fr">par personne</span><span data-lang="es">por persona</span></span><span style="font-size:16px; font-weight:400; color:var(--gold); letter-spacing:0.12em; margin-left:10px;"><span data-lang="pt">· 7 noites</span><span data-lang="en" class="on">· 7 nights</span><span data-lang="fr">· 7 nuits</span><span data-lang="es">· 7 noches</span></span></p>
         <p style="font-size:12px; color:var(--gold); letter-spacing:0.07em; line-height:1.7; margin-bottom:16px; border:1px solid var(--gold); padding:10px 14px; background:rgba(180,145,80,0.08);"><span data-lang="pt">⚠ A ativação deste pacote está condicionada à confirmação mínima de 14 participantes inscritos.</span><span data-lang="en" class="on">⚠ The activation of this package is subject to a minimum confirmation of 14 registered participants.</span><span data-lang="fr">⚠ L'activation de ce forfait est conditionnée à la confirmation d'un minimum de 14 participants inscrits.</span><span data-lang="es">⚠ La activación de este paquete está condicionada a la confirmación mínima de 14 participantes inscritos.</span></p>
         <button class="pkg-btn" id="blackCartBtn" onclick="addBlackToCart()"><span data-lang="pt">Reservar</span><span data-lang="en" class="on">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
       </div>
@@ -2633,8 +2633,10 @@ function updatePriceDisplays() {
   if (blackEl) {
     var goatPlusPrice = currentCurrency === 'BRL'
       ? 'R$' + Math.round(PRICE_GOAT_PLUS_USD * currentRate).toLocaleString('pt-BR')
-      : '$' + PRICE_GOAT_PLUS_USD.toLocaleString('en-US') + ' USD';
+      : '$' + PRICE_GOAT_PLUS_USD.toLocaleString('en-US');
     blackEl.childNodes[0].textContent = goatPlusPrice + ' ';
+    var blackCurrLabel = document.getElementById('blackCurrencyLabel');
+    if (blackCurrLabel) blackCurrLabel.style.display = currentCurrency === 'BRL' ? 'none' : 'inline';
   }
   if (goldEl) {
     goldEl.childNodes[0].textContent = formatPrice(PRICES_BRL.gold) + ' ';
