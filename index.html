@@ -235,6 +235,47 @@ nav {
   padding: 6px 14px;
   text-shadow: 0 1px 4px rgba(0,0,0,1);
 }
+@keyframes services-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(200,169,126,0.7), 0 6px 28px rgba(0,0,0,0.5); }
+  50%       { box-shadow: 0 0 0 10px rgba(200,169,126,0), 0 6px 28px rgba(0,0,0,0.5); }
+}
+.hero-services-btn {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: var(--gold); color: var(--black);
+  border: 2px solid var(--gold);
+  font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700;
+  padding: 17px 38px; margin-bottom: 40px; cursor: pointer;
+  animation: services-pulse 2s ease-in-out infinite;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.hero-services-btn:hover {
+  background: transparent; color: var(--white); border-color: var(--white);
+  animation: none;
+  box-shadow: 0 6px 28px rgba(0,0,0,0.5);
+}
+.hero-services-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+.services-modal-inner { padding: 48px 40px; }
+.services-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px; margin-top: 32px;
+}
+.service-item {
+  display: flex; align-items: center; gap: 16px;
+  border: 1px solid var(--border); padding: 20px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.service-item:hover { border-color: var(--gold); background: var(--gold-dim); }
+.service-icon {
+  flex-shrink: 0; width: 46px; height: 46px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--gold); color: var(--gold);
+}
+.service-icon svg { width: 22px; height: 22px; }
+.service-name { font-size: 14px; letter-spacing: 0.04em; color: var(--white); }
+@media (max-width: 640px) {
+  .services-modal-inner { padding: 40px 22px; }
+  .services-grid { grid-template-columns: 1fr; }
+}
 .hero-dots {
   display: flex; gap: 6px;
 }
@@ -1374,6 +1415,10 @@ span[data-lang].on { display: inline; }
       <span class="hero-tag">VIP</span>
       <span class="hero-tag">Plus · Platinum · Diamond</span>
     </div>
+    <button class="hero-services-btn" onclick="openServicesModal()">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      <span data-lang="pt">Nossos Serviços</span><span data-lang="en" class="on">Our Services</span><span data-lang="fr">Nos Services</span><span data-lang="es">Nuestros Servicios</span>
+    </button>
     <div class="hero-dots">
       <button class="hero-dot active" onclick="goSlide(0)"></button>
       <button class="hero-dot" onclick="goSlide(1)"></button>
@@ -1410,28 +1455,30 @@ span[data-lang].on { display: inline; }
       <div class="pkg-body" style="background: transparent;">
         <button class="pkg-ver-mais" onclick="openModal('black')"><span data-lang="pt">Ver mais</span><span data-lang="en" class="on">See more</span><span data-lang="fr">Voir plus</span><span data-lang="es">Ver más</span></button>
         <p class="pkg-tagline"><span data-lang="pt">Viva o Rio de Janeiro sem limitações. O Pacote Plus combina hospedagem premium, experiências exclusivas, acesso privilegiado aos melhores eventos da cidade e o suporte de uma rede local de confiança, permitindo que você explore cada momento com conforto, segurança e total tranquilidade.</span><span data-lang="en" class="on">Live Rio de Janeiro without limits. The Plus Package combines premium accommodation, exclusive experiences, privileged access to the city's best events and the support of a trusted local network, allowing you to explore every moment with comfort, safety and complete peace of mind.</span><span data-lang="fr">Vivez Rio de Janeiro sans limites. Le Plus Package combine hébergement premium, expériences exclusives, accès privilégié aux meilleurs événements de la ville et le soutien d'un réseau local de confiance, vous permettant d'explorer chaque instant avec confort, sécurité et une tranquillité totale.</span><span data-lang="es">Vive Río de Janeiro sin limitaciones. El Plus Package combina alojamiento premium, experiencias exclusivas, acceso privilegiado a los mejores eventos de la ciudad y el apoyo de una red local de confianza, permitiéndote explorar cada momento con comodidad, seguridad y total tranquilidad.</span></p>
-        <div class="black-plan-selector">
-          <div id="blackPlanExpress" style="flex:1; border:1px solid var(--gold); padding:10px 12px; background:rgba(180,145,80,0.07);">
-            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;">
-              <div>
-                <span style="font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--white); font-weight:600;" class="notranslate" translate="no">Plus Express</span>
-                <span style="font-size:9px; color:rgba(255,255,255,0.3); margin:0 5px;">·</span>
-                <span style="font-size:14px; letter-spacing:0.06em; color:rgba(255,255,255,0.75);">4 Days / 3 Nights</span>
-              </div>
-              <span style="font-size:12px; font-weight:600; color:var(--white); letter-spacing:0.03em;">$520 <span style="font-size:9px; font-weight:400; color:var(--cream-dim);">USD</span></span>
-            </div>
-            <div style="display:flex; gap:8px; margin-top:8px;">
-              <button style="flex:1; height:28px; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; font-weight:600; border:1px solid rgba(255,255,255,0.3); background:transparent; color:var(--white); cursor:pointer;" onclick="event.stopPropagation(); openExpressModal()">
-                <span data-lang="pt">Ver mais</span><span data-lang="en" class="on">See more</span><span data-lang="fr">Voir plus</span><span data-lang="es">Ver más</span>
-              </button>
-              <button style="flex:1; height:28px; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; font-weight:600; border:none; background:var(--white); color:var(--black); cursor:pointer;" onclick="event.stopPropagation(); addToCart('PLUS EDITION','<span class=\'notranslate\' translate=\'no\'>Plus Express</span> — 4 Days / 3 Nights', 520 * currentRate, 'https://buy.stripe.com/28E5kw0UXcJifVh2b12Ry04')"><span data-lang="pt">Reservar</span><span data-lang="en" class="on">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
-            </div>
-          </div>
-        </div>
+        <p style="font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; font-weight:600;"><span data-lang="pt">Plus · 1 semana completa</span><span data-lang="en" class="on">Plus · Full week</span><span data-lang="fr">Plus · Une semaine complète</span><span data-lang="es">Plus · Una semana completa</span></p>
         <p style="font-size:16px; color:var(--cream); margin-bottom:4px; letter-spacing:0.05em;"><s>$1,000 <span style="color:rgba(232,228,220,0.45); font-weight:400;">USD</span></s></p>
         <p style="font-size:22px; font-weight:700; color:var(--white); letter-spacing:0.04em; margin-bottom:12px;" id="blackPriceDisplay">$890 <span id="blackCurrencyLabel" style="font-size:15px; font-weight:400; color:rgba(255,255,255,0.38); letter-spacing:0.06em; margin-right:8px;">USD</span><span style="font-size:12px; font-weight:400; color:var(--cream-dim); letter-spacing:0.1em;"><span data-lang="pt">por pessoa</span><span data-lang="en" class="on">per person</span><span data-lang="fr">par personne</span><span data-lang="es">por persona</span></span><span style="font-size:16px; font-weight:400; color:var(--gold); letter-spacing:0.12em; margin-left:10px;"><span data-lang="pt">· 7 noites</span><span data-lang="en" class="on">· 7 nights</span><span data-lang="fr">· 7 nuits</span><span data-lang="es">· 7 noches</span></span></p>
         <p style="font-size:12px; color:var(--gold); letter-spacing:0.07em; line-height:1.7; margin-bottom:16px; border:1px solid var(--gold); padding:10px 14px; background:rgba(180,145,80,0.08);"><span data-lang="pt">⚠ A ativação deste pacote está condicionada à confirmação mínima de 14 participantes inscritos.</span><span data-lang="en" class="on">⚠ The activation of this package is subject to a minimum confirmation of 14 registered participants.</span><span data-lang="fr">⚠ L'activation de ce forfait est conditionnée à la confirmation d'un minimum de 14 participants inscrits.</span><span data-lang="es">⚠ La activación de este paquete está condicionada a la confirmación mínima de 14 participantes inscritos.</span></p>
         <button class="pkg-btn" id="blackCartBtn" onclick="addBlackToCart()"><span data-lang="pt">Reservar</span><span data-lang="en" class="on">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
+        <div style="margin-top:24px; padding-top:20px; border-top:1px solid var(--border);">
+          <p style="font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--cream-dim); margin-bottom:10px;"><span data-lang="pt">Também disponível · estadia mais curta</span><span data-lang="en" class="on">Also available · shorter stay</span><span data-lang="fr">Également disponible · séjour plus court</span><span data-lang="es">También disponible · estancia más corta</span></p>
+          <div style="border:1px solid var(--border-strong); padding:12px 14px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;">
+              <div>
+                <span style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--cream-dim); font-weight:600;" class="notranslate" translate="no">Plus Express</span>
+                <span style="font-size:9px; color:rgba(255,255,255,0.3); margin:0 5px;">·</span>
+                <span style="font-size:13px; letter-spacing:0.06em; color:rgba(255,255,255,0.7);">4 Days / 3 Nights</span>
+              </div>
+              <span style="font-size:13px; font-weight:600; color:var(--white); letter-spacing:0.03em;">$520 <span style="font-size:9px; font-weight:400; color:var(--cream-dim);">USD</span></span>
+            </div>
+            <div style="display:flex; gap:8px; margin-top:10px;">
+              <button style="flex:1; height:28px; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; font-weight:600; border:1px solid rgba(255,255,255,0.3); background:transparent; color:var(--white); cursor:pointer;" onclick="openExpressModal()">
+                <span data-lang="pt">Ver mais</span><span data-lang="en" class="on">See more</span><span data-lang="fr">Voir plus</span><span data-lang="es">Ver más</span>
+              </button>
+              <button style="flex:1; height:28px; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; font-weight:600; border:none; background:rgba(255,255,255,0.85); color:var(--black); cursor:pointer;" onclick="addToCart('PLUS EDITION','<span class=\'notranslate\' translate=\'no\'>Plus Express</span> — 4 Days / 3 Nights', 520 * currentRate, 'https://buy.stripe.com/28E5kw0UXcJifVh2b12Ry04')"><span data-lang="pt">Reservar</span><span data-lang="en" class="on">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- PLATINUM -->
@@ -1684,6 +1731,52 @@ span[data-lang].on { display: inline; }
     </div>
   </div>
 </section>
+
+<!-- SERVICES MODAL -->
+<div class="modal-backdrop" id="servicesModal" onclick="if(event.target===this)closeServicesModal()" style="z-index:25002;">
+  <div class="modal" style="max-width:760px;">
+    <button class="modal-close" onclick="closeServicesModal()">&#x2715;</button>
+    <div class="services-modal-inner">
+      <p class="section-label" style="color:var(--gold); margin-bottom:12px;"><span data-lang="pt">O que oferecemos</span><span data-lang="en" class="on">What we offer</span><span data-lang="fr">Ce que nous offrons</span><span data-lang="es">Lo que ofrecemos</span></p>
+      <h2 class="section-title" style="font-size:32px; line-height:1.05;"><span data-lang="pt">Nossos Serviços</span><span data-lang="en" class="on">Our Services</span><span data-lang="fr">Nos Services</span><span data-lang="es">Nuestros Servicios</span></h2>
+      <div class="services-grid">
+        <div class="service-item">
+          <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9v.01"/><path d="M9 12v.01"/><path d="M9 15v.01"/><path d="M9 18v.01"/></svg></div>
+          <span class="service-name"><span data-lang="pt">Hospedagens em apartamentos</span><span data-lang="en" class="on">Apartment stays</span><span data-lang="fr">Séjours en appartement</span><span data-lang="es">Alojamiento en apartamentos</span></span>
+        </div>
+        <div class="service-item">
+          <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/><path d="M3 20h18"/></svg></div>
+          <span class="service-name"><span data-lang="pt">Tours pela cidade &amp; trilhas</span><span data-lang="en" class="on">City tours &amp; Hikes</span><span data-lang="fr">Visites de la ville &amp; randonnées</span><span data-lang="es">Tours por la ciudad &amp; senderismo</span></span>
+        </div>
+        <div class="service-item">
+          <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1l2-2h8l2 2h1a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M9 11h6"/><path d="M7 11V9h10v2"/></svg></div>
+          <span class="service-name"><span data-lang="pt">Translados &amp; transporte privativo</span><span data-lang="en" class="on">Transfers &amp; private transportation</span><span data-lang="fr">Transferts &amp; transport privé</span><span data-lang="es">Traslados &amp; transporte privado</span></span>
+        </div>
+        <div class="service-item">
+          <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7"/></svg></div>
+          <span class="service-name"><span data-lang="pt">Festas</span><span data-lang="en" class="on">Parties</span><span data-lang="fr">Fêtes</span><span data-lang="es">Fiestas</span></span>
+        </div>
+        <div class="service-item">
+          <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.9.94 5.34 2.81 7.76"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M12 10v4"/><path d="M12 2v3"/></svg></div>
+          <span class="service-name"><span data-lang="pt">Passeios de barco &amp; festas náuticas</span><span data-lang="en" class="on">Boat trips &amp; Boat parties</span><span data-lang="fr">Sorties en bateau &amp; fêtes nautiques</span><span data-lang="es">Paseos en barco &amp; fiestas náuticas</span></span>
+        </div>
+        <div class="service-item">
+          <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20"/><path d="M2 12h20"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg></div>
+          <span class="service-name"><span data-lang="pt">Partidas de futebol — ingresso, transfer e guia inclusos</span><span data-lang="en" class="on">Football matches — ticket, transfer &amp; guide included</span><span data-lang="fr">Matchs de football — billet, transfert et guide inclus</span><span data-lang="es">Partidos de fútbol — entrada, traslado y guía incluidos</span></span>
+        </div>
+        <div class="service-item">
+          <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          <span class="service-name"><span data-lang="pt">Ingressos para Sapucaí — Carnaval</span><span data-lang="en" class="on">Sapucaí tickets — Carnival</span><span data-lang="fr">Billets pour le Sapucaí — Carnaval</span><span data-lang="es">Entradas para el Sapucaí — Carnaval</span></span>
+        </div>
+        <div class="service-item">
+          <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v2"/><path d="M12 16v2"/><path d="M8.5 8.5A4 4 0 0 1 16 12a4 4 0 0 1-4 4"/><path d="M9 15.5A4 4 0 0 1 8 12"/></svg></div>
+          <span class="service-name"><span data-lang="pt">Câmbio &amp; troca de moeda</span><span data-lang="en" class="on">Currency exchange</span><span data-lang="fr">Change de devises</span><span data-lang="es">Cambio de divisas</span></span>
+        </div>
+      </div>
+      <button class="nav-cta" style="margin-top:36px; display:inline-block;" onclick="closeServicesModal(); document.getElementById('contato').scrollIntoView({behavior:'smooth'});"><span data-lang="pt">Reservar agora</span><span data-lang="en" class="on">Book Now</span><span data-lang="fr">Réserver</span><span data-lang="es">Reservar</span></button>
+    </div>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <!-- MODAL -->
@@ -2656,6 +2749,14 @@ function openExpressModal() {
 }
 function closeExpressModal() {
   var m = document.getElementById('expressModal');
+  if (m) { m.classList.remove('open'); document.body.style.overflow = ''; }
+}
+function openServicesModal() {
+  var m = document.getElementById('servicesModal');
+  if (m) { m.classList.add('open'); document.body.style.overflow = 'hidden'; }
+}
+function closeServicesModal() {
+  var m = document.getElementById('servicesModal');
   if (m) { m.classList.remove('open'); document.body.style.overflow = ''; }
 }
 
